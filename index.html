@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Waktu Sejak — Time Since</title>
+  <meta name="description" content="A minimalist time-tracking app — know exactly how long ago something happened, or how long until it does.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --oi-orange: #E69F00;
+      --oi-sky: #56B4E9;
+      --oi-green: #009E73;
+      --oi-yellow: #F0E442;
+      --oi-blue: #0072B2;
+      --oi-vermillion: #D55E00;
+      --oi-purple: #CC79A7;
+      --bg: #FAFAF8;
+      --bg-alt: #F2F1ED;
+      --fg: #1A1A18;
+      --fg-muted: #6B6B66;
+      --radius: 16px;
+      --radius-sm: 10px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(250,250,248,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .nav-inner {
+      max-width: 1120px; margin: 0 auto;
+      padding: 14px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      font-weight: 700; font-size: 18px; color: var(--fg);
+      text-decoration: none; display: flex; align-items: center; gap: 8px;
+    }
+    .nav-logo span { color: var(--oi-blue); }
+    .nav-links { display: flex; gap: 24px; align-items: center; }
+    .nav-links a {
+      text-decoration: none; color: var(--fg-muted); font-size: 14px; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--fg); }
+    .nav-cta {
+      background: var(--oi-blue) !important; color: #fff !important;
+      padding: 8px 18px; border-radius: 8px; font-weight: 600 !important;
+    }
+    .nav-cta:hover { opacity: 0.9; }
+    .lang-toggle {
+      background: var(--bg-alt); border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 8px; padding: 6px 12px; font-size: 13px; font-weight: 600;
+      cursor: pointer; color: var(--fg); font-family: inherit;
+      transition: background 0.2s;
+    }
+    .lang-toggle:hover { background: #E8E7E3; }
+    .nav-menu-btn {
+      display: none; background: none; border: none; cursor: pointer;
+      width: 32px; height: 32px; position: relative;
+    }
+    .nav-menu-btn span {
+      display: block; width: 20px; height: 2px; background: var(--fg);
+      position: absolute; left: 6px; transition: 0.2s;
+    }
+    .nav-menu-btn span:nth-child(1) { top: 10px; }
+    .nav-menu-btn span:nth-child(2) { top: 16px; }
+    .nav-menu-btn span:nth-child(3) { top: 22px; }
+
+    /* HERO */
+    .hero {
+      padding: 140px 24px 80px;
+      text-align: center;
+      max-width: 800px; margin: 0 auto;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--bg-alt); border: 1px solid rgba(0,0,0,0.06);
+      padding: 6px 14px; border-radius: 100px;
+      font-size: 13px; font-weight: 500; color: var(--fg-muted);
+      margin-bottom: 28px;
+    }
+    .hero-badge .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--oi-green);
+    }
+    .hero h1 {
+      font-size: clamp(36px, 6vw, 64px);
+      font-weight: 700; line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--oi-blue), var(--oi-sky));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p.hero-desc {
+      font-size: clamp(16px, 2.2vw, 20px);
+      color: var(--fg-muted); max-width: 560px; margin: 0 auto 36px;
+      text-wrap: pretty;
+    }
+    .hero-actions {
+      display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border-radius: 12px;
+      font-size: 15px; font-weight: 600; text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+      cursor: pointer; border: none; font-family: inherit;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary {
+      background: var(--oi-blue); color: #fff;
+      box-shadow: 0 2px 12px rgba(0,114,178,0.25);
+    }
+    .btn-secondary {
+      background: var(--bg-alt); color: var(--fg);
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+
+    /* SCREENSHOTS SHOWCASE */
+    .screenshots {
+      margin: 60px auto 0;
+      max-width: 700px;
+      display: flex; justify-content: center; gap: 20px;
+      padding: 0 24px;
+    }
+    .screenshot-phone {
+      background: #1A1A18;
+      border-radius: 32px;
+      padding: 10px;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.15), 0 0 0 1px rgba(255,255,255,0.05) inset;
+      flex-shrink: 0;
+      transition: transform 0.3s;
+    }
+    .screenshot-phone:hover { transform: translateY(-4px); }
+    .screenshot-phone img {
+      display: block;
+      border-radius: 24px;
+      width: 100%;
+      height: auto;
+    }
+    .screenshot-phone.main { width: 220px; }
+    .screenshot-phone.side { width: 180px; margin-top: 40px; }
+
+    /* FEATURES */
+    .features {
+      padding: 100px 24px 80px;
+      max-width: 1120px; margin: 0 auto;
+    }
+    .section-label {
+      font-size: 13px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--oi-blue); margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 700; line-height: 1.15;
+      letter-spacing: -0.015em; margin-bottom: 48px;
+      max-width: 520px;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .feature-card {
+      background: var(--bg-alt);
+      border: 1px solid rgba(0,0,0,0.04);
+      border-radius: var(--radius);
+      padding: 28px;
+    }
+    .feature-icon {
+      width: 44px; height: 44px;
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; margin-bottom: 16px;
+      color: #fff; font-weight: 700;
+    }
+    .feature-card h3 { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
+    .feature-card p { font-size: 14px; color: var(--fg-muted); line-height: 1.55; }
+
+    /* APP SCREENS SECTION */
+    .app-screens {
+      padding: 80px 24px;
+      max-width: 1120px; margin: 0 auto;
+      text-align: center;
+    }
+    .screens-row {
+      display: flex; justify-content: center; gap: 24px;
+      flex-wrap: wrap; margin-top: 48px;
+    }
+    .screen-item {
+      display: flex; flex-direction: column; align-items: center; gap: 12px;
+    }
+    .screen-item .screen-frame {
+      background: #1A1A18;
+      border-radius: 28px;
+      padding: 8px;
+      box-shadow: 0 12px 48px rgba(0,0,0,0.12);
+    }
+    .screen-item img {
+      display: block;
+      border-radius: 22px;
+      width: 180px;
+      height: auto;
+    }
+    .screen-item .screen-label {
+      font-size: 13px; font-weight: 600; color: var(--fg-muted);
+    }
+
+    /* ACCESSIBILITY */
+    .a11y {
+      padding: 80px 24px;
+      max-width: 1120px; margin: 0 auto;
+    }
+    .a11y-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .a11y-card {
+      background: var(--bg-alt);
+      border-radius: var(--radius);
+      padding: 32px;
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+    .a11y-card h3 { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
+    .a11y-card p { font-size: 14px; color: var(--fg-muted); line-height: 1.55; }
+    .palette-row {
+      display: flex; gap: 6px; margin-top: 16px; flex-wrap: wrap;
+    }
+    .palette-dot {
+      width: 32px; height: 32px; border-radius: 8px;
+      border: 2px solid rgba(0,0,0,0.06);
+    }
+
+    /* DOWNLOAD */
+    .download {
+      padding: 80px 24px;
+      max-width: 900px; margin: 0 auto;
+      text-align: center;
+    }
+    .download-subtitle {
+      color: var(--fg-muted); max-width: 480px; margin: -32px auto 0; font-size: 15px;
+    }
+    .download-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 40px;
+    }
+    .dl-card {
+      background: var(--bg-alt);
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: var(--radius);
+      padding: 28px 20px;
+      text-decoration: none; color: var(--fg);
+      transition: transform 0.15s, box-shadow 0.15s;
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+    }
+    .dl-card:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.08); }
+    .dl-card svg { width: 40px; height: 40px; }
+    .dl-card .dl-name { font-weight: 600; font-size: 15px; }
+    .dl-card .dl-status {
+      font-size: 12px; font-weight: 500;
+      padding: 3px 10px; border-radius: 100px;
+    }
+    .dl-card .dl-status.soon { background: rgba(0,0,0,0.06); color: var(--fg-muted); }
+    .dl-card .dl-status.available { background: rgba(0,158,115,0.12); color: var(--oi-green); }
+    .dl-card.active { border-color: var(--oi-blue); }
+
+    /* FOOTER */
+    footer {
+      padding: 48px 24px;
+      border-top: 1px solid rgba(0,0,0,0.06);
+      max-width: 1120px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 16px;
+    }
+    footer .footer-left { font-size: 14px; color: var(--fg-muted); }
+    footer .footer-left a { color: var(--oi-blue); text-decoration: none; }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a {
+      color: var(--fg-muted); text-decoration: none; font-size: 14px;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--fg); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex; flex-direction: column;
+        position: absolute; top: 100%; left: 0; right: 0;
+        background: var(--bg); padding: 20px 24px;
+        border-bottom: 1px solid rgba(0,0,0,0.06);
+        gap: 16px;
+      }
+      .nav-menu-btn { display: block; }
+      .a11y-grid { grid-template-columns: 1fr; }
+      .hero { padding-top: 120px; }
+      .screenshots { gap: 12px; }
+      .screenshot-phone.main { width: 170px; }
+      .screenshot-phone.side { width: 140px; margin-top: 30px; }
+      .screen-item img { width: 140px; }
+    }
+    @media (max-width: 480px) {
+      .features-grid { grid-template-columns: 1fr; }
+      .download-grid { grid-template-columns: 1fr; }
+      .screenshot-phone.side { display: none; }
+      .screenshot-phone.main { width: 220px; }
+      .screens-row { gap: 16px; }
+      .screen-item img { width: 120px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo"><img src="assets/app_logo.png" alt="Waktu Sejak" style="width:28px;height:28px;border-radius:6px;"> <span>Waktu Sejak</span></a>
+    <div class="nav-links" id="navLinks">
+      <a href="#features" data-i18n="nav_features">Fitur</a>
+      <a href="#screens" data-i18n="nav_screens">Tampilan</a>
+      <a href="#accessibility" data-i18n="nav_a11y">Aksesibilitas</a>
+      <button class="lang-toggle" onclick="toggleLang()" id="langBtn">EN</button>
+      <a href="#download" class="nav-cta" data-i18n="nav_download">Download</a>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <button class="lang-toggle" onclick="toggleLang()" id="langBtnMobile" style="display:none;">EN</button>
+      <button class="nav-menu-btn" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">
+    <span class="dot"></span>
+    Open Source · Flutter
+  </div>
+  <h1 data-i18n="hero_title">Tahu persis <em>sudah berapa lama</em> sejak peristiwa itu</h1>
+  <p class="hero-desc" data-i18n="hero_desc">Aplikasi pelacak waktu minimalis — ketahui berapa lama yang lalu sesuatu terjadi, atau berapa lama lagi sesuatu akan terjadi.</p>
+  <div class="hero-actions">
+    <a href="#download" class="btn btn-primary">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+      <span data-i18n="btn_download">Download</span>
+    </a>
+    <a href="https://github.com/alamaby/waktu-sejak" target="_blank" rel="noopener" class="btn btn-secondary">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"></path></svg>
+      GitHub
+    </a>
+  </div>
+
+  <!-- Phone screenshots -->
+  <div class="screenshots">
+    <div class="screenshot-phone side">
+      <img src="assets/screenshot_add_event_filled.png" alt="Create Event Screen">
+    </div>
+    <div class="screenshot-phone main">
+      <img src="assets/screenshot_dashboard_grid_light.png" alt="Dashboard Light">
+    </div>
+    <div class="screenshot-phone side">
+      <img src="assets/screenshot_dashboard_grid_dark.png" alt="Dashboard Dark">
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <p class="section-label" data-i18n="section_features">Fitur</p>
+  <h2 class="section-title" data-i18n="section_features_title">Sederhana, tapi powerful</h2>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon" style="background: var(--oi-blue);">
+        <svg width="22" height="22" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
+      </div>
+      <h3 data-i18n="f1_title">Tampilan Kartu &amp; Daftar</h3>
+      <p data-i18n="f1_desc">Beralih antara grid kartu 2 kolom dan daftar ringkas dengan satu ketukan.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background: var(--oi-orange);">
+        <svg width="22" height="22" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+      </div>
+      <h3 data-i18n="f2_title">Hitung Mundur Langsung</h3>
+      <p data-i18n="f2_desc">Tampilan waktu diperbarui setiap detik secara real-time. Akurat hingga tahun, bulan, dan hari.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background: var(--oi-green);">
+        <svg width="22" height="22" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+      </div>
+      <h3 data-i18n="f3_title">Pratinjau Langsung</h3>
+      <p data-i18n="f3_desc">Kartu pratinjau diperbarui saat Anda mengetik, jadi Anda tahu persis tampilannya.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background: var(--oi-purple);">
+        <svg width="22" height="22" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path></svg>
+      </div>
+      <h3 data-i18n="f4_title">Tema Terang &amp; Gelap</h3>
+      <p data-i18n="f4_desc">Pilih antara Sistem, Terang, atau Gelap. Preferensi tersimpan antar sesi.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background: var(--oi-vermillion);">
+        <svg width="22" height="22" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
+      </div>
+      <h3 data-i18n="f5_title">Dwibahasa</h3>
+      <p data-i18n="f5_desc">Bahasa Indonesia dan English — semua teks dan durasi waktu langsung berubah.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background: var(--oi-sky);">
+        <svg width="22" height="22" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+      </div>
+      <h3 data-i18n="f6_title">Ekspor &amp; Impor Data</h3>
+      <p data-i18n="f6_desc">Backup semua event ke JSON. Impor dengan merge — duplikat otomatis dilewati.</p>
+    </div>
+  </div>
+</section>
+
+<!-- APP SCREENS -->
+<section class="app-screens" id="screens">
+  <p class="section-label" data-i18n="section_screens">Tampilan Aplikasi</p>
+  <h2 class="section-title" style="max-width:none;margin-left:auto;margin-right:auto;" data-i18n="section_screens_title">Lihat lebih dekat</h2>
+  <div class="screens-row">
+    <div class="screen-item">
+      <div class="screen-frame">
+        <img src="assets/screenshot_dashboard_grid_light.png" alt="Dashboard Grid Light">
+      </div>
+      <span class="screen-label" data-i18n="screen1">Dashboard — Kartu</span>
+    </div>
+    <div class="screen-item">
+      <div class="screen-frame">
+        <img src="assets/screenshot_dashboard_list_light.png" alt="Dashboard List">
+      </div>
+      <span class="screen-label" data-i18n="screen2">Dashboard — Daftar</span>
+    </div>
+    <div class="screen-item">
+      <div class="screen-frame">
+        <img src="assets/screenshot_add_event_filled.png" alt="Add Event">
+      </div>
+      <span class="screen-label" data-i18n="screen3">Buat Event</span>
+    </div>
+    <div class="screen-item">
+      <div class="screen-frame">
+        <img src="assets/screenshot_dashboard_grid_dark.png" alt="Dashboard Dark">
+      </div>
+      <span class="screen-label" data-i18n="screen4">Mode Gelap</span>
+    </div>
+  </div>
+</section>
+
+<!-- ACCESSIBILITY -->
+<section class="a11y" id="accessibility">
+  <p class="section-label" data-i18n="section_a11y">Aksesibilitas</p>
+  <h2 class="section-title" data-i18n="section_a11y_title">Dirancang untuk semua orang</h2>
+  <div class="a11y-grid">
+    <div class="a11y-card">
+      <h3 data-i18n="a1_title">Palet warna Okabe-Ito</h3>
+      <p data-i18n="a1_desc">Menggunakan palet warna yang dapat dibedakan oleh semua jenis buta warna umum.</p>
+      <div class="palette-row">
+        <div class="palette-dot" style="background:#E69F00;" title="Orange"></div>
+        <div class="palette-dot" style="background:#56B4E9;" title="Sky Blue"></div>
+        <div class="palette-dot" style="background:#009E73;" title="Bluish Green"></div>
+        <div class="palette-dot" style="background:#F0E442;" title="Yellow"></div>
+        <div class="palette-dot" style="background:#0072B2;" title="Blue"></div>
+        <div class="palette-dot" style="background:#D55E00;" title="Vermillion"></div>
+        <div class="palette-dot" style="background:#CC79A7;" title="Reddish Purple"></div>
+      </div>
+    </div>
+    <div class="a11y-card">
+      <h3 data-i18n="a2_title">Tidak bergantung merah/hijau</h3>
+      <p data-i18n="a2_desc">Event masa lalu vs. mendatang dibedakan lewat bentuk, label, dan ikon — bukan warna saja.</p>
+    </div>
+    <div class="a11y-card" style="grid-column: 1 / -1;">
+      <h3 data-i18n="a3_title">Teks kontras otomatis</h3>
+      <p data-i18n="a3_desc">Warna teks pada kartu event otomatis dipilih (gelap/terang) berdasarkan luminansi latar belakang untuk keterbacaan optimal.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DOWNLOAD -->
+<section class="download" id="download">
+  <p class="section-label" data-i18n="section_download">Download</p>
+  <h2 class="section-title" style="max-width:none;" data-i18n="section_download_title">Dapatkan Waktu Sejak</h2>
+  <p class="download-subtitle" data-i18n="download_desc">Saat ini tersedia via sideload APK dari GitHub. Rilis di store segera hadir.</p>
+
+  <div class="download-grid">
+    <a href="https://github.com/alamaby/waktu-sejak/releases" target="_blank" rel="noopener" class="dl-card active">
+      <svg viewBox="0 0 24 24" fill="var(--oi-blue)"><path d="M17.523 2.238a.844.844 0 00-1.155.31l-1.399 2.438A8.567 8.567 0 0012 4.252c-1.05 0-2.06.254-2.969.734L7.632 2.548a.844.844 0 10-1.465.845l1.34 2.335A6.482 6.482 0 005.5 10.5h13a6.482 6.482 0 00-2.007-4.772l1.34-2.335a.844.844 0 00-.31-1.155zM9.5 8.5a.75.75 0 110-1.5.75.75 0 010 1.5zm5 0a.75.75 0 110-1.5.75.75 0 010 1.5zM5.5 11.5v6A2.5 2.5 0 008 20h.5v2.5a1.5 1.5 0 003 0V20h1v2.5a1.5 1.5 0 003 0V20h.5a2.5 2.5 0 002.5-2.5v-6h-13zM3.5 11.5a1.5 1.5 0 00-1.5 1.5v4a1.5 1.5 0 003 0v-4a1.5 1.5 0 00-1.5-1.5zm17 0a1.5 1.5 0 00-1.5 1.5v4a1.5 1.5 0 003 0v-4a1.5 1.5 0 00-1.5-1.5z"></path></svg>
+      <span class="dl-name">Android (APK)</span>
+      <span class="dl-status available" data-i18n="dl_available">Tersedia — Sideload</span>
+    </a>
+
+    <div class="dl-card">
+      <svg viewBox="0 0 24 24" fill="var(--fg-muted)"><path d="M3.61 1.814L13.793 12 3.61 22.186a.996.996 0 01-.61-.92V2.734c0-.384.22-.72.61-.92zm.91-.467L15.5 7.28l-2.9 2.9L4.52 1.347zm11.08 5.986L18.28 9l2.5 1.5c.5.3.5.7 0 1l-2.5 1.5-2.68 1.667-2.9-2.9 2.9-2.9-.02.046zM4.52 22.653l8.08-8.833 2.9 2.9L4.52 22.653z"></path></svg>
+      <span class="dl-name">Google Play</span>
+      <span class="dl-status soon" data-i18n="dl_soon">Segera Hadir</span>
+    </div>
+
+    <div class="dl-card">
+      <svg viewBox="0 0 24 24" fill="var(--fg-muted)"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"></path></svg>
+      <span class="dl-name">App Store</span>
+      <span class="dl-status soon" data-i18n="dl_soon">Segera Hadir</span>
+    </div>
+
+    <div class="dl-card">
+      <svg viewBox="0 0 24 24" fill="var(--fg-muted)"><path d="M20.472 10.081H3.528a.612.612 0 00-.612.612v9.795a.612.612 0 00.612.612h16.944a.612.612 0 00.612-.612v-9.795a.612.612 0 00-.612-.612zm-5.788 7.394a2.86 2.86 0 01-5.368 0 .462.462 0 01.434-.625h4.5a.462.462 0 01.434.625zM20.472 2.9H3.528a.612.612 0 00-.612.612v5.1a.612.612 0 00.612.612h16.944a.612.612 0 00.612-.612v-5.1a.612.612 0 00-.612-.612z"></path></svg>
+      <span class="dl-name">F-Droid</span>
+      <span class="dl-status soon" data-i18n="dl_soon">Segera Hadir</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">
+    © 2026 Waktu Sejak · <span data-i18n="footer_by">Dibuat oleh</span> <a href="https://www.linkedin.com/in/alamaby/" target="_blank" rel="noopener">Alam Aby Bashit</a>
+  </div>
+  <div class="footer-links">
+    <a href="https://github.com/alamaby/waktu-sejak" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://www.linkedin.com/in/alamaby/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://www.upwork.com/freelancers/~01c341d5c6f089ea32" target="_blank" rel="noopener">Upwork</a>
+  </div>
+</footer>
+
+<script>
+const i18n = {
+  id: {
+    nav_features: 'Fitur',
+    nav_screens: 'Tampilan',
+    nav_a11y: 'Aksesibilitas',
+    nav_download: 'Download',
+    hero_title: 'Tahu persis <em>sudah berapa lama</em> sejak peristiwa itu',
+    hero_desc: 'Aplikasi pelacak waktu minimalis — ketahui berapa lama yang lalu sesuatu terjadi, atau berapa lama lagi sesuatu akan terjadi.',
+    btn_download: 'Download',
+    section_features: 'Fitur',
+    section_features_title: 'Sederhana, tapi powerful',
+    f1_title: 'Tampilan Kartu & Daftar',
+    f1_desc: 'Beralih antara grid kartu 2 kolom dan daftar ringkas dengan satu ketukan.',
+    f2_title: 'Hitung Mundur Langsung',
+    f2_desc: 'Tampilan waktu diperbarui setiap detik secara real-time. Akurat hingga tahun, bulan, dan hari.',
+    f3_title: 'Pratinjau Langsung',
+    f3_desc: 'Kartu pratinjau diperbarui saat Anda mengetik, jadi Anda tahu persis tampilannya.',
+    f4_title: 'Tema Terang & Gelap',
+    f4_desc: 'Pilih antara Sistem, Terang, atau Gelap. Preferensi tersimpan antar sesi.',
+    f5_title: 'Dwibahasa',
+    f5_desc: 'Bahasa Indonesia dan English — semua teks dan durasi waktu langsung berubah.',
+    f6_title: 'Ekspor & Impor Data',
+    f6_desc: 'Backup semua event ke JSON. Impor dengan merge — duplikat otomatis dilewati.',
+    section_screens: 'Tampilan Aplikasi',
+    section_screens_title: 'Lihat lebih dekat',
+    screen1: 'Dashboard — Kartu',
+    screen2: 'Dashboard — Daftar',
+    screen3: 'Buat Event',
+    screen4: 'Mode Gelap',
+    section_a11y: 'Aksesibilitas',
+    section_a11y_title: 'Dirancang untuk semua orang',
+    a1_title: 'Palet warna Okabe-Ito',
+    a1_desc: 'Menggunakan palet warna yang dapat dibedakan oleh semua jenis buta warna umum.',
+    a2_title: 'Tidak bergantung merah/hijau',
+    a2_desc: 'Event masa lalu vs. mendatang dibedakan lewat bentuk, label, dan ikon — bukan warna saja.',
+    a3_title: 'Teks kontras otomatis',
+    a3_desc: 'Warna teks pada kartu event otomatis dipilih (gelap/terang) berdasarkan luminansi latar belakang untuk keterbacaan optimal.',
+    section_download: 'Download',
+    section_download_title: 'Dapatkan Waktu Sejak',
+    download_desc: 'Saat ini tersedia via sideload APK dari GitHub. Rilis di store segera hadir.',
+    dl_available: 'Tersedia — Sideload',
+    dl_soon: 'Segera Hadir',
+    footer_by: 'Dibuat oleh',
+  },
+  en: {
+    nav_features: 'Features',
+    nav_screens: 'Screens',
+    nav_a11y: 'Accessibility',
+    nav_download: 'Download',
+    hero_title: 'Know exactly <em>how long ago</em> something happened',
+    hero_desc: 'A minimalist time-tracking app — know how long ago something happened, or how long until it does.',
+    btn_download: 'Download',
+    section_features: 'Features',
+    section_features_title: 'Simple, yet powerful',
+    f1_title: 'Card & List View',
+    f1_desc: 'Toggle between a 2-column card grid and a compact list with a single tap.',
+    f2_title: 'Live Countdown',
+    f2_desc: 'Time displays update every second in real-time. Accurate to years, months, and days.',
+    f3_title: 'Live Preview',
+    f3_desc: 'A preview card updates as you type, so you see exactly what it will look like.',
+    f4_title: 'Light & Dark Theme',
+    f4_desc: 'Choose between System, Light, or Dark mode. Preference persists across sessions.',
+    f5_title: 'Bilingual',
+    f5_desc: 'Bahasa Indonesia and English — all text and time strings update instantly.',
+    f6_title: 'Export & Import Data',
+    f6_desc: 'Back up all events to JSON. Import with merge — duplicate IDs are skipped.',
+    section_screens: 'App Screens',
+    section_screens_title: 'Take a closer look',
+    screen1: 'Dashboard — Cards',
+    screen2: 'Dashboard — List',
+    screen3: 'Create Event',
+    screen4: 'Dark Mode',
+    section_a11y: 'Accessibility',
+    section_a11y_title: 'Designed for everyone',
+    a1_title: 'Okabe-Ito color palette',
+    a1_desc: 'Uses a palette distinguishable for all common color vision deficiencies.',
+    a2_title: 'No red/green reliance',
+    a2_desc: 'Past vs. future events are distinguished by shape, label, and icon — never by color alone.',
+    a3_title: 'Auto-contrast text',
+    a3_desc: 'Text color on event cards is automatically chosen (dark/light) based on background luminance for optimal readability.',
+    section_download: 'Download',
+    section_download_title: 'Get Waktu Sejak',
+    download_desc: 'Currently available via APK sideload from GitHub. Store releases coming soon.',
+    dl_available: 'Available — Sideload',
+    dl_soon: 'Coming Soon',
+    footer_by: 'Made by',
+  }
+};
+
+let currentLang = localStorage.getItem('ws_lang') || 'id';
+
+function applyLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('ws_lang', lang);
+  document.documentElement.lang = lang;
+  const strings = i18n[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (strings[key]) el.innerHTML = strings[key];
+  });
+  document.getElementById('langBtn').textContent = lang === 'id' ? 'EN' : 'ID';
+  document.getElementById('langBtnMobile').textContent = lang === 'id' ? 'EN' : 'ID';
+}
+
+function toggleLang() {
+  applyLang(currentLang === 'id' ? 'en' : 'id');
+}
+
+// Show mobile lang button when nav-menu-btn is visible
+function checkMobileLang() {
+  const btn = document.querySelector('.nav-menu-btn');
+  const mobileLang = document.getElementById('langBtnMobile');
+  if (getComputedStyle(btn).display !== 'none') {
+    mobileLang.style.display = 'block';
+  } else {
+    mobileLang.style.display = 'none';
+  }
+}
+window.addEventListener('resize', checkMobileLang);
+
+// Init
+applyLang(currentLang);
+checkMobileLang();
+</script>
+
+</body>
+</html>
