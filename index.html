@@ -3,8 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Waktu Sejak — Time Since</title>
-  <meta name="description" content="A minimalist time-tracking app — know exactly how long ago something happened, or how long until it does.">
+  <title>Waktu Sejak — Time Since Tracking App</title>
+  <meta name="description" content="A minimalist time-tracking app — know exactly how long ago something happened, or how long until it does. Download now for Android, iOS, and desktop.">
+  <!-- SEO Meta Tags -->
+  <link rel="canonical" href="https://waktu-sejak.vercel.app/">
+  <meta name="robots" content="index, follow">
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://waktu-sejak.vercel.app/">
+  <meta property="og:title" content="Waktu Sejak — Time Since Tracking App">
+  <meta property="og:description" content="A minimalist time-tracking app — know exactly how long ago something happened, or how long until it does.">
+  <meta property="og:image" content="https://waktu-sejak.vercel.app/assets/screenshot_dashboard_grid_light.png">
+  <meta property="og:locale" content="id_ID">
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://waktu-sejak.vercel.app/">
+  <meta property="twitter:title" content="Waktu Sejak — Time Since Tracking App">
+  <meta property="twitter:description" content="A minimalist time-tracking app — know exactly how long ago something happened, or how long until it does.">
+  <meta property="twitter:image" content="https://waktu-sejak.vercel.app/assets/screenshot_dashboard_grid_light.png">
+  <!-- Language Alternates -->
+  <link rel="alternate" href="https://waktu-sejak.vercel.app/" hreflang="id" />
+  <link rel="alternate" href="https://waktu-sejak.vercel.app/" hreflang="en" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
@@ -26,15 +45,18 @@
       --radius-sm: 10px;
     }
 
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'DM Sans', system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--fg);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
+     html { scroll-behavior: smooth; }
+ 
+     body {
+       font-family: 'DM Sans', system-ui, sans-serif;
+       background: var(--bg);
+       color: var(--fg);
+       line-height: 1.6;
+       -webkit-font-smoothing: antialiased;
+     }
+ 
+     /* SEO Enhancements */
+     /* These will be populated via JavaScript for dynamic content */
 
     /* NAV */
     nav {
@@ -668,6 +690,44 @@ window.addEventListener('resize', checkMobileLang);
 // Init
 applyLang(currentLang);
 checkMobileLang();
+</script>
+
+<!-- JSON-LD Structured Data for SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Waktu Sejak",
+  "url": "https://waktu-sejak.vercel.app/",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://waktu-sejak.vercel.app/?s={search_term}",
+    "query-input": "required name=search_term"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Waktu Sejak",
+  "description": "A minimalist time-tracking app — know exactly how long ago something happened, or how long until it does.",
+  "applicationCategory": "ProductivityApplication",
+  "operatingSystem": "Android",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock",
+    "url": "https://github.com/alamaby/waktu-sejak/releases"
+  },
+  "screenshot": [
+    "https://waktu-sejak.vercel.app/assets/screenshot_dashboard_grid_light.png",
+    "https://waktu-sejak.vercel.app/assets/screenshot_add_event_filled.png",
+    "https://waktu-sejak.vercel.app/assets/screenshot_dashboard_grid_dark.png"
+  ]
+}
 </script>
 
 </body>
