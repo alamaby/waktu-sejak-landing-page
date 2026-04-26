@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Waktu Sejak — Time Since Tracking App</title>
+  <link rel="manifest" href="/manifest.json">
   <meta name="description" content="A minimalist time-tracking app — know exactly how long ago something happened, or how long until it does. Download now for Android, iOS, and desktop.">
   <!-- SEO Meta Tags -->
   <link rel="canonical" href="https://waktu-sejak.vercel.app/">
@@ -356,6 +357,8 @@
   </style>
 </head>
 <body>
+  <!-- Skip navigation link -->
+  <a href="#main-content" class="skip-link">Lanjutkan ke konten utama</a>
 
 <!-- NAV -->
 <nav>
@@ -397,17 +400,17 @@
   </div>
 
   <!-- Phone screenshots -->
-  <div class="screenshots">
-    <div class="screenshot-phone side">
-      <img src="assets/screenshot_add_event_filled.png" alt="Create Event Screen">
+    <div class="screenshots">
+      <div class="screenshot-phone side">
+        <img src="assets/screenshot_add_event_filled.png" alt="Create Event Screen" loading="lazy">
+      </div>
+      <div class="screenshot-phone main">
+        <img src="assets/screenshot_dashboard_grid_light.png" alt="Dashboard Light" loading="lazy">
+      </div>
+      <div class="screenshot-phone side">
+        <img src="assets/screenshot_dashboard_grid_dark.png" alt="Dashboard Dark" loading="lazy">
+      </div>
     </div>
-    <div class="screenshot-phone main">
-      <img src="assets/screenshot_dashboard_grid_light.png" alt="Dashboard Light">
-    </div>
-    <div class="screenshot-phone side">
-      <img src="assets/screenshot_dashboard_grid_dark.png" alt="Dashboard Dark">
-    </div>
-  </div>
 </section>
 
 <!-- FEATURES -->
@@ -464,32 +467,32 @@
 <section class="app-screens" id="screens">
   <p class="section-label" data-i18n="section_screens">Tampilan Aplikasi</p>
   <h2 class="section-title" style="max-width:none;margin-left:auto;margin-right:auto;" data-i18n="section_screens_title">Lihat lebih dekat</h2>
-  <div class="screens-row">
-    <div class="screen-item">
-      <div class="screen-frame">
-        <img src="assets/screenshot_dashboard_grid_light.png" alt="Dashboard Grid Light">
+    <div class="screens-row">
+      <div class="screen-item">
+        <div class="screen-frame">
+          <img src="assets/screenshot_dashboard_grid_light.png" alt="Dashboard Grid Light" loading="lazy">
+        </div>
+        <span class="screen-label" data-i18n="screen1">Dashboard — Kartu</span>
       </div>
-      <span class="screen-label" data-i18n="screen1">Dashboard — Kartu</span>
-    </div>
-    <div class="screen-item">
-      <div class="screen-frame">
-        <img src="assets/screenshot_dashboard_list_light.png" alt="Dashboard List">
+      <div class="screen-item">
+        <div class="screen-frame">
+          <img src="assets/screenshot_dashboard_list_light.png" alt="Dashboard List" loading="lazy">
+        </div>
+        <span class="screen-label" data-i18n="screen2">Dashboard — Daftar</span>
       </div>
-      <span class="screen-label" data-i18n="screen2">Dashboard — Daftar</span>
-    </div>
-    <div class="screen-item">
-      <div class="screen-frame">
-        <img src="assets/screenshot_add_event_filled.png" alt="Add Event">
+      <div class="screen-item">
+        <div class="screen-frame">
+          <img src="assets/screenshot_add_event_filled.png" alt="Add Event" loading="lazy">
+        </div>
+        <span class="screen-label" data-i18n="screen3">Buat Event</span>
       </div>
-      <span class="screen-label" data-i18n="screen3">Buat Event</span>
-    </div>
-    <div class="screen-item">
-      <div class="screen-frame">
-        <img src="assets/screenshot_dashboard_grid_dark.png" alt="Dashboard Dark">
+      <div class="screen-item">
+        <div class="screen-frame">
+          <img src="assets/screenshot_dashboard_grid_dark.png" alt="Dashboard Dark" loading="lazy">
+        </div>
+        <span class="screen-label" data-i18n="screen4">Mode Gelap</span>
       </div>
-      <span class="screen-label" data-i18n="screen4">Mode Gelap</span>
     </div>
-  </div>
 </section>
 
 <!-- ACCESSIBILITY -->
