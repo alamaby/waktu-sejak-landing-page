@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n-title="page_title">Kebijakan Privasi — Waktu Sejak</title>
+  <link rel="manifest" href="/manifest.json">
+  <meta name="description" content="Kebijakan Privasi Waktu Sejak — aplikasi sepenuhnya offline. Semua data tersimpan di perangkat Anda. Tidak ada pelacakan, tidak ada analitik, tidak ada pihak ketiga.">
+  <link rel="canonical" href="https://waktu-sejak.vercel.app/privacy-policy">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://waktu-sejak.vercel.app/privacy-policy">
+  <meta property="og:title" content="Kebijakan Privasi — Waktu Sejak">
+  <meta property="og:description" content="Aplikasi sepenuhnya offline. Semua data tersimpan di perangkat Anda. Tidak ada pelacakan.">
+  <meta property="og:image" content="https://waktu-sejak.vercel.app/assets/app_logo.png">
+  <meta property="og:locale" content="id_ID">
+  <link rel="alternate" href="https://waktu-sejak.vercel.app/privacy-policy" hreflang="id" />
+  <link rel="alternate" href="https://waktu-sejak.vercel.app/privacy-policy" hreflang="en" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --oi-orange: #E69F00;
+      --oi-sky: #56B4E9;
+      --oi-green: #009E73;
+      --oi-yellow: #F0E442;
+      --oi-blue: #0072B2;
+      --oi-vermillion: #D55E00;
+      --oi-purple: #CC79A7;
+      --bg: #FAFAF8;
+      --bg-alt: #F2F1ED;
+      --fg: #1A1A18;
+      --fg-muted: #6B6B66;
+      --radius: 16px;
+      --radius-sm: 10px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(250,250,248,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .nav-inner {
+      max-width: 1120px; margin: 0 auto;
+      padding: 14px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      font-weight: 700; font-size: 18px; color: var(--fg);
+      text-decoration: none; display: flex; align-items: center; gap: 8px;
+    }
+    .nav-logo span { color: var(--oi-blue); }
+    .nav-links { display: flex; gap: 24px; align-items: center; }
+    .nav-links a {
+      text-decoration: none; color: var(--fg-muted); font-size: 14px; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--fg); }
+    .lang-toggle {
+      background: var(--bg-alt); border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 8px; padding: 6px 12px; font-size: 13px; font-weight: 600;
+      cursor: pointer; color: var(--fg); font-family: inherit;
+      transition: background 0.2s;
+    }
+    .lang-toggle:hover { background: #E8E7E3; }
+
+    /* PAGE */
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 140px 24px 60px;
+    }
+    .page-header {
+      margin-bottom: 48px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .page-header h1 {
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    .page-header .updated {
+      font-size: 14px;
+      color: var(--fg-muted);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .summary-card {
+      background: var(--bg-alt);
+      border: 1px solid rgba(0,0,0,0.04);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      margin-bottom: 40px;
+      border-left: 4px solid var(--oi-green);
+    }
+    .summary-card .summary-label {
+      font-size: 12px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--oi-green); margin-bottom: 8px;
+    }
+    .summary-card p { font-size: 15px; }
+
+    section.policy-section {
+      margin-bottom: 36px;
+    }
+    section.policy-section h2 {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+    }
+    section.policy-section p {
+      font-size: 15px;
+      color: var(--fg);
+      margin-bottom: 12px;
+    }
+    section.policy-section p:last-child { margin-bottom: 0; }
+    section.policy-section ul {
+      padding-left: 22px;
+      margin: 8px 0;
+    }
+    section.policy-section li {
+      font-size: 15px;
+      margin-bottom: 6px;
+    }
+    section.policy-section a {
+      color: var(--oi-blue);
+      text-decoration: none;
+    }
+    section.policy-section a:hover { text-decoration: underline; }
+    section.policy-section code {
+      font-family: 'JetBrains Mono', monospace;
+      background: var(--bg-alt);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 13px;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 48px 24px;
+      border-top: 1px solid rgba(0,0,0,0.06);
+      max-width: 1120px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 16px;
+    }
+    footer .footer-left { font-size: 14px; color: var(--fg-muted); }
+    footer .footer-left a { color: var(--oi-blue); text-decoration: none; }
+    .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .footer-links a {
+      color: var(--fg-muted); text-decoration: none; font-size: 14px;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--fg); }
+
+    @media (max-width: 768px) {
+      main { padding-top: 110px; }
+      .nav-links a:not(.lang-toggle):not(#backHome) { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo"><img src="/assets/app_logo.png" alt="Waktu Sejak" style="width:28px;height:28px;border-radius:6px;"> <span>Waktu Sejak</span></a>
+    <div class="nav-links">
+      <a href="/" id="backHome" data-i18n="back_home">← Kembali ke Beranda</a>
+      <button class="lang-toggle" onclick="toggleLang()" id="langBtn">EN</button>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <header class="page-header">
+    <h1 data-i18n="page_h1">Kebijakan Privasi</h1>
+    <p class="updated"><span data-i18n="last_updated">Terakhir diperbarui</span>: 2026-05-09</p>
+  </header>
+
+  <div class="summary-card">
+    <div class="summary-label" data-i18n="summary_label">Ringkasan Singkat</div>
+    <p data-i18n="summary_text">Waktu Sejak adalah aplikasi sepenuhnya offline. Semua data Anda tersimpan secara lokal di perangkat Anda. Kami tidak mengumpulkan, mengirim, atau menyimpan data apa pun di server kami. Tidak ada pelacakan, tidak ada analitik, tidak ada SDK pihak ketiga.</p>
+  </div>
+
+  <section class="policy-section">
+    <h2 data-i18n="s1_title">1. Data yang Kami Kumpulkan</h2>
+    <p data-i18n="s1_p1">Tidak ada. Waktu Sejak tidak mengumpulkan, mengirimkan, atau menyimpan data pengguna apa pun di server kami. Aplikasi ini tidak memiliki akun pengguna, tidak melakukan permintaan jaringan ke layanan kami, dan tidak mengirim telemetri.</p>
+  </section>
+
+  <section class="policy-section">
+    <h2 data-i18n="s2_title">2. Penyimpanan Data</h2>
+    <p data-i18n="s2_p1">Semua event, preferensi, dan pengaturan yang Anda buat di Waktu Sejak disimpan di area penyimpanan privat aplikasi pada perangkat Anda. Data ini hanya dapat diakses oleh aplikasi Waktu Sejak.</p>
+    <p data-i18n="s2_p2">Mencopot pemasangan (uninstall) aplikasi akan menghapus seluruh data Anda secara permanen, kecuali file ekspor JSON yang telah Anda simpan sendiri ke lokasi pilihan Anda.</p>
+  </section>
+
+  <section class="policy-section">
+    <h2 data-i18n="s3_title">3. Ekspor &amp; Impor Data</h2>
+    <p data-i18n="s3_p1">Waktu Sejak menyediakan fitur untuk mengekspor data Anda ke file JSON dan mengimpornya kembali. Operasi ini sepenuhnya manual dan dijalankan oleh Anda.</p>
+    <ul>
+      <li data-i18n="s3_li1">File ekspor disimpan ke lokasi yang Anda pilih sendiri di perangkat.</li>
+      <li data-i18n="s3_li2">File ekspor tidak pernah dikirim ke pengembang atau pihak ketiga mana pun.</li>
+      <li data-i18n="s3_li3">Anda bertanggung jawab penuh atas keamanan dan distribusi file ekspor Anda.</li>
+    </ul>
+  </section>
+
+  <section class="policy-section">
+    <h2 data-i18n="s4_title">4. Izin Aplikasi</h2>
+    <p data-i18n="s4_p1">Waktu Sejak hanya meminta izin yang diperlukan untuk fungsi ekspor dan impor file (jika diminta oleh sistem operasi Anda). Aplikasi ini tidak meminta:</p>
+    <ul>
+      <li data-i18n="s4_li1">Akses internet</li>
+      <li data-i18n="s4_li2">Notifikasi</li>
+      <li data-i18n="s4_li3">Lokasi</li>
+      <li data-i18n="s4_li4">Kontak, kalender, kamera, mikrofon, atau galeri foto</li>
+      <li data-i18n="s4_li5">Pengidentifikasi perangkat (advertising ID, IMEI, dsb.)</li>
+    </ul>
+  </section>
+
+  <section class="policy-section">
+    <h2 data-i18n="s5_title">5. Pihak Ketiga</h2>
+    <p data-i18n="s5_p1">Waktu Sejak tidak menggunakan layanan analitik (mis. Google Analytics, Firebase Analytics), pelaporan crash pihak ketiga (mis. Crashlytics, Sentry), iklan, atau SDK pihak ketiga lainnya yang mengirim data ke luar perangkat.</p>
+  </section>
+
+  <section class="policy-section">
+    <h2 data-i18n="s6_title">6. Anak-anak</h2>
+    <p data-i18n="s6_p1">Aplikasi ini aman digunakan oleh segala usia. Karena kami tidak mengumpulkan data apa pun, kami juga tidak mengumpulkan data dari anak-anak.</p>
+  </section>
+
+  <section class="policy-section">
+    <h2 data-i18n="s7_title">7. Perubahan Kebijakan Ini</h2>
+    <p data-i18n="s7_p1">Kami dapat memperbarui kebijakan privasi ini dari waktu ke waktu. Setiap perubahan akan ditampilkan di halaman ini beserta tanggal "Terakhir diperbarui" yang baru. Karena aplikasi tidak terhubung ke internet, perubahan kebijakan tidak memengaruhi data yang sudah ada di perangkat Anda.</p>
+  </section>
+
+  <section class="policy-section">
+    <h2 data-i18n="s8_title">8. Kontak</h2>
+    <p data-i18n="s8_p1">Jika Anda memiliki pertanyaan tentang kebijakan privasi ini, silakan hubungi:</p>
+    <ul>
+      <li data-i18n="s8_li1">Email: <a href="mailto:alam.aby.b@gmail.com">alam.aby.b@gmail.com</a></li>
+      <li data-i18n="s8_li2">GitHub: <a href="https://github.com/alamaby/waktu-sejak" target="_blank" rel="noopener">github.com/alamaby/waktu-sejak</a></li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-left">
+    © 2026 Waktu Sejak · <span data-i18n="footer_by">Dibuat oleh</span> <a href="https://www.linkedin.com/in/alamaby/" target="_blank" rel="noopener">Alam Aby Bashit</a>
+  </div>
+  <div class="footer-links">
+    <a href="/" data-i18n="footer_home">Beranda</a>
+    <a href="https://github.com/alamaby/waktu-sejak" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://www.linkedin.com/in/alamaby/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://www.upwork.com/freelancers/~01c341d5c6f089ea32" target="_blank" rel="noopener">Upwork</a>
+  </div>
+</footer>
+
+<script>
+const i18n = {
+  id: {
+    page_title: 'Kebijakan Privasi — Waktu Sejak',
+    back_home: '← Kembali ke Beranda',
+    page_h1: 'Kebijakan Privasi',
+    last_updated: 'Terakhir diperbarui',
+    summary_label: 'Ringkasan Singkat',
+    summary_text: 'Waktu Sejak adalah aplikasi sepenuhnya offline. Semua data Anda tersimpan secara lokal di perangkat Anda. Kami tidak mengumpulkan, mengirim, atau menyimpan data apa pun di server kami. Tidak ada pelacakan, tidak ada analitik, tidak ada SDK pihak ketiga.',
+    s1_title: '1. Data yang Kami Kumpulkan',
+    s1_p1: 'Tidak ada. Waktu Sejak tidak mengumpulkan, mengirimkan, atau menyimpan data pengguna apa pun di server kami. Aplikasi ini tidak memiliki akun pengguna, tidak melakukan permintaan jaringan ke layanan kami, dan tidak mengirim telemetri.',
+    s2_title: '2. Penyimpanan Data',
+    s2_p1: 'Semua event, preferensi, dan pengaturan yang Anda buat di Waktu Sejak disimpan di area penyimpanan privat aplikasi pada perangkat Anda. Data ini hanya dapat diakses oleh aplikasi Waktu Sejak.',
+    s2_p2: 'Mencopot pemasangan (uninstall) aplikasi akan menghapus seluruh data Anda secara permanen, kecuali file ekspor JSON yang telah Anda simpan sendiri ke lokasi pilihan Anda.',
+    s3_title: '3. Ekspor & Impor Data',
+    s3_p1: 'Waktu Sejak menyediakan fitur untuk mengekspor data Anda ke file JSON dan mengimpornya kembali. Operasi ini sepenuhnya manual dan dijalankan oleh Anda.',
+    s3_li1: 'File ekspor disimpan ke lokasi yang Anda pilih sendiri di perangkat.',
+    s3_li2: 'File ekspor tidak pernah dikirim ke pengembang atau pihak ketiga mana pun.',
+    s3_li3: 'Anda bertanggung jawab penuh atas keamanan dan distribusi file ekspor Anda.',
+    s4_title: '4. Izin Aplikasi',
+    s4_p1: 'Waktu Sejak hanya meminta izin yang diperlukan untuk fungsi ekspor dan impor file (jika diminta oleh sistem operasi Anda). Aplikasi ini tidak meminta:',
+    s4_li1: 'Akses internet',
+    s4_li2: 'Notifikasi',
+    s4_li3: 'Lokasi',
+    s4_li4: 'Kontak, kalender, kamera, mikrofon, atau galeri foto',
+    s4_li5: 'Pengidentifikasi perangkat (advertising ID, IMEI, dsb.)',
+    s5_title: '5. Pihak Ketiga',
+    s5_p1: 'Waktu Sejak tidak menggunakan layanan analitik (mis. Google Analytics, Firebase Analytics), pelaporan crash pihak ketiga (mis. Crashlytics, Sentry), iklan, atau SDK pihak ketiga lainnya yang mengirim data ke luar perangkat.',
+    s6_title: '6. Anak-anak',
+    s6_p1: 'Aplikasi ini aman digunakan oleh segala usia. Karena kami tidak mengumpulkan data apa pun, kami juga tidak mengumpulkan data dari anak-anak.',
+    s7_title: '7. Perubahan Kebijakan Ini',
+    s7_p1: 'Kami dapat memperbarui kebijakan privasi ini dari waktu ke waktu. Setiap perubahan akan ditampilkan di halaman ini beserta tanggal "Terakhir diperbarui" yang baru. Karena aplikasi tidak terhubung ke internet, perubahan kebijakan tidak memengaruhi data yang sudah ada di perangkat Anda.',
+    s8_title: '8. Kontak',
+    s8_p1: 'Jika Anda memiliki pertanyaan tentang kebijakan privasi ini, silakan hubungi:',
+    s8_li1: 'Email: <a href="mailto:alam.aby.b@gmail.com">alam.aby.b@gmail.com</a>',
+    s8_li2: 'GitHub: <a href="https://github.com/alamaby/waktu-sejak" target="_blank" rel="noopener">github.com/alamaby/waktu-sejak</a>',
+    footer_by: 'Dibuat oleh',
+    footer_home: 'Beranda',
+  },
+  en: {
+    page_title: 'Privacy Policy — Waktu Sejak',
+    back_home: '← Back to Home',
+    page_h1: 'Privacy Policy',
+    last_updated: 'Last updated',
+    summary_label: 'TL;DR',
+    summary_text: 'Waktu Sejak is a fully offline app. All your data is stored locally on your device. We do not collect, transmit, or store any data on our servers. No tracking, no analytics, no third-party SDKs.',
+    s1_title: '1. Data We Collect',
+    s1_p1: 'None. Waktu Sejak does not collect, transmit, or store any user data on our servers. The app has no user accounts, makes no network requests to our services, and sends no telemetry.',
+    s2_title: '2. Data Storage',
+    s2_p1: 'All events, preferences, and settings you create in Waktu Sejak are stored in the app’s private storage area on your device. This data is accessible only to the Waktu Sejak app.',
+    s2_p2: 'Uninstalling the app permanently deletes all of your data, except for any JSON export files you have saved yourself to a location of your choice.',
+    s3_title: '3. Export & Import Data',
+    s3_p1: 'Waktu Sejak lets you manually export your data to a JSON file and import it back. These operations are fully manual and performed by you.',
+    s3_li1: 'Export files are saved to a location you choose on your device.',
+    s3_li2: 'Export files are never sent to the developer or any third party.',
+    s3_li3: 'You are solely responsible for the security and distribution of your export files.',
+    s4_title: '4. App Permissions',
+    s4_p1: 'Waktu Sejak only requests the permissions needed for the file export/import feature (if prompted by your operating system). The app does not request:',
+    s4_li1: 'Internet access',
+    s4_li2: 'Notifications',
+    s4_li3: 'Location',
+    s4_li4: 'Contacts, calendar, camera, microphone, or photo library',
+    s4_li5: 'Device identifiers (advertising ID, IMEI, etc.)',
+    s5_title: '5. Third Parties',
+    s5_p1: 'Waktu Sejak uses no analytics services (e.g. Google Analytics, Firebase Analytics), no third-party crash reporting (e.g. Crashlytics, Sentry), no ads, and no other third-party SDKs that send data off your device.',
+    s6_title: '6. Children',
+    s6_p1: 'The app is safe for all ages. Because we collect no data at all, we collect no data from children.',
+    s7_title: '7. Changes to This Policy',
+    s7_p1: 'We may update this privacy policy from time to time. Any changes will appear on this page with a new "Last updated" date. Because the app is not connected to the internet, policy changes do not affect data already on your device.',
+    s8_title: '8. Contact',
+    s8_p1: 'If you have any questions about this privacy policy, please reach out:',
+    s8_li1: 'Email: <a href="mailto:alam.aby.b@gmail.com">alam.aby.b@gmail.com</a>',
+    s8_li2: 'GitHub: <a href="https://github.com/alamaby/waktu-sejak" target="_blank" rel="noopener">github.com/alamaby/waktu-sejak</a>',
+    footer_by: 'Made by',
+    footer_home: 'Home',
+  }
+};
+
+let currentLang = localStorage.getItem('ws_lang') || 'id';
+
+function applyLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('ws_lang', lang);
+  document.documentElement.lang = lang;
+  const strings = i18n[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (strings[key]) el.innerHTML = strings[key];
+  });
+  if (strings.page_title) document.title = strings.page_title;
+  document.getElementById('langBtn').textContent = lang === 'id' ? 'EN' : 'ID';
+}
+
+function toggleLang() {
+  applyLang(currentLang === 'id' ? 'en' : 'id');
+}
+
+applyLang(currentLang);
+</script>
+
+</body>
+</html>
