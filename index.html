@@ -528,20 +528,20 @@
 <section class="download" id="download">
   <p class="section-label" data-i18n="section_download">Download</p>
   <h2 class="section-title" style="max-width:none;" data-i18n="section_download_title">Dapatkan Waktu Sejak</h2>
-  <p class="download-subtitle" data-i18n="download_desc">Saat ini tersedia via sideload APK dari GitHub. Rilis di store segera hadir.</p>
+  <p class="download-subtitle" data-i18n="download_desc">Tersedia di Google Play untuk Android. APK sideload tetap tersedia melalui GitHub Releases.</p>
 
   <div class="download-grid">
-    <a href="https://github.com/alamaby/waktu-sejak/releases" target="_blank" rel="noopener" class="dl-card active">
+    <a href="https://github.com/alamaby/waktu-sejak/releases" target="_blank" rel="noopener" class="dl-card">
       <svg viewBox="0 0 24 24" fill="var(--oi-blue)"><path d="M17.523 2.238a.844.844 0 00-1.155.31l-1.399 2.438A8.567 8.567 0 0012 4.252c-1.05 0-2.06.254-2.969.734L7.632 2.548a.844.844 0 10-1.465.845l1.34 2.335A6.482 6.482 0 005.5 10.5h13a6.482 6.482 0 00-2.007-4.772l1.34-2.335a.844.844 0 00-.31-1.155zM9.5 8.5a.75.75 0 110-1.5.75.75 0 010 1.5zm5 0a.75.75 0 110-1.5.75.75 0 010 1.5zM5.5 11.5v6A2.5 2.5 0 008 20h.5v2.5a1.5 1.5 0 003 0V20h1v2.5a1.5 1.5 0 003 0V20h.5a2.5 2.5 0 002.5-2.5v-6h-13zM3.5 11.5a1.5 1.5 0 00-1.5 1.5v4a1.5 1.5 0 003 0v-4a1.5 1.5 0 00-1.5-1.5zm17 0a1.5 1.5 0 00-1.5 1.5v4a1.5 1.5 0 003 0v-4a1.5 1.5 0 00-1.5-1.5z"></path></svg>
       <span class="dl-name">Android (APK)</span>
       <span class="dl-status available" data-i18n="dl_available">Tersedia — Sideload</span>
     </a>
 
-    <div class="dl-card">
-      <svg viewBox="0 0 24 24" fill="var(--fg-muted)"><path d="M3.61 1.814L13.793 12 3.61 22.186a.996.996 0 01-.61-.92V2.734c0-.384.22-.72.61-.92zm.91-.467L15.5 7.28l-2.9 2.9L4.52 1.347zm11.08 5.986L18.28 9l2.5 1.5c.5.3.5.7 0 1l-2.5 1.5-2.68 1.667-2.9-2.9 2.9-2.9-.02.046zM4.52 22.653l8.08-8.833 2.9 2.9L4.52 22.653z"></path></svg>
+    <a href="https://play.google.com/store/apps/details?id=com.alamaby.waktu_sejak" target="_blank" rel="noopener" class="dl-card active">
+      <svg viewBox="0 0 24 24" fill="var(--oi-green)"><path d="M3.61 1.814L13.793 12 3.61 22.186a.996.996 0 01-.61-.92V2.734c0-.384.22-.72.61-.92zm.91-.467L15.5 7.28l-2.9 2.9L4.52 1.347zm11.08 5.986L18.28 9l2.5 1.5c.5.3.5.7 0 1l-2.5 1.5-2.68 1.667-2.9-2.9 2.9-2.9-.02.046zM4.52 22.653l8.08-8.833 2.9 2.9L4.52 22.653z"></path></svg>
       <span class="dl-name">Google Play</span>
-      <span class="dl-status soon" data-i18n="dl_soon">Segera Hadir</span>
-    </div>
+      <span class="dl-status available" data-i18n="dl_play_available">Tersedia</span>
+    </a>
 
     <div class="dl-card">
       <svg viewBox="0 0 24 24" fill="var(--fg-muted)"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"></path></svg>
@@ -610,8 +610,9 @@ const i18n = {
     a3_desc: 'Warna teks pada kartu event otomatis dipilih (gelap/terang) berdasarkan luminansi latar belakang untuk keterbacaan optimal.',
     section_download: 'Download',
     section_download_title: 'Dapatkan Waktu Sejak',
-    download_desc: 'Saat ini tersedia via sideload APK dari GitHub. Rilis di store segera hadir.',
+    download_desc: 'Tersedia di Google Play untuk Android. APK sideload tetap tersedia melalui GitHub Releases.',
     dl_available: 'Tersedia — Sideload',
+    dl_play_available: 'Tersedia',
     dl_soon: 'Segera Hadir',
     footer_by: 'Dibuat oleh',
     footer_privacy: 'Kebijakan Privasi',
@@ -654,8 +655,9 @@ const i18n = {
     a3_desc: 'Text color on event cards is automatically chosen (dark/light) based on background luminance for optimal readability.',
     section_download: 'Download',
     section_download_title: 'Get Waktu Sejak',
-    download_desc: 'Currently available via APK sideload from GitHub. Store releases coming soon.',
+    download_desc: 'Available on Google Play for Android. APK sideload remains available through GitHub Releases.',
     dl_available: 'Available — Sideload',
+    dl_play_available: 'Available',
     dl_soon: 'Coming Soon',
     footer_by: 'Made by',
     footer_privacy: 'Privacy Policy',
@@ -726,7 +728,7 @@ checkMobileLang();
     "price": "0",
     "priceCurrency": "USD",
     "availability": "https://schema.org/InStock",
-    "url": "https://github.com/alamaby/waktu-sejak/releases"
+    "url": "https://play.google.com/store/apps/details?id=com.alamaby.waktu_sejak"
   },
   "screenshot": [
     "https://waktu-sejak.vercel.app/assets/screenshot_dashboard_grid_light.png",
