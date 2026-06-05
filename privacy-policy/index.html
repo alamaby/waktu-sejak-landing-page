@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title data-i18n-title="page_title">Kebijakan Privasi — Waktu Sejak</title>
   <link rel="manifest" href="/manifest.json">
-  <meta name="description" content="Kebijakan Privasi Waktu Sejak — aplikasi sepenuhnya offline. Semua data tersimpan di perangkat Anda. Tidak ada pelacakan, tidak ada analitik, tidak ada pihak ketiga.">
+  <meta name="description" content="Kebijakan Privasi Waktu Sejak — aplikasi local-first. Data event, preferensi, widget, dan reward supporter disimpan di perangkat Anda.">
   <link rel="canonical" href="https://waktu-sejak.vercel.app/privacy-policy">
   <meta name="robots" content="index, follow">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://waktu-sejak.vercel.app/privacy-policy">
   <meta property="og:title" content="Kebijakan Privasi — Waktu Sejak">
-  <meta property="og:description" content="Aplikasi sepenuhnya offline. Semua data tersimpan di perangkat Anda. Tidak ada pelacakan.">
+  <meta property="og:description" content="Aplikasi local-first. Data event, preferensi, widget, dan reward supporter disimpan di perangkat Anda.">
   <meta property="og:image" content="https://waktu-sejak.vercel.app/assets/app_logo.png">
   <meta property="og:locale" content="id_ID">
   <link rel="alternate" href="https://waktu-sejak.vercel.app/privacy-policy" hreflang="id" />
@@ -191,68 +191,93 @@
 <main>
   <header class="page-header">
     <h1 data-i18n="page_h1">Kebijakan Privasi</h1>
-    <p class="updated"><span data-i18n="last_updated">Terakhir diperbarui</span>: 2026-05-09</p>
+    <p class="updated"><span data-i18n="last_updated">Terakhir diperbarui</span>: 2026-06-05</p>
   </header>
 
   <div class="summary-card">
     <div class="summary-label" data-i18n="summary_label">Ringkasan Singkat</div>
-    <p data-i18n="summary_text">Waktu Sejak adalah aplikasi sepenuhnya offline. Semua data Anda tersimpan secara lokal di perangkat Anda. Kami tidak mengumpulkan, mengirim, atau menyimpan data apa pun di server kami. Tidak ada pelacakan, tidak ada analitik, tidak ada SDK pihak ketiga.</p>
+    <p data-i18n="summary_text">Waktu Sejak dirancang sebagai aplikasi local-first. Event, preferensi, data widget, dan data reward supporter disimpan di perangkat Anda kecuali Anda memilih untuk mengekspor atau membagikannya.</p>
   </div>
 
   <section class="policy-section">
-    <h2 data-i18n="s1_title">1. Data yang Kami Kumpulkan</h2>
-    <p data-i18n="s1_p1">Tidak ada. Waktu Sejak tidak mengumpulkan, mengirimkan, atau menyimpan data pengguna apa pun di server kami. Aplikasi ini tidak memiliki akun pengguna, tidak melakukan permintaan jaringan ke layanan kami, dan tidak mengirim telemetri.</p>
-  </section>
-
-  <section class="policy-section">
-    <h2 data-i18n="s2_title">2. Penyimpanan Data</h2>
-    <p data-i18n="s2_p1">Semua event, preferensi, dan pengaturan yang Anda buat di Waktu Sejak disimpan di area penyimpanan privat aplikasi pada perangkat Anda. Data ini hanya dapat diakses oleh aplikasi Waktu Sejak.</p>
-    <p data-i18n="s2_p2">Mencopot pemasangan (uninstall) aplikasi akan menghapus seluruh data Anda secara permanen, kecuali file ekspor JSON yang telah Anda simpan sendiri ke lokasi pilihan Anda.</p>
-  </section>
-
-  <section class="policy-section">
-    <h2 data-i18n="s3_title">3. Ekspor &amp; Impor Data</h2>
-    <p data-i18n="s3_p1">Waktu Sejak menyediakan fitur untuk mengekspor data Anda ke file JSON dan mengimpornya kembali. Operasi ini sepenuhnya manual dan dijalankan oleh Anda.</p>
+    <h2 data-i18n="s1_title">1. Data yang Disimpan di Perangkat</h2>
+    <p data-i18n="s1_p1">Waktu Sejak menyimpan data berikut secara lokal menggunakan penyimpanan perangkat:</p>
     <ul>
-      <li data-i18n="s3_li1">File ekspor disimpan ke lokasi yang Anda pilih sendiri di perangkat.</li>
-      <li data-i18n="s3_li2">File ekspor tidak pernah dikirim ke pengembang atau pihak ketiga mana pun.</li>
-      <li data-i18n="s3_li3">Anda bertanggung jawab penuh atas keamanan dan distribusi file ekspor Anda.</li>
+      <li data-i18n="s1_li1">Event yang Anda buat, termasuk nama event, tanggal dan waktu, emoji, warna, tipe pengulangan, waktu pembuatan, tipe event, dan jumlah dukungan jika berlaku.</li>
+      <li data-i18n="s1_li2">Preferensi aplikasi, termasuk bahasa, mode tema, mode pengurutan dashboard, dan mode tampilan dashboard.</li>
+      <li data-i18n="s1_li3">Jumlah dukungan lokal yang digunakan untuk menampilkan badge Supporter setelah pembelian Dukung Developer berhasil.</li>
+      <li data-i18n="s1_li4">Data widget layar utama di Android, yang dibuat dari event lokal agar widget dapat menampilkan informasi event.</li>
+    </ul>
+    <p data-i18n="s1_p2">Data ini tetap berada di perangkat Anda. Waktu Sejak tidak mengoperasikan server milik developer untuk sinkronisasi, analitik, pelacakan, atau penyimpanan akun.</p>
+  </section>
+
+  <section class="policy-section">
+    <h2 data-i18n="s2_title">2. Pembelian Dukung Developer</h2>
+    <p data-i18n="s2_p1">Waktu Sejak menyediakan pembelian opsional Dukung Developer satu kali melalui Google Play Billing. Pembayaran diproses oleh Google Play.</p>
+    <p data-i18n="s2_p2">Waktu Sejak tidak menerima atau menyimpan detail kartu pembayaran, detail bank, alamat penagihan, atau password akun Google Anda. Aplikasi menerima informasi status pembelian dari Google Play agar dapat menyelesaikan pembelian, membuka reward event lokal Supporter, dan memperbarui jumlah badge Supporter lokal.</p>
+    <p data-i18n="s2_p3">Google Play dapat memproses informasi pembelian dan pembayaran berdasarkan kebijakan Google. Anda dapat membaca praktik privasi Google di <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.</p>
+  </section>
+
+  <section class="policy-section">
+    <h2 data-i18n="s3_title">3. Event Reward Supporter</h2>
+    <p data-i18n="s3_p1">Setelah pembelian Dukung Developer berhasil, Waktu Sejak membuat atau memperbarui event khusus Supporter secara lokal. Event ini dapat mencakup:</p>
+    <ul>
+      <li data-i18n="s3_li1">ID event supporter tetap.</li>
+      <li data-i18n="s3_li2">Judul event supporter.</li>
+      <li data-i18n="s3_li3">Badge jumlah dukungan.</li>
+      <li data-i18n="s3_li4">Tanggal dan waktu saat reward event dibuat atau diperbarui.</li>
+    </ul>
+    <p data-i18n="s3_p2">Event Supporter disimpan secara lokal bersama event lainnya. Event ini tidak dapat diedit melalui UI aplikasi, tetapi dapat dihapus. Menghapus event ini tidak mengatur ulang jumlah dukungan lokal.</p>
+  </section>
+
+  <section class="policy-section">
+    <h2 data-i18n="s4_title">4. Ekspor dan Impor Data</h2>
+    <p data-i18n="s4_p1">Waktu Sejak menyediakan fitur portabilitas data:</p>
+    <ul>
+      <li data-i18n="s4_li1">Ekspor membuat file cadangan JSON dari event lokal Anda dan membuka system share sheet.</li>
+      <li data-i18n="s4_li2">Impor memungkinkan Anda memilih file cadangan JSON melalui system file picker.</li>
+    </ul>
+    <p data-i18n="s4_p2">Aplikasi tidak mengunggah cadangan Anda ke server milik developer. Namun, jika Anda memilih membagikan file cadangan melalui aplikasi atau layanan lain, pihak ketiga tersebut dapat memproses file berdasarkan kebijakan privasinya sendiri.</p>
+  </section>
+
+  <section class="policy-section">
+    <h2 data-i18n="s5_title">5. Tautan Eksternal</h2>
+    <p data-i18n="s5_p1">Layar Pengaturan dapat berisi tautan seperti Kebijakan Privasi, LinkedIn, GitHub, Blog, dan Upwork. Membuka tautan tersebut akan membawa Anda keluar dari Waktu Sejak dan dapat ditangani oleh browser atau aplikasi lain. Layanan pihak ketiga tersebut memiliki kebijakan privasi masing-masing.</p>
+  </section>
+
+  <section class="policy-section">
+    <h2 data-i18n="s6_title">6. Analitik, Iklan, dan Pelacakan</h2>
+    <p data-i18n="s6_p1">Waktu Sejak tidak menyertakan analitik yang dioperasikan developer, SDK iklan, atau pelacakan lintas aplikasi.</p>
+  </section>
+
+  <section class="policy-section">
+    <h2 data-i18n="s7_title">7. Anak-Anak</h2>
+    <p data-i18n="s7_p1">Waktu Sejak tidak ditujukan untuk anak-anak dan tidak secara sadar mengumpulkan informasi pribadi dari anak-anak.</p>
+  </section>
+
+  <section class="policy-section">
+    <h2 data-i18n="s8_title">8. Pilihan Anda</h2>
+    <p data-i18n="s8_p1">Anda dapat:</p>
+    <ul>
+      <li data-i18n="s8_li1">Mengubah atau menghapus event normal di aplikasi.</li>
+      <li data-i18n="s8_li2">Menghapus event reward Supporter.</li>
+      <li data-i18n="s8_li3">Mengekspor data event ke file cadangan JSON.</li>
+      <li data-i18n="s8_li4">Menghapus data aplikasi dari perangkat melalui pengaturan sistem operasi.</li>
+      <li data-i18n="s8_li5">Menghapus aplikasi untuk menghapus data lokal aplikasi, tergantung pengaturan perangkat dan backup Anda.</li>
     </ul>
   </section>
 
   <section class="policy-section">
-    <h2 data-i18n="s4_title">4. Izin Aplikasi</h2>
-    <p data-i18n="s4_p1">Waktu Sejak hanya meminta izin yang diperlukan untuk fungsi ekspor dan impor file (jika diminta oleh sistem operasi Anda). Aplikasi ini tidak meminta:</p>
+    <h2 data-i18n="s9_title">9. Perubahan Kebijakan</h2>
+    <p data-i18n="s9_p1">Kebijakan Privasi ini dapat diperbarui ketika fitur aplikasi atau praktik penanganan data berubah. Versi terbaru sebaiknya tersedia melalui tautan Kebijakan Privasi di aplikasi atau dokumentasi proyek.</p>
+  </section>
+
+  <section class="policy-section">
+    <h2 data-i18n="s10_title">10. Kontak</h2>
+    <p data-i18n="s10_p1">Jika Anda memiliki pertanyaan tentang Kebijakan Privasi ini, hubungi:</p>
     <ul>
-      <li data-i18n="s4_li1">Akses internet</li>
-      <li data-i18n="s4_li2">Notifikasi</li>
-      <li data-i18n="s4_li3">Lokasi</li>
-      <li data-i18n="s4_li4">Kontak, kalender, kamera, mikrofon, atau galeri foto</li>
-      <li data-i18n="s4_li5">Pengidentifikasi perangkat (advertising ID, IMEI, dsb.)</li>
-    </ul>
-  </section>
-
-  <section class="policy-section">
-    <h2 data-i18n="s5_title">5. Pihak Ketiga</h2>
-    <p data-i18n="s5_p1">Waktu Sejak tidak menggunakan layanan analitik (mis. Google Analytics, Firebase Analytics), pelaporan crash pihak ketiga (mis. Crashlytics, Sentry), iklan, atau SDK pihak ketiga lainnya yang mengirim data ke luar perangkat.</p>
-  </section>
-
-  <section class="policy-section">
-    <h2 data-i18n="s6_title">6. Anak-anak</h2>
-    <p data-i18n="s6_p1">Aplikasi ini aman digunakan oleh segala usia. Karena kami tidak mengumpulkan data apa pun, kami juga tidak mengumpulkan data dari anak-anak.</p>
-  </section>
-
-  <section class="policy-section">
-    <h2 data-i18n="s7_title">7. Perubahan Kebijakan Ini</h2>
-    <p data-i18n="s7_p1">Kami dapat memperbarui kebijakan privasi ini dari waktu ke waktu. Setiap perubahan akan ditampilkan di halaman ini beserta tanggal "Terakhir diperbarui" yang baru. Karena aplikasi tidak terhubung ke internet, perubahan kebijakan tidak memengaruhi data yang sudah ada di perangkat Anda.</p>
-  </section>
-
-  <section class="policy-section">
-    <h2 data-i18n="s8_title">8. Kontak</h2>
-    <p data-i18n="s8_p1">Jika Anda memiliki pertanyaan tentang kebijakan privasi ini, silakan hubungi:</p>
-    <ul>
-      <li data-i18n="s8_li1">Email: <a href="mailto:alam.aby.b@gmail.com">alam.aby.b@gmail.com</a></li>
-      <li data-i18n="s8_li2">GitHub: <a href="https://github.com/alamaby/waktu-sejak" target="_blank" rel="noopener">github.com/alamaby/waktu-sejak</a></li>
+      <li data-i18n="s10_li1">Alam Aby Bashit</li>
+      <li data-i18n="s10_li2">GitHub: <a href="https://github.com/alamaby" target="_blank" rel="noopener">github.com/alamaby</a></li>
     </ul>
   </section>
 </main>
@@ -277,34 +302,49 @@ const i18n = {
     page_h1: 'Kebijakan Privasi',
     last_updated: 'Terakhir diperbarui',
     summary_label: 'Ringkasan Singkat',
-    summary_text: 'Waktu Sejak adalah aplikasi sepenuhnya offline. Semua data Anda tersimpan secara lokal di perangkat Anda. Kami tidak mengumpulkan, mengirim, atau menyimpan data apa pun di server kami. Tidak ada pelacakan, tidak ada analitik, tidak ada SDK pihak ketiga.',
-    s1_title: '1. Data yang Kami Kumpulkan',
-    s1_p1: 'Tidak ada. Waktu Sejak tidak mengumpulkan, mengirimkan, atau menyimpan data pengguna apa pun di server kami. Aplikasi ini tidak memiliki akun pengguna, tidak melakukan permintaan jaringan ke layanan kami, dan tidak mengirim telemetri.',
-    s2_title: '2. Penyimpanan Data',
-    s2_p1: 'Semua event, preferensi, dan pengaturan yang Anda buat di Waktu Sejak disimpan di area penyimpanan privat aplikasi pada perangkat Anda. Data ini hanya dapat diakses oleh aplikasi Waktu Sejak.',
-    s2_p2: 'Mencopot pemasangan (uninstall) aplikasi akan menghapus seluruh data Anda secara permanen, kecuali file ekspor JSON yang telah Anda simpan sendiri ke lokasi pilihan Anda.',
-    s3_title: '3. Ekspor & Impor Data',
-    s3_p1: 'Waktu Sejak menyediakan fitur untuk mengekspor data Anda ke file JSON dan mengimpornya kembali. Operasi ini sepenuhnya manual dan dijalankan oleh Anda.',
-    s3_li1: 'File ekspor disimpan ke lokasi yang Anda pilih sendiri di perangkat.',
-    s3_li2: 'File ekspor tidak pernah dikirim ke pengembang atau pihak ketiga mana pun.',
-    s3_li3: 'Anda bertanggung jawab penuh atas keamanan dan distribusi file ekspor Anda.',
-    s4_title: '4. Izin Aplikasi',
-    s4_p1: 'Waktu Sejak hanya meminta izin yang diperlukan untuk fungsi ekspor dan impor file (jika diminta oleh sistem operasi Anda). Aplikasi ini tidak meminta:',
-    s4_li1: 'Akses internet',
-    s4_li2: 'Notifikasi',
-    s4_li3: 'Lokasi',
-    s4_li4: 'Kontak, kalender, kamera, mikrofon, atau galeri foto',
-    s4_li5: 'Pengidentifikasi perangkat (advertising ID, IMEI, dsb.)',
-    s5_title: '5. Pihak Ketiga',
-    s5_p1: 'Waktu Sejak tidak menggunakan layanan analitik (mis. Google Analytics, Firebase Analytics), pelaporan crash pihak ketiga (mis. Crashlytics, Sentry), iklan, atau SDK pihak ketiga lainnya yang mengirim data ke luar perangkat.',
-    s6_title: '6. Anak-anak',
-    s6_p1: 'Aplikasi ini aman digunakan oleh segala usia. Karena kami tidak mengumpulkan data apa pun, kami juga tidak mengumpulkan data dari anak-anak.',
-    s7_title: '7. Perubahan Kebijakan Ini',
-    s7_p1: 'Kami dapat memperbarui kebijakan privasi ini dari waktu ke waktu. Setiap perubahan akan ditampilkan di halaman ini beserta tanggal "Terakhir diperbarui" yang baru. Karena aplikasi tidak terhubung ke internet, perubahan kebijakan tidak memengaruhi data yang sudah ada di perangkat Anda.',
-    s8_title: '8. Kontak',
-    s8_p1: 'Jika Anda memiliki pertanyaan tentang kebijakan privasi ini, silakan hubungi:',
-    s8_li1: 'Email: <a href="mailto:alam.aby.b@gmail.com">alam.aby.b@gmail.com</a>',
-    s8_li2: 'GitHub: <a href="https://github.com/alamaby/waktu-sejak" target="_blank" rel="noopener">github.com/alamaby/waktu-sejak</a>',
+    summary_text: 'Waktu Sejak dirancang sebagai aplikasi local-first. Event, preferensi, data widget, dan data reward supporter disimpan di perangkat Anda kecuali Anda memilih untuk mengekspor atau membagikannya.',
+    s1_title: '1. Data yang Disimpan di Perangkat',
+    s1_p1: 'Waktu Sejak menyimpan data berikut secara lokal menggunakan penyimpanan perangkat:',
+    s1_li1: 'Event yang Anda buat, termasuk nama event, tanggal dan waktu, emoji, warna, tipe pengulangan, waktu pembuatan, tipe event, dan jumlah dukungan jika berlaku.',
+    s1_li2: 'Preferensi aplikasi, termasuk bahasa, mode tema, mode pengurutan dashboard, dan mode tampilan dashboard.',
+    s1_li3: 'Jumlah dukungan lokal yang digunakan untuk menampilkan badge Supporter setelah pembelian Dukung Developer berhasil.',
+    s1_li4: 'Data widget layar utama di Android, yang dibuat dari event lokal agar widget dapat menampilkan informasi event.',
+    s1_p2: 'Data ini tetap berada di perangkat Anda. Waktu Sejak tidak mengoperasikan server milik developer untuk sinkronisasi, analitik, pelacakan, atau penyimpanan akun.',
+    s2_title: '2. Pembelian Dukung Developer',
+    s2_p1: 'Waktu Sejak menyediakan pembelian opsional Dukung Developer satu kali melalui Google Play Billing. Pembayaran diproses oleh Google Play.',
+    s2_p2: 'Waktu Sejak tidak menerima atau menyimpan detail kartu pembayaran, detail bank, alamat penagihan, atau password akun Google Anda. Aplikasi menerima informasi status pembelian dari Google Play agar dapat menyelesaikan pembelian, membuka reward event lokal Supporter, dan memperbarui jumlah badge Supporter lokal.',
+    s2_p3: 'Google Play dapat memproses informasi pembelian dan pembayaran berdasarkan kebijakan Google. Anda dapat membaca praktik privasi Google di <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.',
+    s3_title: '3. Event Reward Supporter',
+    s3_p1: 'Setelah pembelian Dukung Developer berhasil, Waktu Sejak membuat atau memperbarui event khusus Supporter secara lokal. Event ini dapat mencakup:',
+    s3_li1: 'ID event supporter tetap.',
+    s3_li2: 'Judul event supporter.',
+    s3_li3: 'Badge jumlah dukungan.',
+    s3_li4: 'Tanggal dan waktu saat reward event dibuat atau diperbarui.',
+    s3_p2: 'Event Supporter disimpan secara lokal bersama event lainnya. Event ini tidak dapat diedit melalui UI aplikasi, tetapi dapat dihapus. Menghapus event ini tidak mengatur ulang jumlah dukungan lokal.',
+    s4_title: '4. Ekspor dan Impor Data',
+    s4_p1: 'Waktu Sejak menyediakan fitur portabilitas data:',
+    s4_li1: 'Ekspor membuat file cadangan JSON dari event lokal Anda dan membuka system share sheet.',
+    s4_li2: 'Impor memungkinkan Anda memilih file cadangan JSON melalui system file picker.',
+    s4_p2: 'Aplikasi tidak mengunggah cadangan Anda ke server milik developer. Namun, jika Anda memilih membagikan file cadangan melalui aplikasi atau layanan lain, pihak ketiga tersebut dapat memproses file berdasarkan kebijakan privasinya sendiri.',
+    s5_title: '5. Tautan Eksternal',
+    s5_p1: 'Layar Pengaturan dapat berisi tautan seperti Kebijakan Privasi, LinkedIn, GitHub, Blog, dan Upwork. Membuka tautan tersebut akan membawa Anda keluar dari Waktu Sejak dan dapat ditangani oleh browser atau aplikasi lain. Layanan pihak ketiga tersebut memiliki kebijakan privasi masing-masing.',
+    s6_title: '6. Analitik, Iklan, dan Pelacakan',
+    s6_p1: 'Waktu Sejak tidak menyertakan analitik yang dioperasikan developer, SDK iklan, atau pelacakan lintas aplikasi.',
+    s7_title: '7. Anak-Anak',
+    s7_p1: 'Waktu Sejak tidak ditujukan untuk anak-anak dan tidak secara sadar mengumpulkan informasi pribadi dari anak-anak.',
+    s8_title: '8. Pilihan Anda',
+    s8_p1: 'Anda dapat:',
+    s8_li1: 'Mengubah atau menghapus event normal di aplikasi.',
+    s8_li2: 'Menghapus event reward Supporter.',
+    s8_li3: 'Mengekspor data event ke file cadangan JSON.',
+    s8_li4: 'Menghapus data aplikasi dari perangkat melalui pengaturan sistem operasi.',
+    s8_li5: 'Menghapus aplikasi untuk menghapus data lokal aplikasi, tergantung pengaturan perangkat dan backup Anda.',
+    s9_title: '9. Perubahan Kebijakan',
+    s9_p1: 'Kebijakan Privasi ini dapat diperbarui ketika fitur aplikasi atau praktik penanganan data berubah. Versi terbaru sebaiknya tersedia melalui tautan Kebijakan Privasi di aplikasi atau dokumentasi proyek.',
+    s10_title: '10. Kontak',
+    s10_p1: 'Jika Anda memiliki pertanyaan tentang Kebijakan Privasi ini, hubungi:',
+    s10_li1: 'Alam Aby Bashit',
+    s10_li2: 'GitHub: <a href="https://github.com/alamaby" target="_blank" rel="noopener">github.com/alamaby</a>',
     footer_by: 'Dibuat oleh',
     footer_home: 'Beranda',
   },
@@ -314,34 +354,49 @@ const i18n = {
     page_h1: 'Privacy Policy',
     last_updated: 'Last updated',
     summary_label: 'TL;DR',
-    summary_text: 'Waktu Sejak is a fully offline app. All your data is stored locally on your device. We do not collect, transmit, or store any data on our servers. No tracking, no analytics, no third-party SDKs.',
-    s1_title: '1. Data We Collect',
-    s1_p1: 'None. Waktu Sejak does not collect, transmit, or store any user data on our servers. The app has no user accounts, makes no network requests to our services, and sends no telemetry.',
-    s2_title: '2. Data Storage',
-    s2_p1: 'All events, preferences, and settings you create in Waktu Sejak are stored in the app’s private storage area on your device. This data is accessible only to the Waktu Sejak app.',
-    s2_p2: 'Uninstalling the app permanently deletes all of your data, except for any JSON export files you have saved yourself to a location of your choice.',
-    s3_title: '3. Export & Import Data',
-    s3_p1: 'Waktu Sejak lets you manually export your data to a JSON file and import it back. These operations are fully manual and performed by you.',
-    s3_li1: 'Export files are saved to a location you choose on your device.',
-    s3_li2: 'Export files are never sent to the developer or any third party.',
-    s3_li3: 'You are solely responsible for the security and distribution of your export files.',
-    s4_title: '4. App Permissions',
-    s4_p1: 'Waktu Sejak only requests the permissions needed for the file export/import feature (if prompted by your operating system). The app does not request:',
-    s4_li1: 'Internet access',
-    s4_li2: 'Notifications',
-    s4_li3: 'Location',
-    s4_li4: 'Contacts, calendar, camera, microphone, or photo library',
-    s4_li5: 'Device identifiers (advertising ID, IMEI, etc.)',
-    s5_title: '5. Third Parties',
-    s5_p1: 'Waktu Sejak uses no analytics services (e.g. Google Analytics, Firebase Analytics), no third-party crash reporting (e.g. Crashlytics, Sentry), no ads, and no other third-party SDKs that send data off your device.',
-    s6_title: '6. Children',
-    s6_p1: 'The app is safe for all ages. Because we collect no data at all, we collect no data from children.',
-    s7_title: '7. Changes to This Policy',
-    s7_p1: 'We may update this privacy policy from time to time. Any changes will appear on this page with a new "Last updated" date. Because the app is not connected to the internet, policy changes do not affect data already on your device.',
-    s8_title: '8. Contact',
-    s8_p1: 'If you have any questions about this privacy policy, please reach out:',
-    s8_li1: 'Email: <a href="mailto:alam.aby.b@gmail.com">alam.aby.b@gmail.com</a>',
-    s8_li2: 'GitHub: <a href="https://github.com/alamaby/waktu-sejak" target="_blank" rel="noopener">github.com/alamaby/waktu-sejak</a>',
+    summary_text: 'Waktu Sejak is designed as a local-first app. Your events, preferences, widget data, and supporter reward data are stored on your device unless you choose to export or share them.',
+    s1_title: '1. Data We Store on Your Device',
+    s1_p1: 'Waktu Sejak stores the following data locally using device storage:',
+    s1_li1: 'Events you create, including event name, date and time, emoji, color, recurrence type, creation time, event type, and supporter reward count when applicable.',
+    s1_li2: 'App preferences, including language, theme mode, dashboard sort mode, and dashboard view mode.',
+    s1_li3: 'A local support count used to show the Supporter badge after successful Support Developer purchases.',
+    s1_li4: 'Home screen widget data on Android, generated from your local events so the widget can display event information.',
+    s1_p2: 'This data stays on your device. Waktu Sejak does not operate a developer-controlled server for syncing, analytics, tracking, or account storage.',
+    s2_title: '2. Support Developer Purchases',
+    s2_p1: 'Waktu Sejak offers optional one-time Support Developer purchases through Google Play Billing. Payments are processed by Google Play.',
+    s2_p2: 'Waktu Sejak does not receive or store your payment card details, bank details, billing address, or Google account password. The app receives purchase status information from Google Play so it can complete the purchase, unlock the local supporter reward event, and update the local Supporter badge count.',
+    s2_p3: 'Google Play may process purchase and payment information under Google\'s own policies. You can review Google\'s privacy practices at <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.',
+    s3_title: '3. Supporter Reward Event',
+    s3_p1: 'After a successful Support Developer purchase, Waktu Sejak creates or updates a special local Supporter event. This event may include:',
+    s3_li1: 'A fixed supporter event ID.',
+    s3_li2: 'A supporter event title.',
+    s3_li3: 'A support count badge.',
+    s3_li4: 'The date and time when the reward event was created or updated.',
+    s3_p2: 'The Supporter event is stored locally with your other events. It cannot be edited from the app UI, but you can delete it. Deleting the event does not reset the local support count.',
+    s4_title: '4. Data Export and Import',
+    s4_p1: 'Waktu Sejak includes data portability features:',
+    s4_li1: 'Export creates a JSON backup file from your local events and opens the system share sheet.',
+    s4_li2: 'Import lets you choose a JSON backup file through the system file picker.',
+    s4_p2: 'The app does not upload your backup to a developer server. However, if you choose to share an exported backup through another app or service, that third party may process the file under its own privacy policy.',
+    s5_title: '5. External Links',
+    s5_p1: 'The Settings screen may include links such as Privacy Policy, LinkedIn, GitHub, Blog, and Upwork. Opening these links leaves Waktu Sejak and may be handled by your browser or another app. Those third-party services are governed by their own privacy policies.',
+    s6_title: '6. Analytics, Ads, and Tracking',
+    s6_p1: 'Waktu Sejak does not include developer-operated analytics, advertising SDKs, or cross-app tracking.',
+    s7_title: '7. Children',
+    s7_p1: 'Waktu Sejak is not directed to children and does not knowingly collect personal information from children.',
+    s8_title: '8. Your Choices',
+    s8_p1: 'You can:',
+    s8_li1: 'Edit or delete normal events in the app.',
+    s8_li2: 'Delete the Supporter reward event.',
+    s8_li3: 'Export your event data to a JSON backup.',
+    s8_li4: 'Delete app data from your device through your operating system settings.',
+    s8_li5: 'Uninstall the app to remove locally stored app data, subject to your device and backup settings.',
+    s9_title: '9. Changes to This Policy',
+    s9_p1: 'This Privacy Policy may be updated when app features or data handling practices change. The latest version should be made available from the app\'s Privacy Policy link or project documentation.',
+    s10_title: '10. Contact',
+    s10_p1: 'If you have questions about this Privacy Policy, contact:',
+    s10_li1: 'Alam Aby Bashit',
+    s10_li2: 'GitHub: <a href="https://github.com/alamaby" target="_blank" rel="noopener">github.com/alamaby</a>',
     footer_by: 'Made by',
     footer_home: 'Home',
   }
