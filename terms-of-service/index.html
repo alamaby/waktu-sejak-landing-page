@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n-title="page_title">Ketentuan Layanan — Waktu Sejak</title>
+  <link rel="manifest" href="/manifest.json">
+  <meta name="description" content="Ketentuan Layanan Waktu Sejak — aturan penggunaan aplikasi, pembelian Dukung Developer opsional, dan batasan tanggung jawab developer.">
+  <link rel="canonical" href="https://waktu-sejak.vercel.app/terms-of-service">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://waktu-sejak.vercel.app/terms-of-service">
+  <meta property="og:title" content="Ketentuan Layanan — Waktu Sejak">
+  <meta property="og:description" content="Ketentuan Layanan Waktu Sejak — aturan penggunaan aplikasi, pembelian Dukung Developer opsional, dan batasan tanggung jawab developer.">
+  <meta property="og:image" content="https://waktu-sejak.vercel.app/assets/app_logo.png">
+  <meta property="og:locale" content="id_ID">
+  <link rel="alternate" href="https://waktu-sejak.vercel.app/terms-of-service" hreflang="id" />
+  <link rel="alternate" href="https://waktu-sejak.vercel.app/terms-of-service" hreflang="en" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* shared styles - mirror privacy-policy page */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --oi-orange:#E69F00; --oi-sky:#56B4E9; --oi-green:#009E73; --oi-yellow:#F0E442; --oi-blue:#0072B2; --oi-vermillion:#D55E00; --oi-purple:#CC79A7; --bg:#FAFAF8; --bg-alt:#F2F1ED; --fg:#1A1A18; --fg-muted:#6B6B66; --radius:16px; --radius-sm:10px; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', system-ui, sans-serif; background: var(--bg); color: var(--fg); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(250,250,248,0.85); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(0,0,0,0.06); }
+    .nav-inner { max-width: 1120px; margin: 0 auto; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-weight: 700; font-size: 18px; color: var(--fg); text-decoration: none; display: flex; align-items: center; gap: 8px; }
+    .nav-logo span { color: var(--oi-blue); }
+    .nav-links { display: flex; gap: 24px; align-items: center; }
+    .nav-links a { text-decoration: none; color: var(--fg-muted); font-size: 14px; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--fg); }
+    .lang-toggle { background: var(--bg-alt); border: 1px solid rgba(0,0,0,0.08); border-radius: 8px; padding: 6px 12px; font-size: 13px; font-weight: 600; cursor: pointer; color: var(--fg); font-family: inherit; transition: background 0.2s; }
+    .lang-toggle:hover { background: #E8E7E3; }
+    main { max-width: 760px; margin: 0 auto; padding: 140px 24px 60px; }
+    .page-header { margin-bottom: 48px; padding-bottom: 32px; border-bottom: 1px solid rgba(0,0,0,0.06); }
+    .page-header h1 { font-size: clamp(32px, 5vw, 48px); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 16px; }
+    .page-header .updated { font-size: 14px; color: var(--fg-muted); font-family: 'JetBrains Mono', monospace; }
+    .summary-card { background: var(--bg-alt); border: 1px solid rgba(0,0,0,0.04); border-radius: var(--radius); padding: 24px 28px; margin-bottom: 40px; border-left: 4px solid var(--oi-blue); }
+    .summary-card .summary-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--oi-blue); margin-bottom: 8px; }
+    .summary-card p { font-size: 15px; }
+    section.policy-section { margin-bottom: 36px; }
+    section.policy-section h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 12px; }
+    section.policy-section p { font-size: 15px; color: var(--fg); margin-bottom: 12px; }
+    section.policy-section p:last-child { margin-bottom: 0; }
+    section.policy-section ul { padding-left: 22px; margin: 8px 0; }
+    section.policy-section li { font-size: 15px; margin-bottom: 6px; }
+    section.policy-section a { color: var(--oi-blue); text-decoration: none; }
+    section.policy-section a:hover { text-decoration: underline; }
+    section.policy-section code { font-family: 'JetBrains Mono', monospace; background: var(--bg-alt); padding: 2px 6px; border-radius: 4px; font-size: 13px; }
+    footer { padding: 48px 24px; border-top: 1px solid rgba(0,0,0,0.06); max-width: 1120px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    footer .footer-left { font-size: 14px; color: var(--fg-muted); }
+    footer .footer-left a { color: var(--oi-blue); text-decoration: none; }
+    .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .footer-links a { color: var(--fg-muted); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--fg); }
+    @media (max-width: 768px) {
+      main { padding-top: 110px; }
+      .nav-links a:not(.lang-toggle):not(#backHome) { display: none; }
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo"><img src="/assets/app_logo.png" alt="Waktu Sejak" style="width:28px;height:28px;border-radius:6px;"> <span>Waktu Sejak</span></a>
+    <div class="nav-links">
+      <a href="/" id="backHome" data-i18n="back_home">← Kembali ke Beranda</a>
+      <button class="lang-toggle" onclick="toggleLang()" id="langBtn">EN</button>
+    </div>
+  </div>
+</nav>
+<main>
+  <header class="page-header">
+    <h1 data-i18n="page_h1">Ketentuan Layanan</h1>
+    <p class="updated"><span data-i18n="last_updated">Terakhir diperbarui</span>: 2026-06-17</p>
+  </header>
+  <div class="summary-card">
+    <div class="summary-label" data-i18n="summary_label">Ringkasan Singkat</div>
+    <p data-i18n="summary_text">Waktu Sejak gratis dan tanpa iklan. Pembelian Dukung Developer bersifat sukarela dan opsional, diproses oleh Google Play. Dokumen ini menjelaskan hak dan kewajiban Anda saat menggunakan aplikasi.</p>
+  </div>
+  <section class="policy-section">
+    <h2 data-i18n="s1_title">1. Penerimaan Ketentuan</h2>
+    <p data-i18n="s1_p1">Dengan memasang, menyalin, atau menggunakan Waktu Sejak, Anda setuju untuk terikat oleh Ketentuan Layanan ini. Jika Anda tidak setuju, mohon hapus pemasangan aplikasi.</p>
+  </section>
+  <section class="policy-section">
+    <h2 data-i18n="s2_title">2. Lisensi Penggunaan Aplikasi</h2>
+    <p data-i18n="s2_p1">Waktu Sejak didistribusikan melalui Google Play sesuai ketentuan lisensi yang ditetapkan developer. Selama Anda mematuhi Ketentuan ini, Anda diberikan lisensi pribadi, non-eksklusif, tidak dapat dialihkan, dan dapat dicabut untuk memasang serta menggunakan aplikasi di perangkat yang Anda miliki atau kuasai, semata-mata untuk tujuan pencatatan waktu pribadi dan non-komersial.</p>
+    <p data-i18n="s2_p2">Anda tidak boleh:</p>
+    <ul>
+      <li data-i18n="s2_li1">Melakukan reverse engineering, decompile, atau disassembly terhadap aplikasi, kecuali secara tegas diizinkan oleh hukum yang berlaku.</li>
+      <li data-i18n="s2_li2">Memodifikasi, menerjemahkan, atau membuat karya turunan berbasis aplikasi.</li>
+      <li data-i18n="s2_li3">Mendistribusikan ulang, menjual kembali, atau mensublisensikan aplikasi atau bagian mana pun daripadanya.</li>
+      <li data-i18n="s2_li4">Menggunakan aplikasi untuk melanggar hukum atau peraturan yang berlaku.</li>
+    </ul>
+  </section>
+  <section class="policy-section">
+    <h2 data-i18n="s3_title">3. Konten Pengguna</h2>
+    <p data-i18n="s3_p1">Anda tetap memiliki kepemilikan penuh atas event, nama, emoji, dan konten lain yang Anda buat di dalam Waktu Sejak. Aplikasi tidak mengunggah konten tersebut ke server developer. Anda sepenuhnya bertanggung jawab atas konten yang Anda buat dan atas pencadangan yang Anda anggap penting menggunakan fitur ekspor.</p>
+  </section>
+  <section class="policy-section">
+    <h2 data-i18n="s4_title">4. Pembelian Opsional Dukung Developer</h2>
+    <p data-i18n="s4_p1">Waktu Sejak menawarkan pembelian opsional satu kali Dukung Developer yang diproses oleh Google Play Billing. Pembelian ini adalah tip sukarela untuk mendukung pengembangan ke depan. Pembelian ini bukan langganan, tidak membuka fungsionalitas tambahan, dan tidak memberikan hak atas dukungan, fitur, atau layanan khusus kepada pembeli.</p>
+    <p><strong data-i18n="s4_strong">Kebijakan pengembalian.</strong> <span data-i18n="s4_p2_2">Permintaan pengembalian untuk pembelian Dukung Developer ditangani oleh Google Play berdasarkan kebijakan pengembalian Google. Waktu Sejak tidak memproses pengembalian dana secara langsung. Untuk meminta pengembalian, ikuti alur pengembalian standar Google Play dari riwayat pesanan Anda.</span></p>
+    <p><strong data-i18n="s4_p3_strong">Tidak ada jaminan fitur masa depan.</strong> <span data-i18n="s4_p3_2">Pembelian Dukung Developer tidak menjamin pengembangan, rilis, atau jadwal fitur atau item roadmap tertentu.</span></p>
+  </section>
+  <section class="policy-section">
+    <h2 data-i18n="s5_title">5. Layanan Pihak Ketiga</h2>
+    <p data-i18n="s5_p1">Waktu Sejak mengandalkan layanan pihak ketiga yang memiliki ketentuan masing-masing:</p>
+    <ul>
+      <li data-i18n="s5_li1"><strong>Google Play Billing</strong> untuk memproses pembelian Dukung Developer.</li>
+      <li data-i18n="s5_li2"><strong>Google Play services</strong> untuk menyampaikan status pembelian dan kemampuan platform lainnya.</li>
+      <li data-i18n="s5_li3">Setiap aplikasi, browser, atau layanan yang Anda pilih untuk dibuka dari layar Pengaturan (LinkedIn, GitHub, Blog, dan Upwork) atau untuk membagikan cadangan hasil ekspor.</li>
+    </ul>
+    <p data-i18n="s5_p2">Penggunaan Anda atas layanan-layanan tersebut tunduk pada ketentuan masing-masing penyedia.</p>
+  </section>
+  <section class="policy-section">
+    <h2 data-i18n="s6_title">6. Kekayaan Intelektual</h2>
+    <p data-i18n="s6_p1">Waktu Sejak, termasuk nama, logo, desain, kode, dan animasi Lottie yang dibundel dengan event reward Supporter, adalah kekayaan intelektual developer, Alam Aby Bashit, dan dilindungi oleh undang-undang hak cipta dan merek dagang yang berlaku. Anda tidak boleh menggunakan nama, logo, atau branding developer untuk mengisyaratkan dukungan tanpa izin tertulis sebelumnya.</p>
+  </section>
+  <section class="policy-section">
+    <h2 data-i18n="s7_title">7. Penafian Jaminan</h2>
+    <p data-i18n="s7_p1">Waktu Sejak disediakan dalam kondisi "sebagaimana adanya" dan "sebagaimana tersedia". Sebatas yang diizinkan oleh hukum yang berlaku, developer melepaskan semua jaminan, baik tersurat maupun tersirat, termasuk jaminan tersirat tentang kelayakan untuk diperjualbelikan, kesesuaian untuk tujuan tertentu, dan non-pelanggaran. Developer tidak menjamin bahwa aplikasi akan berjalan tanpa gangguan, bebas kesalahan, atau bahwa cacat akan diperbaiki.</p>
+    <p data-i18n="s7_p2">Perhitungan waktu, penanganan pengulangan, pelimpahan ke kalender, dan rendering widget layar utama bergantung pada jam perangkat, pengaturan locale, aplikasi kalender, dan launcher Anda. Developer tidak bertanggung jawab atas tampilan waktu yang tidak akurat yang disebabkan oleh pengaturan perangkat yang salah atau aplikasi pihak ketiga.</p>
+  </section>
+  <section class="policy-section">
+    <h2 data-i18n="s8_title">8. Batas Tanggung Jawab</h2>
+    <p data-i18n="s8_p1">Sebatas yang diizinkan oleh hukum yang berlaku, developer tidak bertanggung jawab atas kerugian tidak langsung, insidental, khusus, konsekuensial, atau hukuman, atau atas kehilangan data, keuntungan, atau nama baik, yang timbul dari atau terkait dengan penggunaan atau ketidakmampuan Anda menggunakan Waktu Sejak, meskipun developer telah diberitahu tentang kemungkinan kerugian tersebut.</p>
+  </section>
+  <section class="policy-section">
+    <h2 data-i18n="s9_title">9. Perubahan Ketentuan</h2>
+    <p data-i18n="s9_p1">Developer dapat memperbarui Ketentuan ini dari waktu ke waktu. Versi terbaru akan tersedia di dalam aplikasi melalui Pengaturan → Ketentuan Layanan, dan di repositori proyek. Penggunaan aplikasi secara terus-menerus setelah perubahan menunjukkan penerimaan Anda terhadap Ketentuan yang diperbarui.</p>
+  </section>
+  <section class="policy-section">
+    <h2 data-i18n="s10_title">10. Pengakhiran</h2>
+    <p data-i18n="s10_p1">Ketentuan ini berlaku hingga diakhiri. Anda dapat mengakhirinya kapan saja dengan menghapus pemasangan aplikasi dan menghapus data lokalnya melalui pengaturan perangkat. Developer dapat mengakhiri atau menangguhkan akses Anda ke aplikasi kapan saja, dengan atau tanpa alasan, termasuk jika Anda melanggar Ketentuan ini.</p>
+  </section>
+  <section class="policy-section">
+    <h2 data-i18n="s11_title">11. Hukum yang Berlaku</h2>
+    <p data-i18n="s11_p1">Ketentuan ini diatur oleh hukum yang berlaku di tempat tinggal developer, tanpa memperhatikan prinsip konflik hukum.</p>
+  </section>
+  <section class="policy-section">
+    <h2 data-i18n="s12_title">12. Kontak</h2>
+    <p data-i18n="s12_p1">Jika Anda memiliki pertanyaan tentang Ketentuan ini, hubungi:</p>
+    <ul>
+      <li data-i18n="s12_li1">Alam Aby Bashit</li>
+      <li data-i18n="s12_li2">Email: <a href="mailto:alam.aby.b@gmail.com">alam.aby.b@gmail.com</a></li>
+      <li data-i18n="s12_li3">GitHub: <a href="https://github.com/alamaby" target="_blank" rel="noopener">github.com/alamaby</a></li>
+    </ul>
+  </section>
+</main>
+<footer>
+  <div class="footer-left">
+    © 2026 Waktu Sejak · <span data-i18n="footer_by">Dibuat oleh</span> <a href="https://www.linkedin.com/in/alamaby/" target="_blank" rel="noopener">Alam Aby Bashit</a>
+  </div>
+  <div class="footer-links">
+    <a href="/" data-i18n="footer_home">Beranda</a>
+    <a href="/privacy-policy" data-i18n="footer_privacy">Kebijakan Privasi</a>
+    <a href="https://github.com/alamaby/waktu-sejak" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://www.linkedin.com/in/alamaby/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://www.upwork.com/freelancers/~01c341d5c6f089ea32" target="_blank" rel="noopener">Upwork</a>
+  </div>
+</footer>
+<script>
+const i18n = {
+  id: {
+    page_title: 'Ketentuan Layanan \u2014 Waktu Sejak',
+    back_home: '\u2190 Kembali ke Beranda',
+    page_h1: 'Ketentuan Layanan',
+    last_updated: 'Terakhir diperbarui',
+    summary_label: 'Ringkasan Singkat',
+    summary_text: 'Waktu Sejak gratis dan tanpa iklan. Pembelian Dukung Developer bersifat sukarela dan opsional, diproses oleh Google Play. Dokumen ini menjelaskan hak dan kewajiban Anda saat menggunakan aplikasi.',
+    s1_title: '1. Penerimaan Ketentuan',
+    s1_p1: 'Dengan memasang, menyalin, atau menggunakan Waktu Sejak, Anda setuju untuk terikat oleh Ketentuan Layanan ini. Jika Anda tidak setuju, mohon hapus pemasangan aplikasi.',
+    s2_title: '2. Lisensi Penggunaan Aplikasi',
+    s2_p1: 'Waktu Sejak didistribusikan melalui Google Play sesuai ketentuan lisensi yang ditetapkan developer. Selama Anda mematuhi Ketentuan ini, Anda diberikan lisensi pribadi, non-eksklusif, tidak dapat dialihkan, dan dapat dicabut untuk memasang serta menggunakan aplikasi di perangkat yang Anda miliki atau kuasai, semata-mata untuk tujuan pencatatan waktu pribadi dan non-komersial.',
+    s2_p2: 'Anda tidak boleh:',
+    s2_li1: 'Melakukan reverse engineering, decompile, atau disassembly terhadap aplikasi, kecuali secara tegas diizinkan oleh hukum yang berlaku.',
+    s2_li2: 'Memodifikasi, menerjemahkan, atau membuat karya turunan berbasis aplikasi.',
+    s2_li3: 'Mendistribusikan ulang, menjual kembali, atau mensublisensikan aplikasi atau bagian mana pun daripadanya.',
+    s2_li4: 'Menggunakan aplikasi untuk melanggar hukum atau peraturan yang berlaku.',
+    s3_title: '3. Konten Pengguna',
+    s3_p1: 'Anda tetap memiliki kepemilikan penuh atas event, nama, emoji, dan konten lain yang Anda buat di dalam Waktu Sejak. Aplikasi tidak mengunggah konten tersebut ke server developer. Anda sepenuhnya bertanggung jawab atas konten yang Anda buat dan atas pencadangan yang Anda anggap penting menggunakan fitur ekspor.',
+    s4_title: '4. Pembelian Opsional Dukung Developer',
+    s4_p1: 'Waktu Sejak menawarkan pembelian opsional satu kali Dukung Developer yang diproses oleh Google Play Billing. Pembelian ini adalah tip sukarela untuk mendukung pengembangan ke depan. Pembelian ini bukan langganan, tidak membuka fungsionalitas tambahan, dan tidak memberikan hak atas dukungan, fitur, atau layanan khusus kepada pembeli.',
+    s4_strong: 'Kebijakan pengembalian.',
+    s4_p2_2: 'Permintaan pengembalian untuk pembelian Dukung Developer ditangani oleh Google Play berdasarkan kebijakan pengembalian Google. Waktu Sejak tidak memproses pengembalian dana secara langsung. Untuk meminta pengembalian, ikuti alur pengembalian standar Google Play dari riwayat pesanan Anda.',
+    s4_p3_strong: 'Tidak ada jaminan fitur masa depan.',
+    s4_p3_2: 'Pembelian Dukung Developer tidak menjamin pengembangan, rilis, atau jadwal fitur atau item roadmap tertentu.',
+    s5_title: '5. Layanan Pihak Ketiga',
+    s5_p1: 'Waktu Sejak mengandalkan layanan pihak ketiga yang memiliki ketentuan masing-masing:',
+    s5_li1: '<strong>Google Play Billing</strong> untuk memproses pembelian Dukung Developer.',
+    s5_li2: '<strong>Google Play services</strong> untuk menyampaikan status pembelian dan kemampuan platform lainnya.',
+    s5_li3: 'Setiap aplikasi, browser, atau layanan yang Anda pilih untuk dibuka dari layar Pengaturan (LinkedIn, GitHub, Blog, dan Upwork) atau untuk membagikan cadangan hasil ekspor.',
+    s5_p2: 'Penggunaan Anda atas layanan-layanan tersebut tunduk pada ketentuan masing-masing penyedia.',
+    s6_title: '6. Kekayaan Intelektual',
+    s6_p1: 'Waktu Sejak, termasuk nama, logo, desain, kode, dan animasi Lottie yang dibundel dengan event reward Supporter, adalah kekayaan intelektual developer, Alam Aby Bashit, dan dilindungi oleh undang-undang hak cipta dan merek dagang yang berlaku. Anda tidak boleh menggunakan nama, logo, atau branding developer untuk mengisyaratkan dukungan tanpa izin tertulis sebelumnya.',
+    s7_title: '7. Penafian Jaminan',
+    s7_p1: 'Waktu Sejak disediakan dalam kondisi "sebagaimana adanya" dan "sebagaimana tersedia". Sebatas yang diizinkan oleh hukum yang berlaku, developer melepaskan semua jaminan, baik tersurat maupun tersirat, termasuk jaminan tersirat tentang kelayakan untuk diperjualbelikan, kesesuaian untuk tujuan tertentu, dan non-pelanggaran. Developer tidak menjamin bahwa aplikasi akan berjalan tanpa gangguan, bebas kesalahan, atau bahwa cacat akan diperbaiki.',
+    s7_p2: 'Perhitungan waktu, penanganan pengulangan, pelimpahan ke kalender, dan rendering widget layar utama bergantung pada jam perangkat, pengaturan locale, aplikasi kalender, dan launcher Anda. Developer tidak bertanggung jawab atas tampilan waktu yang tidak akurat yang disebabkan oleh pengaturan perangkat yang salah atau aplikasi pihak ketiga.',
+    s8_title: '8. Batas Tanggung Jawab',
+    s8_p1: 'Sebatas yang diizinkan oleh hukum yang berlaku, developer tidak bertanggung jawab atas kerugian tidak langsung, insidental, khusus, konsekuensial, atau hukuman, atau atas kehilangan data, keuntungan, atau nama baik, yang timbul dari atau terkait dengan penggunaan atau ketidakmampuan Anda menggunakan Waktu Sejak, meskipun developer telah diberitahu tentang kemungkinan kerugian tersebut.',
+    s9_title: '9. Perubahan Ketentuan',
+    s9_p1: 'Developer dapat memperbarui Ketentuan ini dari waktu ke waktu. Versi terbaru akan tersedia di dalam aplikasi melalui Pengaturan \u2192 Ketentuan Layanan, dan di repositori proyek. Penggunaan aplikasi secara terus-menerus setelah perubahan menunjukkan penerimaan Anda terhadap Ketentuan yang diperbarui.',
+    s10_title: '10. Pengakhiran',
+    s10_p1: 'Ketentuan ini berlaku hingga diakhiri. Anda dapat mengakhirinya kapan saja dengan menghapus pemasangan aplikasi dan menghapus data lokalnya melalui pengaturan perangkat. Developer dapat mengakhiri atau menangguhkan akses Anda ke aplikasi kapan saja, dengan atau tanpa alasan, termasuk jika Anda melanggar Ketentuan ini.',
+    s11_title: '11. Hukum yang Berlaku',
+    s11_p1: 'Ketentuan ini diatur oleh hukum yang berlaku di tempat tinggal developer, tanpa memperhatikan prinsip konflik hukum.',
+    s12_title: '12. Kontak',
+    s12_p1: 'Jika Anda memiliki pertanyaan tentang Ketentuan ini, hubungi:',
+    s12_li1: 'Alam Aby Bashit',
+    s12_li2: 'Email: <a href="mailto:alam.aby.b@gmail.com">alam.aby.b@gmail.com</a>',
+    s12_li3: 'GitHub: <a href="https://github.com/alamaby" target="_blank" rel="noopener">github.com/alamaby</a>',
+    footer_by: 'Dibuat oleh',
+    footer_home: 'Beranda',
+    footer_privacy: 'Kebijakan Privasi',
+  },
+  en: {
+    page_title: 'Terms of Service \u2014 Waktu Sejak',
+    back_home: '\u2190 Back to Home',
+    page_h1: 'Terms of Service',
+    last_updated: 'Last updated',
+    summary_label: 'TL;DR',
+    summary_text: 'Waktu Sejak is free and ad-free. Support Developer purchases are voluntary and optional, processed by Google Play. This document explains your rights and obligations when using the app.',
+    s1_title: '1. Acceptance of Terms',
+    s1_p1: 'By installing, copying, or otherwise using Waktu Sejak, you agree to be bound by these Terms of Service. If you do not agree, please uninstall the app.',
+    s2_title: '2. License to Use the App',
+    s2_p1: 'Waktu Sejak is distributed via Google Play under the license terms set by the developer. Subject to your continued compliance with these Terms, you are granted a personal, non-exclusive, non-transferable, revocable license to install and use the app on devices you own or control, solely for your personal, non-commercial time-tracking purposes.',
+    s2_p2: 'You may not:',
+    s2_li1: 'Reverse engineer, decompile, or disassemble the app, except to the extent expressly permitted by applicable law.',
+    s2_li2: 'Modify, translate, or create derivative works based on the app.',
+    s2_li3: 'Redistribute, resell, or sublicense the app or any portion of it.',
+    s2_li4: 'Use the app to violate any applicable law or regulation.',
+    s3_title: '3. User Content',
+    s3_p1: 'You retain full ownership of the events, names, emojis, and other content you create inside Waktu Sejak. The app does not upload this content to a developer server. You are solely responsible for the content you create and for keeping backups you care about using the export feature.',
+    s4_title: '4. Optional Support Developer Purchases',
+    s4_p1: 'Waktu Sejak offers optional one-time Support Developer purchases processed by Google Play Billing. These purchases are voluntary tips to support future development. They are not subscriptions, do not unlock additional functionality, and do not entitle the purchaser to special support, features, or services.',
+    s4_strong: 'Refund policy.',
+    s4_p2_2: 'Refund requests for Support Developer purchases are handled by Google Play under Google\'s refund policies. Waktu Sejak does not process refunds directly. To request a refund, follow the standard Google Play refund flow from your order history.',
+    s4_p3_strong: 'No expectation of future features.',
+    s4_p3_2: 'A Support Developer purchase does not guarantee the development, release, or timing of any particular feature or roadmap item.',
+    s5_title: '5. Third-Party Services',
+    s5_p1: 'Waktu Sejak relies on third-party services that have their own terms:',
+    s5_li1: '<strong>Google Play Billing</strong> for processing Support Developer purchases.',
+    s5_li2: '<strong>Google Play services</strong> for delivering purchase status and other platform capabilities.',
+    s5_li3: 'Any app, browser, or service you choose to open from the Settings screen (LinkedIn, GitHub, Blog, and Upwork) or share an exported backup to.',
+    s5_p2: 'Your use of those services is governed by their respective terms.',
+    s6_title: '6. Intellectual Property',
+    s6_p1: 'Waktu Sejak, including its name, logo, design, code, and the Lottie animation bundled with the Supporter reward event, is the intellectual property of the developer, Alam Aby Bashit, and is protected by applicable copyright and trademark laws. You may not use the developer\'s name, logo, or branding to suggest endorsement without prior written permission.',
+    s7_title: '7. Disclaimer of Warranty',
+    s7_p1: 'Waktu Sejak is provided on an "as is" and "as available" basis. To the maximum extent permitted by applicable law, the developer disclaims all warranties, express or implied, including the implied warranties of merchantability, fitness for a particular purpose, and non-infringement. The developer does not warrant that the app will be uninterrupted, error-free, or that defects will be corrected.',
+    s7_p2: 'Time calculations, recurrence handling, calendar hand-off, and home screen widget rendering depend on your device\'s clock, locale settings, calendar app, and launcher. The developer is not responsible for inaccurate time displays caused by incorrect device settings or third-party apps.',
+    s8_title: '8. Limitation of Liability',
+    s8_p1: 'To the maximum extent permitted by applicable law, the developer shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of data, profits, or goodwill, arising out of or in connection with your use of, or inability to use, Waktu Sejak, even if the developer has been advised of the possibility of such damages.',
+    s9_title: '9. Changes to These Terms',
+    s9_p1: 'The developer may update these Terms from time to time. The latest version will be available inside the app at Settings \u2192 Terms of Service, and in the project repository. Continued use of the app after a change indicates acceptance of the updated Terms.',
+    s10_title: '10. Termination',
+    s10_p1: 'These Terms remain in effect until terminated. You may terminate them at any time by uninstalling the app and deleting its local data through your device settings. The developer may terminate or suspend your access to the app at any time, with or without cause, including if you breach these Terms.',
+    s11_title: '11. Governing Law',
+    s11_p1: 'These Terms are governed by the laws applicable to the developer\'s place of residence, without regard to conflict of law principles.',
+    s12_title: '12. Contact',
+    s12_p1: 'If you have questions about these Terms, contact:',
+    s12_li1: 'Alam Aby Bashit',
+    s12_li2: 'Email: <a href="mailto:alam.aby.b@gmail.com">alam.aby.b@gmail.com</a>',
+    s12_li3: 'GitHub: <a href="https://github.com/alamaby" target="_blank" rel="noopener">github.com/alamaby</a>',
+    footer_by: 'Made by',
+    footer_home: 'Home',
+    footer_privacy: 'Privacy Policy',
+  }
+};
+
+let currentLang = localStorage.getItem('ws_lang') || 'id';
+
+function applyLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('ws_lang', lang);
+  document.documentElement.lang = lang;
+  const strings = i18n[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (strings[key]) el.innerHTML = strings[key];
+  });
+  if (strings.page_title) document.title = strings.page_title;
+  document.getElementById('langBtn').textContent = lang === 'id' ? 'EN' : 'ID';
+}
+
+function toggleLang() {
+  applyLang(currentLang === 'id' ? 'en' : 'id');
+}
+
+applyLang(currentLang);
+</script>
+</body>
+</html>
