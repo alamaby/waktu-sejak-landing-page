@@ -4,8 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Waktu Sejak — Time Since Tracking App</title>
+  <link rel="icon" type="image/png" href="/assets/app_logo.png">
+  <link rel="apple-touch-icon" href="/assets/app_logo.png">
   <link rel="manifest" href="/manifest.json">
-  <meta name="description" content="A minimalist time-tracking app — know exactly how long ago something happened, or how long until it does. Download now for Android, iOS, and desktop.">
+  <meta name="description" content="A minimalist time-tracking app — know exactly how long ago something happened, or how long until it does. Available on Google Play for Android, with App Store coming soon.">
   <!-- SEO Meta Tags -->
   <link rel="canonical" href="https://waktu-sejak.vercel.app/">
   <meta name="robots" content="index, follow">
@@ -13,22 +15,46 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://waktu-sejak.vercel.app/">
   <meta property="og:title" content="Waktu Sejak — Time Since Tracking App">
-  <meta property="og:description" content="A minimalist time-tracking app — know exactly how long ago something happened, or how long until it does.">
+  <meta property="og:description" content="A minimalist time-tracking app — know exactly how long ago something happened, or how long until it does. Available on Google Play for Android.">
   <meta property="og:image" content="https://waktu-sejak.vercel.app/assets/screenshot_dashboard_grid_light.png">
   <meta property="og:locale" content="id_ID">
   <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:url" content="https://waktu-sejak.vercel.app/">
-  <meta property="twitter:title" content="Waktu Sejak — Time Since Tracking App">
-  <meta property="twitter:description" content="A minimalist time-tracking app — know exactly how long ago something happened, or how long until it does.">
-  <meta property="twitter:image" content="https://waktu-sejak.vercel.app/assets/screenshot_dashboard_grid_light.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://waktu-sejak.vercel.app/">
+  <meta name="twitter:title" content="Waktu Sejak — Time Since Tracking App">
+  <meta name="twitter:description" content="A minimalist time-tracking app — know exactly how long ago something happened, or how long until it does. Available on Google Play for Android.">
+  <meta name="twitter:image" content="https://waktu-sejak.vercel.app/assets/screenshot_dashboard_grid_light.png">
   <!-- Language Alternates -->
-  <link rel="alternate" href="https://waktu-sejak.vercel.app/" hreflang="id" />
-  <link rel="alternate" href="https://waktu-sejak.vercel.app/" hreflang="en" />
+  <link rel="alternate" href="https://waktu-sejak.vercel.app/" hreflang="x-default" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :focus-visible {
+      outline: 2px solid var(--oi-blue);
+      outline-offset: 3px;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 16px;
+      background: var(--oi-blue);
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      z-index: 1000;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      transition: top 0.2s;
+    }
+    .skip-link:focus {
+      top: 16px;
+    }
 
     :root {
       --oi-orange: #E69F00;
@@ -96,15 +122,15 @@
     .lang-toggle:hover { background: #E8E7E3; }
     .nav-menu-btn {
       display: none; background: none; border: none; cursor: pointer;
-      width: 32px; height: 32px; position: relative;
+      width: 44px; height: 44px; position: relative; border-radius: 8px;
     }
     .nav-menu-btn span {
       display: block; width: 20px; height: 2px; background: var(--fg);
-      position: absolute; left: 6px; transition: 0.2s;
+      position: absolute; left: 12px; transition: 0.2s;
     }
-    .nav-menu-btn span:nth-child(1) { top: 10px; }
-    .nav-menu-btn span:nth-child(2) { top: 16px; }
-    .nav-menu-btn span:nth-child(3) { top: 22px; }
+    .nav-menu-btn span:nth-child(1) { top: 15px; }
+    .nav-menu-btn span:nth-child(2) { top: 21px; }
+    .nav-menu-btn span:nth-child(3) { top: 27px; }
 
     /* HERO */
     .hero {
@@ -308,7 +334,7 @@
       padding: 3px 10px; border-radius: 100px;
     }
     .dl-card .dl-status.soon { background: rgba(0,0,0,0.06); color: var(--fg-muted); }
-    .dl-card .dl-status.available { background: rgba(0,158,115,0.12); color: var(--oi-green); }
+    .dl-card .dl-status.available { background: rgba(0,158,115,0.12); color: #006644; }
     .dl-card.active { border-color: var(--oi-blue); }
 
     /* FOOTER */
@@ -339,6 +365,7 @@
         gap: 16px;
       }
       .nav-menu-btn { display: block; }
+      .nav-links .lang-toggle { display: none; }
       .a11y-grid { grid-template-columns: 1fr; }
       .hero { padding-top: 120px; }
       .screenshots { gap: 12px; }
@@ -358,12 +385,12 @@
 </head>
 <body>
   <!-- Skip navigation link -->
-  <a href="#main-content" class="skip-link">Lanjutkan ke konten utama</a>
+  <a href="#main-content" class="skip-link" data-i18n="skip_link">Lanjutkan ke konten utama</a>
 
 <!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <a href="#" class="nav-logo"><img src="assets/app_logo.png" alt="Waktu Sejak" style="width:28px;height:28px;border-radius:6px;"> <span>Waktu Sejak</span></a>
+    <a href="#" class="nav-logo"><img src="assets/app_logo.png" alt="Waktu Sejak" width="28" height="28" style="width:28px;height:28px;border-radius:6px;"> <span>Waktu Sejak</span></a>
     <div class="nav-links" id="navLinks">
       <a href="#features" data-i18n="nav_features">Fitur</a>
       <a href="#screens" data-i18n="nav_screens">Tampilan</a>
@@ -373,13 +400,14 @@
     </div>
     <div style="display:flex;gap:8px;align-items:center;">
       <button class="lang-toggle" onclick="toggleLang()" id="langBtnMobile" style="display:none;">EN</button>
-      <button class="nav-menu-btn" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">
+      <button class="nav-menu-btn" id="navMenuBtn" aria-label="Menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
   </div>
 </nav>
 
+<main id="main-content">
 <!-- HERO -->
 <section class="hero">
   <div class="hero-badge">
@@ -402,13 +430,13 @@
   <!-- Phone screenshots -->
     <div class="screenshots">
       <div class="screenshot-phone side">
-        <img src="assets/screenshot_add_event_filled.png" alt="Create Event Screen" loading="lazy">
+        <img src="assets/screenshot_add_event_filled.png" alt="Create Event Screen" width="180" height="400">
       </div>
       <div class="screenshot-phone main">
-        <img src="assets/screenshot_dashboard_grid_light.png" alt="Dashboard Light" loading="lazy">
+        <img src="assets/screenshot_dashboard_grid_light.png" alt="Dashboard Light" width="220" height="489" fetchpriority="high">
       </div>
       <div class="screenshot-phone side">
-        <img src="assets/screenshot_dashboard_grid_dark.png" alt="Dashboard Dark" loading="lazy">
+        <img src="assets/screenshot_dashboard_grid_dark.png" alt="Dashboard Dark" width="180" height="400">
       </div>
     </div>
 </section>
@@ -417,50 +445,71 @@
 <section class="features" id="features">
   <p class="section-label" data-i18n="section_features">Fitur</p>
   <h2 class="section-title" data-i18n="section_features_title">Sederhana, tapi powerful</h2>
-  <div class="features-grid">
-    <div class="feature-card">
-      <div class="feature-icon" style="background: var(--oi-blue);">
-        <svg width="22" height="22" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon" style="background: var(--oi-blue);">
+          <svg width="22" height="22" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
+        </div>
+        <h3 data-i18n="f1_title">Tampilan Kartu &amp; Daftar</h3>
+        <p data-i18n="f1_desc">Beralih antara grid kartu 2 kolom dan daftar ringkas dengan satu ketukan.</p>
       </div>
-      <h3 data-i18n="f1_title">Tampilan Kartu &amp; Daftar</h3>
-      <p data-i18n="f1_desc">Beralih antara grid kartu 2 kolom dan daftar ringkas dengan satu ketukan.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon" style="background: var(--oi-orange);">
-        <svg width="22" height="22" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+      <div class="feature-card">
+        <div class="feature-icon" style="background: var(--oi-orange);">
+          <svg width="22" height="22" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        </div>
+        <h3 data-i18n="f2_title">Hitung Mundur Langsung</h3>
+        <p data-i18n="f2_desc">Tampilan waktu diperbarui setiap detik secara real-time. Akurat hingga tahun, bulan, dan hari.</p>
       </div>
-      <h3 data-i18n="f2_title">Hitung Mundur Langsung</h3>
-      <p data-i18n="f2_desc">Tampilan waktu diperbarui setiap detik secara real-time. Akurat hingga tahun, bulan, dan hari.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon" style="background: var(--oi-green);">
-        <svg width="22" height="22" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+      <div class="feature-card">
+        <div class="feature-icon" style="background: var(--oi-green);">
+          <svg width="22" height="22" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+        </div>
+        <h3 data-i18n="f3_title">Pratinjau Langsung</h3>
+        <p data-i18n="f3_desc">Kartu pratinjau diperbarui saat Anda mengetik, jadi Anda tahu persis tampilannya.</p>
       </div>
-      <h3 data-i18n="f3_title">Pratinjau Langsung</h3>
-      <p data-i18n="f3_desc">Kartu pratinjau diperbarui saat Anda mengetik, jadi Anda tahu persis tampilannya.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon" style="background: var(--oi-purple);">
-        <svg width="22" height="22" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path></svg>
+      <div class="feature-card">
+        <div class="feature-icon" style="background: var(--oi-purple);">
+          <svg width="22" height="22" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path></svg>
+        </div>
+        <h3 data-i18n="f4_title">Tema Terang &amp; Gelap</h3>
+        <p data-i18n="f4_desc">Pilih antara Sistem, Terang, atau Gelap. Preferensi tersimpan antar sesi.</p>
       </div>
-      <h3 data-i18n="f4_title">Tema Terang &amp; Gelap</h3>
-      <p data-i18n="f4_desc">Pilih antara Sistem, Terang, atau Gelap. Preferensi tersimpan antar sesi.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon" style="background: var(--oi-vermillion);">
-        <svg width="22" height="22" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
+      <div class="feature-card">
+        <div class="feature-icon" style="background: var(--oi-vermillion);">
+          <svg width="22" height="22" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
+        </div>
+        <h3 data-i18n="f5_title">Dwibahasa</h3>
+        <p data-i18n="f5_desc">Bahasa Indonesia dan English — semua teks dan durasi waktu langsung berubah.</p>
       </div>
-      <h3 data-i18n="f5_title">Dwibahasa</h3>
-      <p data-i18n="f5_desc">Bahasa Indonesia dan English — semua teks dan durasi waktu langsung berubah.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon" style="background: var(--oi-sky);">
-        <svg width="22" height="22" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+      <div class="feature-card">
+        <div class="feature-icon" style="background: var(--oi-sky);">
+          <svg width="22" height="22" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+        </div>
+        <h3 data-i18n="f6_title">Ekspor &amp; Impor Data</h3>
+        <p data-i18n="f6_desc">Backup event ke JSON, ekspor CSV untuk spreadsheet, dan impor JSON dengan merge — duplikat otomatis dilewati.</p>
       </div>
-      <h3 data-i18n="f6_title">Ekspor &amp; Impor Data</h3>
-      <p data-i18n="f6_desc">Backup semua event ke JSON. Impor dengan merge — duplikat otomatis dilewati.</p>
+      <div class="feature-card">
+        <div class="feature-icon" style="background: var(--oi-purple);">
+          <svg width="22" height="22" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </div>
+        <h3 data-i18n="f7_title">Pencarian &amp; Filter</h3>
+        <p data-i18n="f7_desc">Cari event berdasarkan nama, filter status masa lalu/mendatang, atau filter emoji.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background: var(--oi-green);">
+          <svg width="22" height="22" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line><polyline points="9 16 11 18 15 14"></polyline></svg>
+        </div>
+        <h3 data-i18n="f8_title">Event Berulang &amp; Kalender</h3>
+        <p data-i18n="f8_desc">Atur event berulang tahunan/bulanan dan tambahkan ke kalender perangkat.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background: var(--oi-orange);">
+          <svg width="22" height="22" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg>
+        </div>
+        <h3 data-i18n="f9_title">Semat &amp; Duplikat</h3>
+        <p data-i18n="f9_desc">Sematkan event penting di atas dashboard dan duplikat event dengan satu ketukan.</p>
+      </div>
     </div>
-  </div>
 </section>
 
 <!-- APP SCREENS -->
@@ -470,25 +519,25 @@
     <div class="screens-row">
       <div class="screen-item">
         <div class="screen-frame">
-          <img src="assets/screenshot_dashboard_grid_light.png" alt="Dashboard Grid Light" loading="lazy">
+          <img src="assets/screenshot_dashboard_grid_light.png" alt="Dashboard Grid Light" width="180" height="400" loading="lazy">
         </div>
         <span class="screen-label" data-i18n="screen1">Dashboard — Kartu</span>
       </div>
       <div class="screen-item">
         <div class="screen-frame">
-          <img src="assets/screenshot_dashboard_list_light.png" alt="Dashboard List" loading="lazy">
+          <img src="assets/screenshot_dashboard_list_light.png" alt="Dashboard List" width="180" height="400" loading="lazy">
         </div>
         <span class="screen-label" data-i18n="screen2">Dashboard — Daftar</span>
       </div>
       <div class="screen-item">
         <div class="screen-frame">
-          <img src="assets/screenshot_add_event_filled.png" alt="Add Event" loading="lazy">
+          <img src="assets/screenshot_add_event_filled.png" alt="Add Event" width="180" height="400" loading="lazy">
         </div>
         <span class="screen-label" data-i18n="screen3">Buat Event</span>
       </div>
       <div class="screen-item">
         <div class="screen-frame">
-          <img src="assets/screenshot_dashboard_grid_dark.png" alt="Dashboard Dark" loading="lazy">
+          <img src="assets/screenshot_dashboard_grid_dark.png" alt="Dashboard Dark" width="180" height="400" loading="lazy">
         </div>
         <span class="screen-label" data-i18n="screen4">Mode Gelap</span>
       </div>
@@ -546,6 +595,8 @@
   </div>
 </section>
 
+</main>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-left">
@@ -563,6 +614,9 @@
 <script>
 const i18n = {
   id: {
+    skip_link: 'Lanjutkan ke konten utama',
+    page_title: 'Waktu Sejak — Pelacak Waktu Minimalis',
+    page_desc: 'Aplikasi pelacak waktu minimalis — ketahui berapa lama yang lalu sesuatu terjadi, atau berapa lama lagi sesuatu akan terjadi. Tersedia di Google Play untuk Android.',
     nav_features: 'Fitur',
     nav_screens: 'Tampilan',
     nav_a11y: 'Aksesibilitas',
@@ -583,7 +637,13 @@ const i18n = {
     f5_title: 'Dwibahasa',
     f5_desc: 'Bahasa Indonesia dan English — semua teks dan durasi waktu langsung berubah.',
     f6_title: 'Ekspor & Impor Data',
-    f6_desc: 'Backup semua event ke JSON. Impor dengan merge — duplikat otomatis dilewati.',
+    f6_desc: 'Backup event ke JSON, ekspor CSV untuk spreadsheet, dan impor JSON dengan merge — duplikat otomatis dilewati.',
+    f7_title: 'Pencarian & Filter',
+    f7_desc: 'Cari event berdasarkan nama, filter status masa lalu/mendatang, atau filter emoji.',
+    f8_title: 'Event Berulang & Kalender',
+    f8_desc: 'Atur event berulang tahunan/bulanan dan tambahkan ke kalender perangkat.',
+    f9_title: 'Semat & Duplikat',
+    f9_desc: 'Sematkan event penting di atas dashboard dan duplikat event dengan satu ketukan.',
     section_screens: 'Tampilan Aplikasi',
     section_screens_title: 'Lihat lebih dekat',
     screen1: 'Dashboard — Kartu',
@@ -608,6 +668,9 @@ const i18n = {
     footer_termsOfService: 'Ketentuan Layanan',
   },
   en: {
+    skip_link: 'Skip to main content',
+    page_title: 'Waktu Sejak — Time Since Tracking App',
+    page_desc: 'A minimalist time-tracking app — know exactly how long ago something happened, or how long until it does. Available on Google Play for Android, with App Store coming soon.',
     nav_features: 'Features',
     nav_screens: 'Screens',
     nav_a11y: 'Accessibility',
@@ -628,7 +691,13 @@ const i18n = {
     f5_title: 'Bilingual',
     f5_desc: 'Bahasa Indonesia and English — all text and time strings update instantly.',
     f6_title: 'Export & Import Data',
-    f6_desc: 'Back up all events to JSON. Import with merge — duplicate IDs are skipped.',
+    f6_desc: 'Back up events to JSON, export CSV for spreadsheets, and import JSON with merge — duplicate IDs are skipped.',
+    f7_title: 'Search & Filters',
+    f7_desc: 'Search events by name, filter by past/upcoming status, or filter by emoji.',
+    f8_title: 'Recurring Events & Calendar',
+    f8_desc: 'Set yearly/monthly recurring events and add to your device calendar.',
+    f9_title: 'Pin & Duplicate',
+    f9_desc: 'Pin important events to the top of the dashboard and duplicate events with one tap.',
     section_screens: 'App Screens',
     section_screens_title: 'Take a closer look',
     screen1: 'Dashboard — Cards',
@@ -654,29 +723,67 @@ const i18n = {
   }
 };
 
-let currentLang = localStorage.getItem('ws_lang') || 'id';
+let currentLang = 'id';
+try {
+  const stored = localStorage.getItem('ws_lang');
+  if (stored === 'en' || stored === 'id') currentLang = stored;
+} catch (e) {}
 
 function applyLang(lang) {
-  currentLang = lang;
-  localStorage.setItem('ws_lang', lang);
-  document.documentElement.lang = lang;
-  const strings = i18n[lang];
+  currentLang = (lang === 'en' || lang === 'id') ? lang : 'id';
+  try { localStorage.setItem('ws_lang', currentLang); } catch (e) {}
+  document.documentElement.lang = currentLang;
+  const strings = i18n[currentLang];
+  if (!strings) return;
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
     if (strings[key]) el.innerHTML = strings[key];
   });
-  document.getElementById('langBtn').textContent = lang === 'id' ? 'EN' : 'ID';
-  document.getElementById('langBtnMobile').textContent = lang === 'id' ? 'EN' : 'ID';
+  if (strings.page_title) document.title = strings.page_title;
+  const metaDesc = document.querySelector('meta[name="description"]');
+  if (metaDesc && strings.page_desc) metaDesc.setAttribute('content', strings.page_desc);
+  const langBtn = document.getElementById('langBtn');
+  if (langBtn) langBtn.textContent = currentLang === 'id' ? 'EN' : 'ID';
+  const langBtnMobile = document.getElementById('langBtnMobile');
+  if (langBtnMobile) langBtnMobile.textContent = currentLang === 'id' ? 'EN' : 'ID';
 }
 
 function toggleLang() {
   applyLang(currentLang === 'id' ? 'en' : 'id');
 }
 
+// Mobile navigation handler
+const navMenuBtn = document.getElementById('navMenuBtn');
+const navLinks = document.getElementById('navLinks');
+
+function closeMobileMenu() {
+  if (navLinks) navLinks.classList.remove('open');
+  if (navMenuBtn) navMenuBtn.setAttribute('aria-expanded', 'false');
+}
+
+if (navMenuBtn && navLinks) {
+  navMenuBtn.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    navMenuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeMobileMenu);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+      closeMobileMenu();
+      navMenuBtn.focus();
+    }
+  });
+}
+
 // Show mobile lang button when nav-menu-btn is visible
 function checkMobileLang() {
   const btn = document.querySelector('.nav-menu-btn');
   const mobileLang = document.getElementById('langBtnMobile');
+  if (!btn || !mobileLang) return;
   if (getComputedStyle(btn).display !== 'none') {
     mobileLang.style.display = 'block';
   } else {
@@ -688,21 +795,6 @@ window.addEventListener('resize', checkMobileLang);
 // Init
 applyLang(currentLang);
 checkMobileLang();
-</script>
-
-<!-- JSON-LD Structured Data for SEO -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Waktu Sejak",
-  "url": "https://waktu-sejak.vercel.app/",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "https://waktu-sejak.vercel.app/?s={search_term}",
-    "query-input": "required name=search_term"
-  }
-}
 </script>
 
 <script type="application/ld+json">

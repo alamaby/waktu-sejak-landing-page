@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title data-i18n-title="page_title">Kebijakan Privasi — Waktu Sejak</title>
+  <link rel="icon" type="image/png" href="/assets/app_logo.png">
+  <link rel="apple-touch-icon" href="/assets/app_logo.png">
   <link rel="manifest" href="/manifest.json">
   <meta name="description" content="Kebijakan Privasi Waktu Sejak — aplikasi local-first. Data event, preferensi, widget, dan reward supporter disimpan di perangkat Anda.">
   <link rel="canonical" href="https://waktu-sejak.vercel.app/privacy-policy">
@@ -17,9 +19,15 @@
   <link rel="alternate" href="https://waktu-sejak.vercel.app/privacy-policy" hreflang="id" />
   <link rel="alternate" href="https://waktu-sejak.vercel.app/privacy-policy" hreflang="en" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :focus-visible {
+      outline: 2px solid var(--oi-blue);
+      outline-offset: 3px;
+    }
 
     :root {
       --oi-orange: #E69F00;
@@ -213,14 +221,14 @@
 
   <section class="policy-section">
     <h2 data-i18n="s2_title">2. Akses Internet dan Jaringan</h2>
-    <p data-i18n="s3_p1">Waktu Sejak tidak meminta maupun menggunakan permission <code>INTERNET</code> Android untuk fitur intinya. Seluruh penyimpanan event, perhitungan pengulangan, tampilan dashboard, dan ekspor/impor data terjadi di perangkat menggunakan penyimpanan lokal dan system share sheet Android. Aplikasi tidak dapat mengirimkan data event Anda ke server developer.</p>
-    <p data-i18n="s3_p2">Akses jaringan hanya digunakan oleh sistem operasi atas nama Anda ketika:</p>
+    <p data-i18n="s2_p1">Waktu Sejak tidak meminta maupun menggunakan permission <code>INTERNET</code> Android untuk fitur intinya. Seluruh penyimpanan event, perhitungan pengulangan, tampilan dashboard, dan ekspor/impor data terjadi di perangkat menggunakan penyimpanan lokal dan system share sheet Android. Aplikasi tidak dapat mengirimkan data event Anda ke server developer.</p>
+    <p data-i18n="s2_p2">Akses jaringan hanya digunakan oleh sistem operasi atas nama Anda ketika:</p>
     <ul>
-      <li data-i18n="s2_li1">Anda mengetuk tautan eksternal di Pengaturan (Kebijakan Privasi, Ketentuan Layanan, LinkedIn, GitHub, Blog, dan Upwork).</li>
+      <li data-i18n="s2_li1">Anda mengetuk tautan eksternal di Pengaturan (LinkedIn, GitHub, Blog, dan Upwork). Dokumen legal (Kebijakan Privasi dan Ketentuan Layanan) dirender di dalam aplikasi.</li>
       <li data-i18n="s2_li2">Anda memilih membagikan cadangan JSON hasil ekspor melalui aplikasi atau layanan lain.</li>
       <li data-i18n="s2_li3">Anda menyelesaikan pembelian Dukung Developer melalui Google Play Billing.</li>
     </ul>
-    <p data-i18n="s3_p3">Pada setiap kasus tersebut, koneksi dilakukan oleh sistem operasi atau aplikasi pihak ketiga, bukan oleh Waktu Sejak yang mengirimkan data event Anda ke endpoint jarak jauh.</p>
+    <p data-i18n="s2_p3">Pada setiap kasus tersebut, koneksi dilakukan oleh sistem operasi atau aplikasi pihak ketiga, bukan oleh Waktu Sejak yang mengirimkan data event Anda ke endpoint jarak jauh.</p>
   </section>
 
   <section class="policy-section">
@@ -246,8 +254,9 @@
     <h2 data-i18n="s5_title">5. Ekspor dan Impor Data</h2>
     <p data-i18n="s5_p1">Waktu Sejak menyediakan fitur portabilitas data:</p>
     <ul>
-      <li data-i18n="s5_li1">Ekspor membuat file cadangan JSON dari event lokal Anda dan membuka system share sheet.</li>
-      <li data-i18n="s5_li2">Impor memungkinkan Anda memilih file cadangan JSON melalui system file picker.</li>
+      <li data-i18n="s5_li1">Ekspor JSON membuat file cadangan dari event lokal Anda dan membuka system share sheet.</li>
+      <li data-i18n="s5_li2">Ekspor CSV membuat file spreadsheet dari event lokal Anda untuk analisis di aplikasi spreadsheet.</li>
+      <li data-i18n="s5_li3">Impor memungkinkan Anda memilih file cadangan JSON melalui system file picker.</li>
     </ul>
     <p data-i18n="s5_p2">Aplikasi tidak mengunggah cadangan Anda ke server milik developer. Namun, jika Anda memilih membagikan file cadangan melalui aplikasi atau layanan lain, pihak ketiga tersebut dapat memproses file berdasarkan kebijakan privasinya sendiri.</p>
   </section>
@@ -273,7 +282,7 @@
     <ul>
       <li data-i18n="s9_li1">Mengubah atau menghapus event normal di aplikasi.</li>
       <li data-i18n="s9_li2">Menghapus event reward Supporter.</li>
-      <li data-i18n="s9_li3">Mengekspor data event ke file cadangan JSON.</li>
+      <li data-i18n="s9_li3">Mengekspor data event ke file cadangan JSON atau CSV.</li>
       <li data-i18n="s9_li4">Menghapus data aplikasi dari perangkat melalui pengaturan sistem operasi.</li>
       <li data-i18n="s9_li5">Menghapus aplikasi untuk menghapus data lokal aplikasi, tergantung pengaturan perangkat dan backup Anda.</li>
     </ul>
@@ -327,7 +336,7 @@ const i18n = {
     s2_title: '2. Akses Internet dan Jaringan',
     s2_p1: 'Waktu Sejak tidak meminta maupun menggunakan permission <code>INTERNET</code> Android untuk fitur intinya. Seluruh penyimpanan event, perhitungan pengulangan, tampilan dashboard, dan ekspor/impor data terjadi di perangkat menggunakan penyimpanan lokal dan system share sheet Android. Aplikasi tidak dapat mengirimkan data event Anda ke server developer.',
     s2_p2: 'Akses jaringan hanya digunakan oleh sistem operasi atas nama Anda ketika:',
-    s2_li1: 'Anda mengetuk tautan eksternal di Pengaturan (Kebijakan Privasi, Ketentuan Layanan, LinkedIn, GitHub, Blog, dan Upwork).',
+    s2_li1: 'Anda mengetuk tautan eksternal di Pengaturan (LinkedIn, GitHub, Blog, dan Upwork). Dokumen legal (Kebijakan Privasi dan Ketentuan Layanan) dirender di dalam aplikasi.',
     s2_li2: 'Anda memilih membagikan cadangan JSON hasil ekspor melalui aplikasi atau layanan lain.',
     s2_li3: 'Anda menyelesaikan pembelian Dukung Developer melalui Google Play Billing.',
     s2_p3: 'Pada setiap kasus tersebut, koneksi dilakukan oleh sistem operasi atau aplikasi pihak ketiga, bukan oleh Waktu Sejak yang mengirimkan data event Anda ke endpoint jarak jauh.',
@@ -344,8 +353,9 @@ const i18n = {
     s4_p2: 'Event Supporter disimpan secara lokal bersama event lainnya. Event ini tidak dapat diedit melalui UI aplikasi, tetapi dapat dihapus. Menghapus event ini tidak mengatur ulang jumlah dukungan lokal.',
     s5_title: '5. Ekspor dan Impor Data',
     s5_p1: 'Waktu Sejak menyediakan fitur portabilitas data:',
-    s5_li1: 'Ekspor membuat file cadangan JSON dari event lokal Anda dan membuka system share sheet.',
-    s5_li2: 'Impor memungkinkan Anda memilih file cadangan JSON melalui system file picker.',
+    s5_li1: 'Ekspor JSON membuat file cadangan dari event lokal Anda dan membuka system share sheet.',
+    s5_li2: 'Ekspor CSV membuat file spreadsheet dari event lokal Anda untuk analisis di aplikasi spreadsheet.',
+    s5_li3: 'Impor memungkinkan Anda memilih file cadangan JSON melalui system file picker.',
     s5_p2: 'Aplikasi tidak mengunggah cadangan Anda ke server milik developer. Namun, jika Anda memilih membagikan file cadangan melalui aplikasi atau layanan lain, pihak ketiga tersebut dapat memproses file berdasarkan kebijakan privasinya sendiri.',
     s6_title: '6. Tautan Eksternal',
     s6_p1: 'Layar Pengaturan dapat berisi tautan seperti Kebijakan Privasi, Ketentuan Layanan, LinkedIn, GitHub, Blog, dan Upwork. Membuka tautan tersebut akan membawa Anda keluar dari Waktu Sejak dan dapat ditangani oleh browser atau aplikasi lain. Layanan pihak ketiga tersebut memiliki kebijakan privasinya masing-masing.',
@@ -357,7 +367,7 @@ const i18n = {
     s9_p1: 'Anda dapat:',
     s9_li1: 'Mengubah atau menghapus event normal di aplikasi.',
     s9_li2: 'Menghapus event reward Supporter.',
-    s9_li3: 'Mengekspor data event ke file cadangan JSON.',
+    s9_li3: 'Mengekspor data event ke file cadangan JSON atau CSV.',
     s9_li4: 'Menghapus data aplikasi dari perangkat melalui pengaturan sistem operasi.',
     s9_li5: 'Menghapus aplikasi untuk menghapus data lokal aplikasi, tergantung pengaturan perangkat dan backup Anda.',
     s10_title: '10. Perubahan Kebijakan',
@@ -388,14 +398,14 @@ const i18n = {
     s2_title: '2. Internet and Network Access',
     s2_p1: 'Waktu Sejak does not request or use the Android <code>INTERNET</code> permission for its core features. All event storage, recurrence calculations, dashboard rendering, and data export/import happen on-device using local storage and the Android share sheet. The app cannot transmit your event data to a developer server.',
     s2_p2: 'Network access is used only by the operating system on your behalf when:',
-    s2_li1: 'You tap an external link in Settings (Privacy Policy, Terms of Service, LinkedIn, GitHub, Blog, and Upwork).',
+    s2_li1: 'You tap an external link in Settings (LinkedIn, GitHub, Blog, and Upwork). Legal documents (Privacy Policy and Terms of Service) are rendered inside the app.',
     s2_li2: 'You choose to share an exported JSON backup through another app or service.',
     s2_li3: 'You complete a Support Developer purchase via Google Play Billing.',
     s2_p3: 'In each case the connection is initiated by the operating system or a third-party app, not by Waktu Sejak sending your event data to a remote endpoint.',
     s3_title: '3. Support Developer Purchases',
     s3_p1: 'Waktu Sejak offers optional one-time Support Developer purchases through Google Play Billing. Payments are processed by Google Play.',
     s3_p2: 'Waktu Sejak does not receive or store your payment card details, bank details, billing address, or Google account password. The app receives purchase status information from Google Play so it can complete the purchase, unlock the local supporter reward event, and update the local Supporter badge count.',
-    s3_p3: 'Google Play may process purchase and payment information under Google's own policies. You can review Google's privacy practices at <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.',
+    s3_p3: 'Google Play may process purchase and payment information under Google\'s own policies. You can review Google\'s privacy practices at <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.',
     s4_title: '4. Supporter Reward Event',
     s4_p1: 'After a successful Support Developer purchase, Waktu Sejak creates or updates a special local Supporter event. This event may include:',
     s4_li1: 'A fixed supporter event ID.',
@@ -405,8 +415,9 @@ const i18n = {
     s4_p2: 'The Supporter event is stored locally with your other events. It cannot be edited from the app UI, but you can delete it. Deleting the event does not reset the local support count.',
     s5_title: '5. Data Export and Import',
     s5_p1: 'Waktu Sejak includes data portability features:',
-    s5_li1: 'Export creates a JSON backup file from your local events and opens the system share sheet.',
-    s5_li2: 'Import lets you choose a JSON backup file through the system file picker.',
+    s5_li1: 'JSON export creates a backup file from your local events and opens the system share sheet.',
+    s5_li2: 'CSV export creates a spreadsheet-friendly file from your local events for analysis in spreadsheet apps.',
+    s5_li3: 'Import lets you choose a JSON backup file through the system file picker.',
     s5_p2: 'The app does not upload your backup to a developer server. However, if you choose to share an exported backup through another app or service, that third party may process the file under its own privacy policy.',
     s6_title: '6. External Links',
     s6_p1: 'The Settings screen may include links such as Privacy Policy, Terms of Service, LinkedIn, GitHub, Blog, and Upwork. Opening these links leaves Waktu Sejak and may be handled by your browser or another app. Those third-party services are governed by their own privacy policies.',
@@ -418,11 +429,11 @@ const i18n = {
     s9_p1: 'You can:',
     s9_li1: 'Edit or delete normal events in the app.',
     s9_li2: 'Delete the Supporter reward event.',
-    s9_li3: 'Export your event data to a JSON backup.',
+    s9_li3: 'Export your event data to JSON or CSV backup.',
     s9_li4: 'Delete app data from your device through your operating system settings.',
     s9_li5: 'Uninstall the app to remove locally stored app data, subject to your device and backup settings.',
     s10_title: '10. Changes to This Policy',
-    s10_p1: 'This Privacy Policy may be updated when app features or data handling practices change. The latest version should be made available from the app's Privacy Policy link or project documentation.',
+    s10_p1: 'This Privacy Policy may be updated when app features or data handling practices change. The latest version should be made available from the app\'s Privacy Policy link or project documentation.',
     s11_title: '11. Contact',
     s11_p1: 'If you have questions about this Privacy Policy, contact:',
     s11_li1: 'Alam Aby Bashit',
@@ -434,19 +445,25 @@ const i18n = {
   }
 };
 
-let currentLang = localStorage.getItem('ws_lang') || 'id';
+let currentLang = 'id';
+try {
+  const stored = localStorage.getItem('ws_lang');
+  if (stored === 'en' || stored === 'id') currentLang = stored;
+} catch (e) {}
 
 function applyLang(lang) {
-  currentLang = lang;
-  localStorage.setItem('ws_lang', lang);
-  document.documentElement.lang = lang;
-  const strings = i18n[lang];
+  currentLang = (lang === 'en' || lang === 'id') ? lang : 'id';
+  try { localStorage.setItem('ws_lang', currentLang); } catch (e) {}
+  document.documentElement.lang = currentLang;
+  const strings = i18n[currentLang];
+  if (!strings) return;
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
     if (strings[key]) el.innerHTML = strings[key];
   });
   if (strings.page_title) document.title = strings.page_title;
-  document.getElementById('langBtn').textContent = lang === 'id' ? 'EN' : 'ID';
+  const langBtn = document.getElementById('langBtn');
+  if (langBtn) langBtn.textContent = currentLang === 'id' ? 'EN' : 'ID';
 }
 
 function toggleLang() {

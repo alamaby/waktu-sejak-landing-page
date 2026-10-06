@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title data-i18n-title="page_title">Ketentuan Layanan — Waktu Sejak</title>
+  <link rel="icon" type="image/png" href="/assets/app_logo.png">
+  <link rel="apple-touch-icon" href="/assets/app_logo.png">
   <link rel="manifest" href="/manifest.json">
   <meta name="description" content="Ketentuan Layanan Waktu Sejak — aturan penggunaan aplikasi, pembelian Dukung Developer opsional, dan batasan tanggung jawab developer.">
   <link rel="canonical" href="https://waktu-sejak.vercel.app/terms-of-service">
@@ -17,10 +19,12 @@
   <link rel="alternate" href="https://waktu-sejak.vercel.app/terms-of-service" hreflang="id" />
   <link rel="alternate" href="https://waktu-sejak.vercel.app/terms-of-service" hreflang="en" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     /* shared styles - mirror privacy-policy page */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :focus-visible { outline: 2px solid var(--oi-blue); outline-offset: 3px; }
     :root { --oi-orange:#E69F00; --oi-sky:#56B4E9; --oi-green:#009E73; --oi-yellow:#F0E442; --oi-blue:#0072B2; --oi-vermillion:#D55E00; --oi-purple:#CC79A7; --bg:#FAFAF8; --bg-alt:#F2F1ED; --fg:#1A1A18; --fg-muted:#6B6B66; --radius:16px; --radius-sm:10px; }
     html { scroll-behavior: smooth; }
     body { font-family: 'DM Sans', system-ui, sans-serif; background: var(--bg); color: var(--fg); line-height: 1.6; -webkit-font-smoothing: antialiased; }
@@ -101,7 +105,7 @@
   </section>
   <section class="policy-section">
     <h2 data-i18n="s4_title">4. Pembelian Opsional Dukung Developer</h2>
-    <p data-i18n="s4_p1">Waktu Sejak menawarkan pembelian opsional satu kali Dukung Developer yang diproses oleh Google Play Billing. Pembelian ini adalah tip sukarela untuk mendukung pengembangan ke depan. Pembelian ini bukan langganan, tidak membuka fungsionalitas tambahan, dan tidak memberikan hak atas dukungan, fitur, atau layanan khusus kepada pembeli.</p>
+    <p data-i18n="s4_p1">Waktu Sejak menawarkan pembelian opsional satu kali Dukung Developer yang diproses oleh Google Play Billing. Pembelian ini adalah tip sukarela untuk mendukung pengembangan ke depan. Pembelian ini bukan langganan, tidak membuka fitur produktivitas inti (dapat membuat event reward Supporter lokal), dan tidak memberikan hak atas dukungan, fitur, atau layanan khusus kepada pembeli.</p>
     <p><strong data-i18n="s4_strong">Kebijakan pengembalian.</strong> <span data-i18n="s4_p2_2">Permintaan pengembalian untuk pembelian Dukung Developer ditangani oleh Google Play berdasarkan kebijakan pengembalian Google. Waktu Sejak tidak memproses pengembalian dana secara langsung. Untuk meminta pengembalian, ikuti alur pengembalian standar Google Play dari riwayat pesanan Anda.</span></p>
     <p><strong data-i18n="s4_p3_strong">Tidak ada jaminan fitur masa depan.</strong> <span data-i18n="s4_p3_2">Pembelian Dukung Developer tidak menjamin pengembangan, rilis, atau jadwal fitur atau item roadmap tertentu.</span></p>
   </section>
@@ -183,7 +187,7 @@ const i18n = {
     s3_title: '3. Konten Pengguna',
     s3_p1: 'Anda tetap memiliki kepemilikan penuh atas event, nama, emoji, dan konten lain yang Anda buat di dalam Waktu Sejak. Aplikasi tidak mengunggah konten tersebut ke server developer. Anda sepenuhnya bertanggung jawab atas konten yang Anda buat dan atas pencadangan yang Anda anggap penting menggunakan fitur ekspor.',
     s4_title: '4. Pembelian Opsional Dukung Developer',
-    s4_p1: 'Waktu Sejak menawarkan pembelian opsional satu kali Dukung Developer yang diproses oleh Google Play Billing. Pembelian ini adalah tip sukarela untuk mendukung pengembangan ke depan. Pembelian ini bukan langganan, tidak membuka fungsionalitas tambahan, dan tidak memberikan hak atas dukungan, fitur, atau layanan khusus kepada pembeli.',
+    s4_p1: 'Waktu Sejak menawarkan pembelian opsional satu kali Dukung Developer yang diproses oleh Google Play Billing. Pembelian ini adalah tip sukarela untuk mendukung pengembangan ke depan. Pembelian ini bukan langganan, tidak membuka fitur produktivitas inti (dapat membuat event reward Supporter lokal), dan tidak memberikan hak atas dukungan, fitur, atau layanan khusus kepada pembeli.',
     s4_strong: 'Kebijakan pengembalian.',
     s4_p2_2: 'Permintaan pengembalian untuk pembelian Dukung Developer ditangani oleh Google Play berdasarkan kebijakan pengembalian Google. Waktu Sejak tidak memproses pengembalian dana secara langsung. Untuk meminta pengembalian, ikuti alur pengembalian standar Google Play dari riwayat pesanan Anda.',
     s4_p3_strong: 'Tidak ada jaminan fitur masa depan.',
@@ -235,7 +239,7 @@ const i18n = {
     s3_title: '3. User Content',
     s3_p1: 'You retain full ownership of the events, names, emojis, and other content you create inside Waktu Sejak. The app does not upload this content to a developer server. You are solely responsible for the content you create and for keeping backups you care about using the export feature.',
     s4_title: '4. Optional Support Developer Purchases',
-    s4_p1: 'Waktu Sejak offers optional one-time Support Developer purchases processed by Google Play Billing. These purchases are voluntary tips to support future development. They are not subscriptions, do not unlock additional functionality, and do not entitle the purchaser to special support, features, or services.',
+    s4_p1: 'Waktu Sejak offers optional one-time Support Developer purchases processed by Google Play Billing. These purchases are voluntary tips to support future development. They are not subscriptions, do not unlock core productivity features (may create a local Supporter reward event), and do not entitle the purchaser to special support, features, or services.',
     s4_strong: 'Refund policy.',
     s4_p2_2: 'Refund requests for Support Developer purchases are handled by Google Play under Google\'s refund policies. Waktu Sejak does not process refunds directly. To request a refund, follow the standard Google Play refund flow from your order history.',
     s4_p3_strong: 'No expectation of future features.',
@@ -270,19 +274,25 @@ const i18n = {
   }
 };
 
-let currentLang = localStorage.getItem('ws_lang') || 'id';
+let currentLang = 'id';
+try {
+  const stored = localStorage.getItem('ws_lang');
+  if (stored === 'en' || stored === 'id') currentLang = stored;
+} catch (e) {}
 
 function applyLang(lang) {
-  currentLang = lang;
-  localStorage.setItem('ws_lang', lang);
-  document.documentElement.lang = lang;
-  const strings = i18n[lang];
+  currentLang = (lang === 'en' || lang === 'id') ? lang : 'id';
+  try { localStorage.setItem('ws_lang', currentLang); } catch (e) {}
+  document.documentElement.lang = currentLang;
+  const strings = i18n[currentLang];
+  if (!strings) return;
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
     if (strings[key]) el.innerHTML = strings[key];
   });
   if (strings.page_title) document.title = strings.page_title;
-  document.getElementById('langBtn').textContent = lang === 'id' ? 'EN' : 'ID';
+  const langBtn = document.getElementById('langBtn');
+  if (langBtn) langBtn.textContent = currentLang === 'id' ? 'EN' : 'ID';
 }
 
 function toggleLang() {
