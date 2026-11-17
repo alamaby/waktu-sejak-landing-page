@@ -191,7 +191,7 @@
     <a href="/" class="nav-logo"><img src="/assets/app_logo.png" alt="Waktu Sejak" style="width:28px;height:28px;border-radius:6px;"> <span>Waktu Sejak</span></a>
     <div class="nav-links">
       <a href="/" id="backHome" data-i18n="back_home">← Kembali ke Beranda</a>
-      <button class="lang-toggle" onclick="toggleLang()" id="langBtn">EN</button>
+      <button type="button" class="lang-toggle" id="langBtn" aria-label="Switch to English">EN</button>
     </div>
   </div>
 </nav>
@@ -317,10 +317,14 @@
   </div>
 </footer>
 
+<script src="/i18n.js"></script>
 <script>
 const i18n = {
   id: {
     page_title: 'Kebijakan Privasi — Waktu Sejak',
+    page_desc: 'Kebijakan Privasi Waktu Sejak — aplikasi local-first. Data event, preferensi, widget, dan reward supporter disimpan di perangkat Anda.',
+    switch_to_en: 'Ganti ke Bahasa Inggris',
+    switch_to_id: 'Ganti ke Bahasa Indonesia',
     back_home: '← Kembali ke Beranda',
     page_h1: 'Kebijakan Privasi',
     last_updated: 'Terakhir diperbarui',
@@ -383,6 +387,9 @@ const i18n = {
   },
   en: {
     page_title: 'Privacy Policy — Waktu Sejak',
+    page_desc: 'Privacy Policy for Waktu Sejak — a local-first app. Events, preferences, widget data, and supporter rewards are stored on your device.',
+    switch_to_en: 'Switch to English',
+    switch_to_id: 'Switch to Bahasa Indonesia',
     back_home: '← Back to Home',
     page_h1: 'Privacy Policy',
     last_updated: 'Last updated',
@@ -445,32 +452,11 @@ const i18n = {
   }
 };
 
-let currentLang = 'id';
-try {
-  const stored = localStorage.getItem('ws_lang');
-  if (stored === 'en' || stored === 'id') currentLang = stored;
-} catch (e) {}
+const lang = createI18n({
+  dictionaries: i18n,
+  langButtons: ['langBtn']
+});
 
-function applyLang(lang) {
-  currentLang = (lang === 'en' || lang === 'id') ? lang : 'id';
-  try { localStorage.setItem('ws_lang', currentLang); } catch (e) {}
-  document.documentElement.lang = currentLang;
-  const strings = i18n[currentLang];
-  if (!strings) return;
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
-    if (strings[key]) el.innerHTML = strings[key];
-  });
-  if (strings.page_title) document.title = strings.page_title;
-  const langBtn = document.getElementById('langBtn');
-  if (langBtn) langBtn.textContent = currentLang === 'id' ? 'EN' : 'ID';
-}
-
-function toggleLang() {
-  applyLang(currentLang === 'id' ? 'en' : 'id');
-}
-
-applyLang(currentLang);
 </script>
 
 </body>

@@ -1,10 +1,10 @@
 # Project Memory Index
 
-Last Updated: 2026-10-05 22:06:00 +07:00  
+Last Updated: 2026-11-17 21:14:10 +07:00
 Format Version: 1.0.0  
 
 ## Current State
-Landing page Waktu Sejak dalam kondisi stabil dan siap produksi. Seluruh temuan code review (syntax error di Privacy Policy, mapping data-i18n, perbaikan skip link a11y, Core Web Vitals LCP/CLS, navigasi mobile responsif, HTTP security headers di `vercel.json`, sitemap, robots.txt, dan sanitasi repositori) telah diperbaiki dan diverifikasi secara komprehensif.
+Landing page Waktu Sejak dalam kondisi stabil dan siap produksi. Temuan code review sebelumnya telah diperbaiki dan diverifikasi. Audit lanjutan merapikan state bahasa bersama, navigasi mobile, dan status ketersediaan store; automated state tests pass. Perubahan belum di-commit; browser-level visual dan assistive-technology verification masih direkomendasikan.
 
 ## Active Decisions
 - Arsitektur: Static vanilla HTML/CSS/JS tanpa dependensi eksternal, di-deploy ke Vercel.
@@ -13,10 +13,11 @@ Landing page Waktu Sejak dalam kondisi stabil dan siap produksi. Seluruh temuan 
 - SEO & Keamanan: Deklarasi `x-default`, update metadata dinamis saat beralih bahasa, HTTP security headers (`nosniff`, `DENY`, `strict-origin-when-cross-origin`, `Permissions-Policy`), `robots.txt`, dan `sitemap.xml`.
 
 ## Open Items & Blockers
-- None.
+- Verifikasi visual dan assistive-technology pada browser nyata untuk pembaruan navigasi mobile.
 
 ## Legacy Archive
 - [PROJECT_MEMORY.md (Legacy)](../PROJECT_MEMORY.md)
 
 ## Recent Entries
+- [2026-11-17 Implicit State Machines Audit](2026-11-17/211410-implicit-state-machines-audit.md)
 - [2026-10-05 Comprehensive Landing Page Fixes](2026-10-05/220600-comprehensive-landing-page-fixes.md)

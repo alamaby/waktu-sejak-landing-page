@@ -3,26 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Waktu Sejak — Time Since Tracking App</title>
+  <title>Waktu Sejak — Pelacak Waktu Minimalis</title>
   <link rel="icon" type="image/png" href="/assets/app_logo.png">
   <link rel="apple-touch-icon" href="/assets/app_logo.png">
   <link rel="manifest" href="/manifest.json">
-  <meta name="description" content="A minimalist time-tracking app — know exactly how long ago something happened, or how long until it does. Available on Google Play for Android, with App Store coming soon.">
+  <meta name="description" content="Aplikasi pelacak waktu minimalis — ketahui berapa lama yang lalu sesuatu terjadi, atau berapa lama lagi sesuatu akan terjadi. Tersedia di Google Play untuk Android; App Store segera hadir.">
   <!-- SEO Meta Tags -->
   <link rel="canonical" href="https://waktu-sejak.vercel.app/">
   <meta name="robots" content="index, follow">
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://waktu-sejak.vercel.app/">
-  <meta property="og:title" content="Waktu Sejak — Time Since Tracking App">
-  <meta property="og:description" content="A minimalist time-tracking app — know exactly how long ago something happened, or how long until it does. Available on Google Play for Android.">
+  <meta property="og:title" content="Waktu Sejak — Pelacak Waktu Minimalis">
+  <meta property="og:description" content="Aplikasi pelacak waktu minimalis — ketahui berapa lama yang lalu sesuatu terjadi, atau berapa lama lagi sesuatu akan terjadi. Tersedia di Google Play untuk Android; App Store segera hadir.">
   <meta property="og:image" content="https://waktu-sejak.vercel.app/assets/screenshot_dashboard_grid_light.png">
   <meta property="og:locale" content="id_ID">
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://waktu-sejak.vercel.app/">
-  <meta name="twitter:title" content="Waktu Sejak — Time Since Tracking App">
-  <meta name="twitter:description" content="A minimalist time-tracking app — know exactly how long ago something happened, or how long until it does. Available on Google Play for Android.">
+  <meta name="twitter:title" content="Waktu Sejak — Pelacak Waktu Minimalis">
+  <meta name="twitter:description" content="Aplikasi pelacak waktu minimalis — ketahui berapa lama yang lalu sesuatu terjadi, atau berapa lama lagi sesuatu akan terjadi. Tersedia di Google Play untuk Android; App Store segera hadir.">
   <meta name="twitter:image" content="https://waktu-sejak.vercel.app/assets/screenshot_dashboard_grid_light.png">
   <!-- Language Alternates -->
   <link rel="alternate" href="https://waktu-sejak.vercel.app/" hreflang="x-default" />
@@ -120,6 +120,7 @@
       transition: background 0.2s;
     }
     .lang-toggle:hover { background: #E8E7E3; }
+    #langBtnMobile { display: none; }
     .nav-menu-btn {
       display: none; background: none; border: none; cursor: pointer;
       width: 44px; height: 44px; position: relative; border-radius: 8px;
@@ -131,6 +132,9 @@
     .nav-menu-btn span:nth-child(1) { top: 15px; }
     .nav-menu-btn span:nth-child(2) { top: 21px; }
     .nav-menu-btn span:nth-child(3) { top: 27px; }
+    .nav-menu-btn[aria-expanded="true"] span:nth-child(1) { top: 21px; transform: rotate(45deg); }
+    .nav-menu-btn[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .nav-menu-btn[aria-expanded="true"] span:nth-child(3) { top: 21px; transform: rotate(-45deg); }
 
     /* HERO */
     .hero {
@@ -333,9 +337,18 @@
       font-size: 12px; font-weight: 500;
       padding: 3px 10px; border-radius: 100px;
     }
-    .dl-card .dl-status.soon { background: rgba(0,0,0,0.06); color: var(--fg-muted); }
-    .dl-card .dl-status.available { background: rgba(0,158,115,0.12); color: #006644; }
-    .dl-card.active { border-color: var(--oi-blue); }
+    /* Availability is declared once on the card; styling follows from it. */
+    .dl-card[data-availability="available"] { cursor: pointer; border-color: var(--oi-blue); }
+    .dl-card[data-availability="available"] .dl-status {
+      background: rgba(0,158,115,0.12); color: #006644;
+    }
+    .dl-card[data-availability="soon"] { cursor: default; }
+    .dl-card[data-availability="soon"]:hover {
+      transform: none; box-shadow: none;
+    }
+    .dl-card[data-availability="soon"] .dl-status {
+      background: rgba(0,0,0,0.06); color: var(--fg-muted);
+    }
 
     /* FOOTER */
     footer {
@@ -365,6 +378,7 @@
         gap: 16px;
       }
       .nav-menu-btn { display: block; }
+      #langBtnMobile { display: block; }
       .nav-links .lang-toggle { display: none; }
       .a11y-grid { grid-template-columns: 1fr; }
       .hero { padding-top: 120px; }
@@ -395,12 +409,12 @@
       <a href="#features" data-i18n="nav_features">Fitur</a>
       <a href="#screens" data-i18n="nav_screens">Tampilan</a>
       <a href="#accessibility" data-i18n="nav_a11y">Aksesibilitas</a>
-      <button class="lang-toggle" onclick="toggleLang()" id="langBtn">EN</button>
+      <button type="button" class="lang-toggle" id="langBtn" aria-label="Switch to English">EN</button>
       <a href="#download" class="nav-cta" data-i18n="nav_download">Download</a>
     </div>
     <div style="display:flex;gap:8px;align-items:center;">
-      <button class="lang-toggle" onclick="toggleLang()" id="langBtnMobile" style="display:none;">EN</button>
-      <button class="nav-menu-btn" id="navMenuBtn" aria-label="Menu" aria-expanded="false">
+      <button type="button" class="lang-toggle" id="langBtnMobile" aria-label="Switch to English">EN</button>
+      <button type="button" class="nav-menu-btn" id="navMenuBtn" aria-label="Buka menu" aria-expanded="false" aria-controls="navLinks">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -580,16 +594,16 @@
   <p class="download-subtitle" data-i18n="download_desc">Tersedia di Google Play untuk Android. Rilis App Store segera hadir.</p>
 
   <div class="download-grid">
-    <a href="https://play.google.com/store/apps/details?id=com.alamaby.waktu_sejak" target="_blank" rel="noopener" class="dl-card active">
-      <svg viewBox="0 0 24 24" fill="var(--oi-green)"><path d="M3.61 1.814L13.793 12 3.61 22.186a.996.996 0 01-.61-.92V2.734c0-.384.22-.72.61-.92zm.91-.467L15.5 7.28l-2.9 2.9L4.52 1.347zm11.08 5.986L18.28 9l2.5 1.5c.5.3.5.7 0 1l-2.5 1.5-2.68 1.667-2.9-2.9 2.9-2.9-.02.046zM4.52 22.653l8.08-8.833 2.9 2.9L4.52 22.653z"></path></svg>
+    <a href="https://play.google.com/store/apps/details?id=com.alamaby.waktu_sejak" target="_blank" rel="noopener" class="dl-card" data-availability="available">
+      <svg viewBox="0 0 24 24" fill="var(--oi-green)" aria-hidden="true"><path d="M3.61 1.814L13.793 12 3.61 22.186a.996.996 0 01-.61-.92V2.734c0-.384.22-.72.61-.92zm.91-.467L15.5 7.28l-2.9 2.9L4.52 1.347zm11.08 5.986L18.28 9l2.5 1.5c.5.3.5.7 0 1l-2.5 1.5-2.68 1.667-2.9-2.9 2.9-2.9-.02.046zM4.52 22.653l8.08-8.833 2.9 2.9L4.52 22.653z"></path></svg>
       <span class="dl-name">Google Play</span>
-      <span class="dl-status available" data-i18n="dl_play_available">Tersedia</span>
+      <span class="dl-status" data-i18n="availability_available">Tersedia</span>
     </a>
 
-    <div class="dl-card">
-      <svg viewBox="0 0 24 24" fill="var(--fg-muted)"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"></path></svg>
+    <div class="dl-card" data-availability="soon">
+      <svg viewBox="0 0 24 24" fill="var(--fg-muted)" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"></path></svg>
       <span class="dl-name">App Store</span>
-      <span class="dl-status soon" data-i18n="dl_soon">Segera Hadir</span>
+      <span class="dl-status" data-i18n="availability_soon">Segera Hadir</span>
     </div>
 
   </div>
@@ -611,16 +625,21 @@
   </div>
 </footer>
 
+<script src="/i18n.js"></script>
 <script>
 const i18n = {
   id: {
     skip_link: 'Lanjutkan ke konten utama',
     page_title: 'Waktu Sejak — Pelacak Waktu Minimalis',
-    page_desc: 'Aplikasi pelacak waktu minimalis — ketahui berapa lama yang lalu sesuatu terjadi, atau berapa lama lagi sesuatu akan terjadi. Tersedia di Google Play untuk Android.',
+    page_desc: 'Aplikasi pelacak waktu minimalis — ketahui berapa lama yang lalu sesuatu terjadi, atau berapa lama lagi sesuatu akan terjadi. Tersedia di Google Play untuk Android; App Store segera hadir.',
     nav_features: 'Fitur',
     nav_screens: 'Tampilan',
     nav_a11y: 'Aksesibilitas',
     nav_download: 'Download',
+    menu_open: 'Buka menu',
+    menu_close: 'Tutup menu',
+    switch_to_en: 'Ganti ke Bahasa Inggris',
+    switch_to_id: 'Ganti ke Bahasa Indonesia',
     hero_title: 'Tahu persis <em>sudah berapa lama</em> sejak peristiwa itu',
     hero_desc: 'Aplikasi pelacak waktu minimalis — ketahui berapa lama yang lalu sesuatu terjadi, atau berapa lama lagi sesuatu akan terjadi.',
     btn_download: 'Download',
@@ -661,8 +680,8 @@ const i18n = {
     section_download: 'Download',
     section_download_title: 'Dapatkan Waktu Sejak',
     download_desc: 'Tersedia di Google Play untuk Android. Rilis App Store segera hadir.',
-    dl_play_available: 'Tersedia',
-    dl_soon: 'Segera Hadir',
+    availability_available: 'Tersedia',
+    availability_soon: 'Segera Hadir',
     footer_by: 'Dibuat oleh',
     footer_privacy: 'Kebijakan Privasi',
     footer_termsOfService: 'Ketentuan Layanan',
@@ -670,11 +689,15 @@ const i18n = {
   en: {
     skip_link: 'Skip to main content',
     page_title: 'Waktu Sejak — Time Since Tracking App',
-    page_desc: 'A minimalist time-tracking app — know exactly how long ago something happened, or how long until it does. Available on Google Play for Android, with App Store coming soon.',
+    page_desc: 'A minimalist time-tracking app — know exactly how long ago something happened, or how long until it does. Available on Google Play for Android; App Store coming soon.',
     nav_features: 'Features',
     nav_screens: 'Screens',
     nav_a11y: 'Accessibility',
     nav_download: 'Download',
+    menu_open: 'Open menu',
+    menu_close: 'Close menu',
+    switch_to_en: 'Switch to English',
+    switch_to_id: 'Switch to Bahasa Indonesia',
     hero_title: 'Know exactly <em>how long ago</em> something happened',
     hero_desc: 'A minimalist time-tracking app — know how long ago something happened, or how long until it does.',
     btn_download: 'Download',
@@ -715,86 +738,65 @@ const i18n = {
     section_download: 'Download',
     section_download_title: 'Get Waktu Sejak',
     download_desc: 'Available on Google Play for Android. App Store release coming soon.',
-    dl_play_available: 'Available',
-    dl_soon: 'Coming Soon',
+    availability_available: 'Available',
+    availability_soon: 'Coming Soon',
     footer_by: 'Made by',
     footer_privacy: 'Privacy Policy',
     footer_termsOfService: 'Terms of Service',
   }
 };
 
-let currentLang = 'id';
-try {
-  const stored = localStorage.getItem('ws_lang');
-  if (stored === 'en' || stored === 'id') currentLang = stored;
-} catch (e) {}
+const lang = createI18n({
+  dictionaries: i18n,
+  langButtons: ['langBtn', 'langBtnMobile']
+});
 
-function applyLang(lang) {
-  currentLang = (lang === 'en' || lang === 'id') ? lang : 'id';
-  try { localStorage.setItem('ws_lang', currentLang); } catch (e) {}
-  document.documentElement.lang = currentLang;
-  const strings = i18n[currentLang];
-  if (!strings) return;
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
-    if (strings[key]) el.innerHTML = strings[key];
-  });
-  if (strings.page_title) document.title = strings.page_title;
-  const metaDesc = document.querySelector('meta[name="description"]');
-  if (metaDesc && strings.page_desc) metaDesc.setAttribute('content', strings.page_desc);
-  const langBtn = document.getElementById('langBtn');
-  if (langBtn) langBtn.textContent = currentLang === 'id' ? 'EN' : 'ID';
-  const langBtnMobile = document.getElementById('langBtnMobile');
-  if (langBtnMobile) langBtnMobile.textContent = currentLang === 'id' ? 'EN' : 'ID';
-}
-
-function toggleLang() {
-  applyLang(currentLang === 'id' ? 'en' : 'id');
-}
-
-// Mobile navigation handler
+// Mobile navigation state
 const navMenuBtn = document.getElementById('navMenuBtn');
 const navLinks = document.getElementById('navLinks');
+const mobileQuery = window.matchMedia('(max-width: 768px)');
+let menuOpen = false;
 
-function closeMobileMenu() {
-  if (navLinks) navLinks.classList.remove('open');
-  if (navMenuBtn) navMenuBtn.setAttribute('aria-expanded', 'false');
+function setMobileMenu(open) {
+  menuOpen = open;
+  navLinks.classList.toggle('open', open);
+  navMenuBtn.setAttribute('aria-expanded', String(open));
+  navMenuBtn.setAttribute('aria-label', lang.t(open ? 'menu_close' : 'menu_open'));
 }
 
 if (navMenuBtn && navLinks) {
   navMenuBtn.addEventListener('click', () => {
-    const isOpen = navLinks.classList.toggle('open');
-    navMenuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    setMobileMenu(!menuOpen);
   });
 
-  navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', closeMobileMenu);
+  navLinks.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => setMobileMenu(false));
   });
 
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && navLinks.classList.contains('open')) {
-      closeMobileMenu();
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && menuOpen) {
+      setMobileMenu(false);
       navMenuBtn.focus();
     }
   });
-}
 
-// Show mobile lang button when nav-menu-btn is visible
-function checkMobileLang() {
-  const btn = document.querySelector('.nav-menu-btn');
-  const mobileLang = document.getElementById('langBtnMobile');
-  if (!btn || !mobileLang) return;
-  if (getComputedStyle(btn).display !== 'none') {
-    mobileLang.style.display = 'block';
-  } else {
-    mobileLang.style.display = 'none';
+  document.addEventListener('click', (event) => {
+    if (!menuOpen) return;
+    if (navLinks.contains(event.target) || navMenuBtn.contains(event.target)) return;
+    setMobileMenu(false);
+  });
+
+  mobileQuery.addEventListener('change', (event) => {
+    if (!event.matches) setMobileMenu(false);
+  });
+
+  function updateMenuLabel() {
+    navMenuBtn.setAttribute('aria-label', lang.t(menuOpen ? 'menu_close' : 'menu_open'));
   }
-}
-window.addEventListener('resize', checkMobileLang);
 
-// Init
-applyLang(currentLang);
-checkMobileLang();
+  updateMenuLabel();
+  lang.onChange(updateMenuLabel);
+}
 </script>
 
 <script type="application/ld+json">
@@ -802,7 +804,7 @@ checkMobileLang();
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "Waktu Sejak",
-  "description": "A minimalist time-tracking app — know exactly how long ago something happened, or how long until it does.",
+  "description": "Aplikasi pelacak waktu minimalis — ketahui berapa lama yang lalu sesuatu terjadi, atau berapa lama lagi sesuatu akan terjadi.",
   "applicationCategory": "ProductivityApplication",
   "operatingSystem": "Android",
   "offers": {
