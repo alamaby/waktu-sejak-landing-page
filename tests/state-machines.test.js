@@ -35,6 +35,7 @@ function makeElement(id = '') {
       },
     },
     setAttribute(name, value) { this.attributes[name] = String(value); },
+    removeAttribute(name) { delete this.attributes[name]; },
     getAttribute(name) {
       if (name === 'data-i18n' || name === 'data-i18n-title') return this.key ?? null;
       return this.attributes[name] ?? null;
@@ -50,7 +51,7 @@ function makeElement(id = '') {
   };
 }
 
-function makePageDom(html, initialStorage = {}, storageDisabled = false) {
+function makePageDom(html, initialStorage = {}, storageDisabled = false, url = 'https://waktu-sejak.vercel.app/') {
   const elements = new Map();
   const listeners = {};
   const textNodes = [];
@@ -58,6 +59,19 @@ function makePageDom(html, initialStorage = {}, storageDisabled = false) {
   const metas = new Map();
   let lang = 'id';
   let title = '';
+
+  let currentUrl = new URL(url);
+  const location = {
+    get href() { return currentUrl.href; },
+    get search() { return currentUrl.search; },
+    get pathname() { return currentUrl.pathname; },
+    get hash() { return currentUrl.hash; },
+  };
+  const history = {
+    replaceState(_state, _title, nextUrl) {
+      currentUrl = new URL(nextUrl, currentUrl.href);
+    },
+  };
 
   const idPattern = /\bid="([^"]+)"/g;
   let match;
@@ -107,11 +121,15 @@ function makePageDom(html, initialStorage = {}, storageDisabled = false) {
     navLinks.contains = (target) => target === navLinks || menuLinks.includes(target);
   }
 
+  const docAttrs = {};
   const document = {
     documentElement: {
       get lang() { return lang; },
       set lang(value) { lang = value; },
+      setAttribute(name, value) { docAttrs[name] = String(value); },
+      getAttribute(name) { return docAttrs[name] ?? null; },
     },
+    body: makeElement('body'),
     get title() { return title; },
     set title(value) { title = value; },
     getElementById(id) { return elements.get(id) || null; },
@@ -156,6 +174,10 @@ function makePageDom(html, initialStorage = {}, storageDisabled = false) {
     document,
     localStorage,
     console,
+    location,
+    history,
+    URL,
+    URLSearchParams,
     matchMedia: () => mediaQuery,
     addEventListener(name, callback) {
       (listeners[`window:${name}`] ||= []).push(callback);
@@ -169,9 +191,9 @@ function makePageDom(html, initialStorage = {}, storageDisabled = false) {
   return { sandbox, window: sandbox, document, elements, textNodes, titleNodes, metas, storage, mediaQuery, menuLinks };
 }
 
-function runPage(page, initialStorage = {}, storageDisabled = false) {
+function runPage(page, initialStorage = {}, storageDisabled = false, url = 'https://waktu-sejak.vercel.app/') {
   const html = fs.readFileSync(path.join(root, page), 'utf8');
-  const dom = makePageDom(html, initialStorage, storageDisabled);
+  const dom = makePageDom(html, initialStorage, storageDisabled, url);
   const context = vm.createContext(dom.sandbox);
   vm.runInContext(helper, context, { filename: 'i18n.js' });
   vm.runInContext('var createI18n = window.createI18n', context);
@@ -196,6 +218,8 @@ for (const page of pages) {
 
     const state = runPage(page);
     assert.equal(state.document.documentElement.lang, 'id');
+    assert.equal(state.document.documentElement.getAttribute('data-lang'), 'id');
+    assert.equal(state.document.documentElement.getAttribute('data-lang-state'), 'ready');
     assert.equal(state.document.title, dict.id.page_title);
     assert.equal(state.metas.get('meta[name="description"]').content, dict.id.page_desc);
     assert.equal(state.storage.ws_lang, 'id');
@@ -204,12 +228,17 @@ for (const page of pages) {
 
     state.elements.get('langBtn').dispatch('click');
     assert.equal(state.document.documentElement.lang, 'en');
+    assert.equal(state.document.documentElement.getAttribute('data-lang'), 'en');
     assert.equal(state.document.title, dict.en.page_title);
     assert.equal(state.metas.get('meta[name="description"]').content, dict.en.page_desc);
     assert.equal(state.metas.get('meta[property="og:locale"]').content, 'en_US');
     assert.equal(state.storage.ws_lang, 'en');
     assert.equal(state.elements.get('langBtn').getAttribute('lang'), 'id');
     assert.ok(state.textNodes.every((node) => node.innerHTML || node.textContent), 'English translations should render');
+
+    const urlEnglish = runPage(page, {}, false, 'https://waktu-sejak.vercel.app/?lang=en');
+    assert.equal(urlEnglish.document.documentElement.lang, 'en', 'URL query param ?lang=en initializes page in English');
+    assert.equal(urlEnglish.storage.ws_lang, 'en', 'URL language selection updates storage');
 
     state.window.dispatch('storage', { key: 'ws_lang', newValue: 'id' });
     assert.equal(state.document.documentElement.lang, 'id', 'another tab language change should sync');
@@ -235,27 +264,41 @@ test('landing page: mobile menu state stays synchronized and dismisses predictab
   const panel = state.elements.get('navLinks');
 
   assert.equal(button.getAttribute('aria-expanded'), 'false');
+  assert.equal(button.getAttribute('data-state'), 'closed');
+  assert.equal(panel.getAttribute('data-state'), 'closed');
+  assert.equal(panel.getAttribute('aria-hidden'), 'true');
   assert.equal(panel.classList.contains('open'), false);
 
   button.dispatch('click');
   assert.equal(button.getAttribute('aria-expanded'), 'true');
+  assert.equal(button.getAttribute('data-state'), 'open');
+  assert.equal(panel.getAttribute('data-state'), 'open');
+  assert.equal(panel.getAttribute('aria-hidden'), 'false');
   assert.equal(panel.classList.contains('open'), true);
+  assert.equal(state.document.body.getAttribute('data-menu-open'), 'true');
 
   state.document.dispatch('click', { target: state.menuLinks[0] });
   assert.equal(button.getAttribute('aria-expanded'), 'true', 'clicks inside the panel should not count as outside');
 
   state.document.dispatch('click', { target: makeElement('outside') });
   assert.equal(button.getAttribute('aria-expanded'), 'false');
+  assert.equal(button.getAttribute('data-state'), 'closed');
+  assert.equal(panel.getAttribute('data-state'), 'closed');
+  assert.equal(panel.getAttribute('aria-hidden'), 'true');
   assert.equal(panel.classList.contains('open'), false);
+  assert.equal(state.document.body.getAttribute('data-menu-open'), null);
 
   button.dispatch('click');
   state.document.dispatch('keydown', { key: 'Escape' });
   assert.equal(button.getAttribute('aria-expanded'), 'false');
+  assert.equal(button.getAttribute('data-state'), 'closed');
   assert.equal(button.focused, true, 'Escape returns focus to the menu button');
 
   button.dispatch('click');
   state.mediaQuery.change(false);
   assert.equal(button.getAttribute('aria-expanded'), 'false', 'desktop breakpoint closes the mobile menu');
+  assert.equal(button.getAttribute('data-state'), 'closed');
+  assert.equal(panel.getAttribute('aria-hidden'), null, 'desktop view removes aria-hidden from nav panel');
 
   state.elements.get('langBtn').dispatch('click');
   assert.equal(button.getAttribute('aria-label'), 'Open menu', 'menu action name follows the active language');
@@ -266,9 +309,33 @@ test('landing page: store availability has one explicit state and retains link s
   const available = html.match(/<a\b([^>]*class="dl-card"[^>]*)>/);
   assert.ok(available, 'available store remains an anchor');
   assert.match(available[1], /data-availability="available"/);
+  assert.match(available[1], /data-store="google-play"/);
   assert.match(available[1], /target="_blank"/);
   assert.match(available[1], /rel="noopener"/);
   assert.match(available[1], /href="https:\/\/play\.google\.com/);
-  assert.match(html, /<div class="dl-card" data-availability="soon">/);
+  assert.match(html, /<div\b[^>]*class="dl-card"[^>]*data-availability="soon"/);
+  assert.match(html, /data-store="app-store"/);
+  assert.match(html, /role="region"/);
   assert.doesNotMatch(html, /dl-status (?:available|soon)/);
+});
+
+test('all pages: skip link exists and targets main with tabindex="-1"', () => {
+  for (const page of pages) {
+    const html = fs.readFileSync(path.join(root, page), 'utf8');
+    assert.match(html, /<a\b[^>]*href="#main-content"[^>]*class="skip-link"[^>]*data-i18n="skip_link"/, `${page} must have a skip link`);
+    assert.match(html, /<main\b[^>]*id="main-content"[^>]*tabindex="-1"/, `${page} main must have tabindex="-1"`);
+  }
+});
+
+test('landing page: exposes unified agentic runtime state on window.__APP_STATE__', () => {
+  const state = runPage('index.html');
+  assert.ok(state.window.__APP_STATE__, '__APP_STATE__ must be exposed');
+  assert.ok(state.window.__APP_STATE__.i18n, 'i18n instance must be exposed');
+  assert.equal(state.window.__APP_STATE__.i18n.current, 'id');
+  assert.ok(state.window.__APP_STATE__.nav, 'nav controller must be exposed');
+  assert.equal(state.window.__APP_STATE__.nav.isOpen(), false);
+  state.window.__APP_STATE__.nav.setOpen(true);
+  assert.equal(state.window.__APP_STATE__.nav.isOpen(), true);
+  assert.equal(state.elements.get('navMenuBtn').getAttribute('data-state'), 'open');
+  assert.ok(state.window.__APP_STATE__.scrollspy, 'scrollspy controller must be exposed');
 });

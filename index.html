@@ -55,6 +55,9 @@
     .skip-link:focus {
       top: 16px;
     }
+    main#main-content:focus {
+      outline: none;
+    }
 
     :root {
       --oi-orange: #E69F00;
@@ -108,6 +111,11 @@
       transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--fg); }
+    .nav-links a.active:not(.nav-cta),
+    .nav-links a[aria-current="true"]:not(.nav-cta) {
+      color: var(--oi-blue);
+      font-weight: 600;
+    }
     .nav-cta {
       background: var(--oi-blue) !important; color: #fff !important;
       padding: 8px 18px; border-radius: 8px; font-weight: 600 !important;
@@ -349,6 +357,21 @@
     .dl-card[data-availability="soon"] .dl-status {
       background: rgba(0,0,0,0.06); color: var(--fg-muted);
     }
+    .dl-notice {
+      display: block;
+      font-size: 12px;
+      color: var(--oi-blue);
+      font-weight: 500;
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: opacity 0.2s ease, max-height 0.2s ease;
+    }
+    .dl-notice.visible {
+      opacity: 1;
+      max-height: 40px;
+      margin-top: 4px;
+    }
 
     /* FOOTER */
     footer {
@@ -369,6 +392,7 @@
 
     /* RESPONSIVE */
     @media (max-width: 768px) {
+      body[data-menu-open="true"] { overflow: hidden; }
       .nav-links { display: none; }
       .nav-links.open {
         display: flex; flex-direction: column;
@@ -405,7 +429,7 @@
 <nav>
   <div class="nav-inner">
     <a href="#" class="nav-logo"><img src="assets/app_logo.png" alt="Waktu Sejak" width="28" height="28" style="width:28px;height:28px;border-radius:6px;"> <span>Waktu Sejak</span></a>
-    <div class="nav-links" id="navLinks">
+    <div class="nav-links" id="navLinks" data-state="closed">
       <a href="#features" data-i18n="nav_features">Fitur</a>
       <a href="#screens" data-i18n="nav_screens">Tampilan</a>
       <a href="#accessibility" data-i18n="nav_a11y">Aksesibilitas</a>
@@ -414,14 +438,14 @@
     </div>
     <div style="display:flex;gap:8px;align-items:center;">
       <button type="button" class="lang-toggle" id="langBtnMobile" aria-label="Switch to English">EN</button>
-      <button type="button" class="nav-menu-btn" id="navMenuBtn" aria-label="Buka menu" aria-expanded="false" aria-controls="navLinks">
+      <button type="button" class="nav-menu-btn" id="navMenuBtn" aria-label="Buka menu" aria-expanded="false" aria-controls="navLinks" data-state="closed">
         <span></span><span></span><span></span>
       </button>
     </div>
   </div>
 </nav>
 
-<main id="main-content">
+<main id="main-content" tabindex="-1">
 <!-- HERO -->
 <section class="hero">
   <div class="hero-badge">
@@ -594,16 +618,17 @@
   <p class="download-subtitle" data-i18n="download_desc">Tersedia di Google Play untuk Android. Rilis App Store segera hadir.</p>
 
   <div class="download-grid">
-    <a href="https://play.google.com/store/apps/details?id=com.alamaby.waktu_sejak" target="_blank" rel="noopener" class="dl-card" data-availability="available">
+    <a href="https://play.google.com/store/apps/details?id=com.alamaby.waktu_sejak" target="_blank" rel="noopener" class="dl-card" data-store="google-play" data-availability="available">
       <svg viewBox="0 0 24 24" fill="var(--oi-green)" aria-hidden="true"><path d="M3.61 1.814L13.793 12 3.61 22.186a.996.996 0 01-.61-.92V2.734c0-.384.22-.72.61-.92zm.91-.467L15.5 7.28l-2.9 2.9L4.52 1.347zm11.08 5.986L18.28 9l2.5 1.5c.5.3.5.7 0 1l-2.5 1.5-2.68 1.667-2.9-2.9 2.9-2.9-.02.046zM4.52 22.653l8.08-8.833 2.9 2.9L4.52 22.653z"></path></svg>
       <span class="dl-name">Google Play</span>
       <span class="dl-status" data-i18n="availability_available">Tersedia</span>
     </a>
 
-    <div class="dl-card" data-availability="soon">
+    <div class="dl-card" data-store="app-store" data-availability="soon" role="region" aria-label="Apple App Store — Segera Hadir" tabindex="0">
       <svg viewBox="0 0 24 24" fill="var(--fg-muted)" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"></path></svg>
       <span class="dl-name">App Store</span>
       <span class="dl-status" data-i18n="availability_soon">Segera Hadir</span>
+      <span class="dl-notice" id="appStoreNotice" aria-live="polite"></span>
     </div>
 
   </div>
@@ -682,6 +707,8 @@ const i18n = {
     download_desc: 'Tersedia di Google Play untuk Android. Rilis App Store segera hadir.',
     availability_available: 'Tersedia',
     availability_soon: 'Segera Hadir',
+    app_store_toast: 'Versi iOS sedang dalam persiapan.',
+    app_store_aria: 'Apple App Store — Segera Hadir',
     footer_by: 'Dibuat oleh',
     footer_privacy: 'Kebijakan Privasi',
     footer_termsOfService: 'Ketentuan Layanan',
@@ -740,6 +767,8 @@ const i18n = {
     download_desc: 'Available on Google Play for Android. App Store release coming soon.',
     availability_available: 'Available',
     availability_soon: 'Coming Soon',
+    app_store_toast: 'iOS version is currently in development.',
+    app_store_aria: 'Apple App Store — Coming Soon',
     footer_by: 'Made by',
     footer_privacy: 'Privacy Policy',
     footer_termsOfService: 'Terms of Service',
@@ -751,7 +780,7 @@ const lang = createI18n({
   langButtons: ['langBtn', 'langBtnMobile']
 });
 
-// Mobile navigation state
+// Mobile navigation state machine
 const navMenuBtn = document.getElementById('navMenuBtn');
 const navLinks = document.getElementById('navLinks');
 const mobileQuery = window.matchMedia('(max-width: 768px)');
@@ -760,11 +789,39 @@ let menuOpen = false;
 function setMobileMenu(open) {
   menuOpen = open;
   navLinks.classList.toggle('open', open);
+  navLinks.setAttribute('data-state', open ? 'open' : 'closed');
+  navMenuBtn.setAttribute('data-state', open ? 'open' : 'closed');
   navMenuBtn.setAttribute('aria-expanded', String(open));
   navMenuBtn.setAttribute('aria-label', lang.t(open ? 'menu_close' : 'menu_open'));
+
+  if (mobileQuery.matches) {
+    if (typeof navLinks.setAttribute === 'function') navLinks.setAttribute('aria-hidden', String(!open));
+    if (document.body && typeof document.body.setAttribute === 'function') {
+      if (open) document.body.setAttribute('data-menu-open', 'true');
+      else if (typeof document.body.removeAttribute === 'function') document.body.removeAttribute('data-menu-open');
+    }
+  } else {
+    if (typeof navLinks.removeAttribute === 'function') navLinks.removeAttribute('aria-hidden');
+    if (document.body && typeof document.body.removeAttribute === 'function') {
+      document.body.removeAttribute('data-menu-open');
+    }
+  }
+
+  if (typeof window !== 'undefined' && typeof window.dispatchEvent === 'function') {
+    const event = typeof CustomEvent === 'function'
+      ? new CustomEvent('nav:statechange', { detail: { state: open ? 'open' : 'closed', open } })
+      : { type: 'nav:statechange', detail: { state: open ? 'open' : 'closed', open } };
+    window.dispatchEvent(event);
+  }
 }
 
 if (navMenuBtn && navLinks) {
+  navLinks.setAttribute('data-state', 'closed');
+  navMenuBtn.setAttribute('data-state', 'closed');
+  if (mobileQuery.matches) {
+    navLinks.setAttribute('aria-hidden', 'true');
+  }
+
   navMenuBtn.addEventListener('click', () => {
     setMobileMenu(!menuOpen);
   });
@@ -787,7 +844,15 @@ if (navMenuBtn && navLinks) {
   });
 
   mobileQuery.addEventListener('change', (event) => {
-    if (!event.matches) setMobileMenu(false);
+    if (!event.matches) {
+      setMobileMenu(false);
+      if (typeof navLinks.removeAttribute === 'function') navLinks.removeAttribute('aria-hidden');
+      if (document.body && typeof document.body.removeAttribute === 'function') {
+        document.body.removeAttribute('data-menu-open');
+      }
+    } else {
+      if (typeof navLinks.setAttribute === 'function') navLinks.setAttribute('aria-hidden', String(!menuOpen));
+    }
   });
 
   function updateMenuLabel() {
@@ -796,6 +861,90 @@ if (navMenuBtn && navLinks) {
 
   updateMenuLabel();
   lang.onChange(updateMenuLabel);
+}
+
+// Active section observer (ScrollSpy state machine)
+const observedSectionIds = ['features', 'screens', 'accessibility', 'download'];
+const sectionElements = observedSectionIds.map((id) => document.getElementById(id)).filter(Boolean);
+const navElement = document.querySelector('nav');
+const navAnchorMap = new Map();
+
+document.querySelectorAll('.nav-links a[href^="#"]').forEach((link) => {
+  const targetId = link.getAttribute('href').slice(1);
+  if (targetId) navAnchorMap.set(targetId, link);
+});
+
+function setActiveSection(id) {
+  if (navElement && typeof navElement.setAttribute === 'function') {
+    if (id) navElement.setAttribute('data-active-section', id);
+    else navElement.removeAttribute('data-active-section');
+  }
+  navAnchorMap.forEach((link, targetId) => {
+    const isActive = targetId === id;
+    if (isActive) {
+      link.setAttribute('aria-current', 'true');
+      link.classList.add('active');
+    } else {
+      link.removeAttribute('aria-current');
+      link.classList.remove('active');
+    }
+  });
+}
+
+if (typeof IntersectionObserver !== 'undefined' && sectionElements.length > 0) {
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        setActiveSection(entry.target.id);
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+
+  sectionElements.forEach((el) => sectionObserver.observe(el));
+}
+
+// Store feedback interaction state
+const appStoreCard = document.querySelector('.dl-card[data-availability="soon"]');
+const appStoreNotice = document.getElementById('appStoreNotice');
+
+if (appStoreCard) {
+  function updateAppStoreAria() {
+    appStoreCard.setAttribute('aria-label', lang.t('app_store_aria'));
+  }
+  updateAppStoreAria();
+  lang.onChange(updateAppStoreAria);
+
+  function triggerNotice() {
+    if (!appStoreNotice) return;
+    appStoreNotice.textContent = lang.t('app_store_toast');
+    appStoreNotice.classList.add('visible');
+    clearTimeout(appStoreNotice._timer);
+    appStoreNotice._timer = setTimeout(() => {
+      appStoreNotice.classList.remove('visible');
+    }, 2800);
+  }
+
+  appStoreCard.addEventListener('click', triggerNotice);
+  appStoreCard.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      triggerNotice();
+    }
+  });
+}
+
+// Unified agent interface
+if (typeof window !== 'undefined') {
+  window.__APP_STATE__ = window.__APP_STATE__ || {};
+  window.__APP_STATE__.nav = {
+    isOpen: () => menuOpen,
+    setOpen: setMobileMenu,
+    toggle: () => setMobileMenu(!menuOpen),
+  };
+  window.__APP_STATE__.scrollspy = {
+    getActiveSection: () => (navElement && typeof navElement.getAttribute === 'function' ? navElement.getAttribute('data-active-section') : null),
+    setActiveSection,
+  };
 }
 </script>
 

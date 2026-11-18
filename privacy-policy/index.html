@@ -29,6 +29,27 @@
       outline-offset: 3px;
     }
 
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 16px;
+      background: var(--oi-blue);
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      z-index: 1000;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      transition: top 0.2s;
+    }
+    .skip-link:focus {
+      top: 16px;
+    }
+    main#main-content:focus {
+      outline: none;
+    }
+
     :root {
       --oi-orange: #E69F00;
       --oi-sky: #56B4E9;
@@ -184,6 +205,8 @@
   </style>
 </head>
 <body>
+  <!-- Skip navigation link -->
+  <a href="#main-content" class="skip-link" data-i18n="skip_link">Lanjutkan ke konten utama</a>
 
 <!-- NAV -->
 <nav>
@@ -196,7 +219,7 @@
   </div>
 </nav>
 
-<main>
+<main id="main-content" tabindex="-1">
   <header class="page-header">
     <h1 data-i18n="page_h1">Kebijakan Privasi</h1>
     <p class="updated"><span data-i18n="last_updated">Terakhir diperbarui</span>: 2026-06-17</p>
@@ -321,6 +344,7 @@
 <script>
 const i18n = {
   id: {
+    skip_link: 'Lanjutkan ke konten utama',
     page_title: 'Kebijakan Privasi — Waktu Sejak',
     page_desc: 'Kebijakan Privasi Waktu Sejak — aplikasi local-first. Data event, preferensi, widget, dan reward supporter disimpan di perangkat Anda.',
     switch_to_en: 'Ganti ke Bahasa Inggris',
@@ -386,6 +410,7 @@ const i18n = {
     footer_termsOfService: 'Ketentuan Layanan',
   },
   en: {
+    skip_link: 'Skip to main content',
     page_title: 'Privacy Policy — Waktu Sejak',
     page_desc: 'Privacy Policy for Waktu Sejak — a local-first app. Events, preferences, widget data, and supporter rewards are stored on your device.',
     switch_to_en: 'Switch to English',

@@ -12,9 +12,34 @@
     }
   }
 
+  function readUrlLang() {
+    try {
+      if (typeof window !== 'undefined' && window.location && window.location.search) {
+        const params = new URLSearchParams(window.location.search);
+        const lang = params.get('lang');
+        return LANGS.includes(lang) ? lang : null;
+      }
+    } catch (error) {
+      return null;
+    }
+    return null;
+  }
+
   function writeStoredLang(lang) {
     try {
       localStorage.setItem(STORAGE_KEY, lang);
+    } catch (error) {}
+  }
+
+  function syncUrl(lang) {
+    try {
+      if (typeof window !== 'undefined' && window.location && window.history && typeof window.history.replaceState === 'function') {
+        const url = new URL(window.location.href);
+        if (url.searchParams.get('lang') !== lang) {
+          url.searchParams.set('lang', lang);
+          window.history.replaceState(null, '', url.pathname + url.search + url.hash);
+        }
+      }
     } catch (error) {}
   }
 
@@ -26,7 +51,7 @@
     const defaultLang = config.defaultLang || DEFAULT_LANG;
     const listeners = [];
 
-    let current = readStoredLang() || defaultLang;
+    let current = readUrlLang() || readStoredLang() || defaultLang;
 
     function t(key, fallback) {
       const strings = dictionaries[current] || {};
@@ -55,6 +80,10 @@
     function render(lang) {
       current = lang;
       document.documentElement.lang = current;
+      if (typeof document.documentElement.setAttribute === 'function') {
+        document.documentElement.setAttribute('data-lang', current);
+        document.documentElement.setAttribute('data-lang-state', 'ready');
+      }
 
       const strings = dictionaries[current];
       if (!strings) return;
@@ -93,11 +122,21 @@
 
       updateButtons();
       notifyListeners();
+
+      try {
+        if (typeof document !== 'undefined' && typeof document.dispatchEvent === 'function') {
+          const event = typeof CustomEvent === 'function'
+            ? new CustomEvent('i18n:change', { detail: { lang: current } })
+            : { type: 'i18n:change', detail: { lang: current } };
+          document.dispatchEvent(event);
+        }
+      } catch (error) {}
     }
 
     function setLang(next) {
       const lang = LANGS.includes(next) ? next : defaultLang;
       writeStoredLang(lang);
+      syncUrl(lang);
       render(lang);
     }
 
@@ -118,7 +157,7 @@
     writeStoredLang(current);
     render(current);
 
-    return {
+    const instance = {
       get current() {
         return current;
       },
@@ -133,5 +172,12 @@
         };
       },
     };
+
+    if (typeof window !== 'undefined') {
+      window.__APP_STATE__ = window.__APP_STATE__ || {};
+      window.__APP_STATE__.i18n = instance;
+    }
+
+    return instance;
   };
 })();

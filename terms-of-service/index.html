@@ -25,6 +25,9 @@
     /* shared styles - mirror privacy-policy page */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     :focus-visible { outline: 2px solid var(--oi-blue); outline-offset: 3px; }
+    .skip-link { position: absolute; top: -100px; left: 16px; background: var(--oi-blue); color: #fff; padding: 8px 16px; border-radius: 8px; z-index: 1000; text-decoration: none; font-weight: 600; font-size: 14px; transition: top 0.2s; }
+    .skip-link:focus { top: 16px; }
+    main#main-content:focus { outline: none; }
     :root { --oi-orange:#E69F00; --oi-sky:#56B4E9; --oi-green:#009E73; --oi-yellow:#F0E442; --oi-blue:#0072B2; --oi-vermillion:#D55E00; --oi-purple:#CC79A7; --bg:#FAFAF8; --bg-alt:#F2F1ED; --fg:#1A1A18; --fg-muted:#6B6B66; --radius:16px; --radius-sm:10px; }
     html { scroll-behavior: smooth; }
     body { font-family: 'DM Sans', system-ui, sans-serif; background: var(--bg); color: var(--fg); line-height: 1.6; -webkit-font-smoothing: antialiased; }
@@ -66,6 +69,8 @@
   </style>
 </head>
 <body>
+  <!-- Skip navigation link -->
+  <a href="#main-content" class="skip-link" data-i18n="skip_link">Lanjutkan ke konten utama</a>
 <nav>
   <div class="nav-inner">
     <a href="/" class="nav-logo"><img src="/assets/app_logo.png" alt="Waktu Sejak" style="width:28px;height:28px;border-radius:6px;"> <span>Waktu Sejak</span></a>
@@ -75,7 +80,7 @@
     </div>
   </div>
 </nav>
-<main>
+<main id="main-content" tabindex="-1">
   <header class="page-header">
     <h1 data-i18n="page_h1">Ketentuan Layanan</h1>
     <p class="updated"><span data-i18n="last_updated">Terakhir diperbarui</span>: 2026-06-17</p>
@@ -170,6 +175,7 @@
 <script>
 const i18n = {
   id: {
+    skip_link: 'Lanjutkan ke konten utama',
     page_title: 'Ketentuan Layanan \u2014 Waktu Sejak',
     page_desc: 'Ketentuan Layanan Waktu Sejak \u2014 aturan penggunaan aplikasi, pembelian Dukung Developer opsional, dan batasan tanggung jawab developer.',
     switch_to_en: 'Ganti ke Bahasa Inggris',
@@ -225,6 +231,7 @@ const i18n = {
     footer_privacy: 'Kebijakan Privasi',
   },
   en: {
+    skip_link: 'Skip to main content',
     page_title: 'Terms of Service \u2014 Waktu Sejak',
     page_desc: 'Terms of Service for Waktu Sejak — app usage rules, optional Support Developer purchases, and developer liability limits.',
     switch_to_en: 'Switch to English',
